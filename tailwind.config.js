@@ -7,10 +7,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      height: {
+        headerMobile: "6rem",
+        headerSmall: "8rem",
+        headerMedium: "10rem",
+      },
+      screens: {
+        xs: "475px",
+      },
       colors: {
         headerText: "#E8DEC7",
         headerLeft: "black",
         headerRight: "#EDBABA",
+        backdropOverlay: "rgb(9,0,0,0.6)",
+        textLightPink: "#EDBABA",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
