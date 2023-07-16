@@ -18,6 +18,7 @@ module.exports = {
       colors: {
         headerText: "#E8DEC7",
         headerLeft: "black",
+        headerVia: "#735e5e",
         headerRight: "#EDBABA",
         backdropOverlay: "rgb(9,0,0,0.6)",
         textLightPink: "#EDBABA",
