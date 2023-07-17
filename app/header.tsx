@@ -1,19 +1,39 @@
+"use client";
+
+import React from "react";
+import { useScroll } from "./lib/hooks/useScroll";
+
 export const Header = () => {
+  const scrollYposition = useScroll();
+  const isScrolling = scrollYposition > 0;
+
+  const transition = "transition-all duration-200 ease-out";
+
   return (
-    <header className="sticky top-0 z-10 flex h-headerMobile w-screen flex-row items-center justify-start border-b-4 border-headerText bg-gradient-to-r from-black from-30% via-headerVia via-75% to-headerRight text-headerText sm:h-headerSmall md:h-headerMedium">
-      <div className="flex flex-row items-end pl-8 xs:pl-10 md:pl-20">
-        <span className="leading-0 flex flex-col items-center text-[0.775rem] font-extrabold tracking-[0.3rem] sm:text-xl md:text-2xl">
+    <header
+      data-scrolling={isScrolling}
+      className={`group sticky top-0 z-10 flex w-screen flex-row items-center justify-start border-b-4 bg-headerTransparent text-beige ${
+        isScrolling
+          ? "h-headerMobileScrolling"
+          : "h-headerMobile backdrop-blur-sm"
+      } ${transition}`}
+    >
+      <div
+        className={`ml-8 flex h-full flex-row items-end pb-2 group-data-[scrolling=true]:scale-y-[0.925] group-data-[scrolling=true]:pb-1 ${transition}`}
+      >
+        <span
+          className={`text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]`}
+        >
           <p>
             Weekend
             <br />
-          </p>
-          <p className="my-1">
             Bar
             <br />
+            Crew
           </p>
-          <p>Crew</p>
         </span>
-        <p className="w-[175px] overflow-hidden px-6 text-[0.575rem] leading-5 tracking-widest sm:ml-10 sm:text-[0.8rem] ">
+
+        <p className="ml-4 w-[150px] overflow-hidden text-[0.575rem] leading-4 tracking-widest">
           Discover hundreds of tasty and beautiful cocktails
         </p>
       </div>

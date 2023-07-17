@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       height: {
         headerMobile: "6rem",
+        headerMobileScrolling: "5.5rem",
         headerSmall: "8rem",
         headerMedium: "10rem",
       },
@@ -16,17 +17,13 @@ module.exports = {
         xs: "475px",
       },
       colors: {
-        headerText: "#E8DEC7",
-        headerLeft: "black",
-        headerVia: "#735e5e",
-        headerRight: "#EDBABA",
+        beige: "#E8DEC7",
         backdropOverlay: "rgb(9,0,0,0.6)",
         textLightPink: "#EDBABA",
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        headerTransparent:
+          "linear-gradient(to right, #00000040, #735e5e40, #EDBABA40)",
       },
     },
   },
