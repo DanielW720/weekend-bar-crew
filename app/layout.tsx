@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inknut_Antiqua } from "next/font/google";
-import { BackdropImage } from "./backdropImage";
+import { BackdropImage } from "./BackdropImage";
 import { Header } from "./Header";
 
 const inknut_antiqua = Inknut_Antiqua({

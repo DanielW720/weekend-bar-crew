@@ -19,7 +19,7 @@ export const Searchbar = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex h-10 w-full items-center rounded-full border-2 border-beige text-gray-300 caret-beigeRed backdrop-blur-[1px]"
+      className="flex h-12 w-full items-center rounded-full border-2 border-beige caret-beigeRed backdrop-blur-[1px]"
     >
       <button type="submit" className="mx-2 flex items-center">
         <span className="material-icons-outlined text-beige">search</span>
@@ -29,7 +29,7 @@ export const Searchbar = () => {
         type="text"
         placeholder="Search"
         {...register("query")}
-        className="bg-inherit text-sm outline-none"
+        className="bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"
       />
     </form>
   );
