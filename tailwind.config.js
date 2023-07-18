@@ -14,6 +14,7 @@ module.exports = {
         headerMedium: "10rem",
       },
       screens: {
+        xxs: "350px",
         xs: "475px",
       },
       colors: {

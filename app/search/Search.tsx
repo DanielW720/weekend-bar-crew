@@ -3,7 +3,7 @@ import { Searchbar } from "./Searchbar";
 import { Tags } from "./Tags";
 import { Roboto } from "next/font/google";
 
-const roboto = Roboto({
+export const roboto = Roboto({
   weight: ["400"],
   subsets: ["cyrillic"],
 });

@@ -12,7 +12,7 @@ export const Header = () => {
   return (
     <header
       data-scrolling={isScrolling}
-      className={`group sticky top-0 z-10 flex w-screen flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige ${
+      className={`group sticky top-0 z-[100] flex flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige ${
         isScrolling
           ? "h-headerMobileScrolling"
           : "h-headerMobile backdrop-blur-sm"
@@ -33,7 +33,7 @@ export const Header = () => {
           </p>
         </span>
 
-        <p className="ml-10 w-[150px] overflow-hidden text-[0.575rem] leading-4 tracking-widest">
+        <p className="w-[150px] overflow-hidden text-[0.575rem] leading-4 tracking-widest xxs:ml-10">
           Discover hundreds of tasty and beautiful cocktails
         </p>
       </div>

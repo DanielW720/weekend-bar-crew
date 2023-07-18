@@ -4,10 +4,11 @@ import { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Toggle from "@radix-ui/react-toggle";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { roboto } from "./Search";
 
 export const Tags = () => {
   return (
-    <div className={` mt-4 flex items-center justify-between`}>
+    <div className={`mt-4 flex items-center justify-between`}>
       <AlcoholicToggle />
       <BaseSpiritTag />
       <BaseSpiritTag />
@@ -16,7 +17,7 @@ export const Tags = () => {
 };
 
 const baseTagStyle =
-  "flex w-fit items-center rounded-md bg-beigeLightTransparent px-[6px] py-1 outline-none backdrop-blur-[2px]";
+  "flex w-fit items-center rounded-full bg-beigeLightTransparent px-[6px] py-1 outline-none backdrop-blur-[2px]";
 
 const AlcoholicToggle = () => {
   const [checked, setChecked] = useState(true);
@@ -24,7 +25,7 @@ const AlcoholicToggle = () => {
   return (
     <Toggle.Root
       aria-label="Toggle italic"
-      className={`${baseTagStyle} ${checked && "bg-cyan/80"}`}
+      className={`${baseTagStyle} ${checked && "bg-cyan"}`}
       onClick={() => setChecked((prevState) => !prevState)}
     >
       <p
@@ -38,8 +39,11 @@ const AlcoholicToggle = () => {
   );
 };
 
+type Spirit = "Gin" | "Whisky" | "Rum" | null;
+const spirits = ["Gin", "Whisky", "Rum", "Vodka"];
+
 const BaseSpiritTag = () => {
-  const [gin, setGin] = useState(true);
+  const [spirit, setSpirit] = useState<Spirit>(null);
 
   // Todo: change to Radix Select component
   return (
@@ -51,31 +55,28 @@ const BaseSpiritTag = () => {
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           sideOffset={6}
-          className="w-28 rounded-md bg-beigeRed px-2 py-1 text-black"
+          className={`${roboto.className} w-28 rounded-md bg-beige text-sm tracking-wider text-black`}
         >
-          <DropdownMenu.CheckboxItem
-            className="my-1 flex flex-row items-center text-xs"
-            checked={gin}
-            onCheckedChange={setGin}
-          >
-            <DropdownMenu.ItemIndicator>
-              <CheckIcon />
-            </DropdownMenu.ItemIndicator>
-            <p className="ml-auto w-fit">Gin</p>
-          </DropdownMenu.CheckboxItem>
+          {spirits.map((base, idx) => (
+            <DropdownMenu.CheckboxItem
+              key={base}
+              className={`flex flex-row items-center px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
+                idx === 0 && "rounded-t-md"
+              } ${idx === spirits.length - 1 && "rounded-b-md"}`}
+              checked={base === spirit}
+              onCheckedChange={() => {
+                if (base === spirit) setSpirit(null);
+                else setSpirit(base as Spirit);
+              }}
+            >
+              <DropdownMenu.ItemIndicator>
+                <CheckIcon />
+              </DropdownMenu.ItemIndicator>
+              <p className={`ml-auto w-fit`}>{base}</p>
+            </DropdownMenu.CheckboxItem>
+          ))}
 
-          <DropdownMenu.CheckboxItem
-            className="flex flex-row items-center text-xs"
-            checked={!gin}
-            onCheckedChange={setGin}
-          >
-            <DropdownMenu.ItemIndicator>
-              <CheckIcon />
-            </DropdownMenu.ItemIndicator>
-            <p className="ml-auto w-fit">Whisky</p>
-          </DropdownMenu.CheckboxItem>
-
-          <DropdownMenu.Arrow className="fill-beigeRed" />
+          <DropdownMenu.Arrow className="fill-beige" />
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
