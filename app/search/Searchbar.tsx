@@ -2,6 +2,7 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import "material-icons/iconfont/outlined.css";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 type Inputs = {
   query: string;
@@ -22,7 +23,7 @@ export const Searchbar = () => {
       className="flex h-12 w-full items-center rounded-full border-2 border-beige caret-beigeRed backdrop-blur-[1px]"
     >
       <button type="submit" className="mx-2 flex items-center">
-        <span className="material-icons-outlined text-beige">search</span>
+        <MagnifyingGlassIcon color="beige" width={20} height={20} />
       </button>
       <input
         autoComplete="off"

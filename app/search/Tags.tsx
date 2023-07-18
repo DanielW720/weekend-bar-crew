@@ -1,28 +1,52 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import * as Toggle from "@radix-ui/react-toggle";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 
 export const Tags = () => {
   return (
-    <div className="mt-4 grid grid-cols-3 gap-2">
-      <BaseSpiritTag />
-      <BaseSpiritTag />
+    <div className={` mt-4 flex items-center justify-between`}>
+      <AlcoholicToggle />
       <BaseSpiritTag />
       <BaseSpiritTag />
     </div>
   );
 };
 
-const BaseSpiritTag = () => {
-  const [gin, setGin] = React.useState(true);
+const baseTagStyle =
+  "flex w-fit items-center rounded-md bg-beigeLightTransparent px-[6px] py-1 outline-none backdrop-blur-[2px]";
+
+const AlcoholicToggle = () => {
+  const [checked, setChecked] = useState(true);
 
   return (
+    <Toggle.Root
+      aria-label="Toggle italic"
+      className={`${baseTagStyle} ${checked && "bg-cyan/80"}`}
+      onClick={() => setChecked((prevState) => !prevState)}
+    >
+      <p
+        className={`text-sm tracking-wider ${
+          checked ? "text-black" : "text-white"
+        }`}
+      >
+        Alcohol
+      </p>
+    </Toggle.Root>
+  );
+};
+
+const BaseSpiritTag = () => {
+  const [gin, setGin] = useState(true);
+
+  // Todo: change to Radix Select component
+  return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger className="flex w-fit items-center rounded-md p-1 text-xs text-white outline-none backdrop-blur-sm">
-        <p>Base spirit</p>
-        <ChevronDownIcon className="ml-1" />
+      <DropdownMenu.Trigger className={`${baseTagStyle}`}>
+        <p className="text-sm tracking-wider text-white">Base spirit</p>
+        <ChevronDownIcon className="ml-[2px]" color="white" />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
@@ -51,7 +75,7 @@ const BaseSpiritTag = () => {
             <p className="ml-auto w-fit">Whisky</p>
           </DropdownMenu.CheckboxItem>
 
-          <DropdownMenu.Arrow className="fill-beige" />
+          <DropdownMenu.Arrow className="fill-beigeRed" />
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

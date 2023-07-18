@@ -19,6 +19,8 @@ module.exports = {
       colors: {
         beige: "#E8DEC7",
         beigeRed: "#EDBABA",
+        beigeLightTransparent: "#CEB3B332",
+        cyan: "#00FFFF",
         backdropOverlay: "rgb(9,0,0,0.6)",
         textLightPink: "#EDBABA",
       },

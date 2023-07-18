@@ -33,7 +33,7 @@ export const Header = () => {
           </p>
         </span>
 
-        <p className="ml-4 w-[150px] overflow-hidden text-[0.575rem] leading-4 tracking-widest">
+        <p className="ml-10 w-[150px] overflow-hidden text-[0.575rem] leading-4 tracking-widest">
           Discover hundreds of tasty and beautiful cocktails
         </p>
       </div>
