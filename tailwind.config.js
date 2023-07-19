@@ -8,8 +8,8 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        headerMobile: "6rem",
-        headerMobileScrolling: "5.5rem",
+        headerMobile: "6.25rem",
+        headerMobileScrolling: "5.25rem",
         headerSmall: "8rem",
         headerMedium: "10rem",
       },
@@ -23,6 +23,7 @@ module.exports = {
         beigeLightTransparent: "#CEB3B332",
         cyan: "#00FFFF",
         backdropOverlay: "rgb(9,0,0,0.6)",
+        cardBackdrop: "rgb(0,0,0,0.8)",
         textLightPink: "#EDBABA",
       },
       backgroundImage: {

@@ -7,15 +7,13 @@ export const Header = () => {
   const scrollYposition = useScroll();
   const isScrolling = scrollYposition > 0;
 
-  const transition = "transition-all duration-200 ease-out";
+  const transition = "transition-all duration-300";
 
   return (
     <header
       data-scrolling={isScrolling}
-      className={`group sticky top-0 z-[100] flex flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige ${
-        isScrolling
-          ? "h-headerMobileScrolling"
-          : "h-headerMobile backdrop-blur-sm"
+      className={`group sticky top-0 z-[100] flex flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige backdrop-blur-sm ${
+        isScrolling ? "h-headerMobileScrolling" : "h-headerMobile"
       } ${transition}`}
     >
       <div
@@ -24,13 +22,13 @@ export const Header = () => {
         <span
           className={`text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]`}
         >
-          <p>
+          <h1>
             Weekend
             <br />
             Bar
             <br />
             Crew
-          </p>
+          </h1>
         </span>
 
         <p className="w-[150px] overflow-hidden text-[0.575rem] leading-4 tracking-widest xxs:ml-10">
