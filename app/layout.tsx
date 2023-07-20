@@ -8,11 +8,7 @@ export const metadata = {
     "Weekend Bar Crew - Discover hundreds of tasty and beautiful cockatils.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inknut_antiqua.className} bg-black`}>

@@ -5,8 +5,10 @@ import { roboto } from "../lib/globals/fonts";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`px-6 ${roboto.className}`}>
-      <div className="flex justify-between pt-4">
+    <div
+      className={`px-6 ${roboto.className} h-[calc(100vh-theme(height.headerMobile))] bg-gradient-to-b from-black to-darkGray`}
+    >
+      <div className="mt-4 flex justify-between">
         <Link href={"/"}>
           <ArrowLeftIcon className="text-beige" height={35} width={35} />
         </Link>

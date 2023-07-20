@@ -22,6 +22,7 @@ module.exports = {
         beigeRed: "#EDBABA",
         beigeLightTransparent: "#CEB3B332",
         cyan: "#00FFFF",
+        darkGray: "#151515",
         backdropOverlay: "rgb(9,0,0,0.6)",
         cardBackdrop: "rgb(0,0,0,0.8)",
         textLightPink: "#EDBABA",

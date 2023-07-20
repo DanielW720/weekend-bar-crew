@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const Card = ({
@@ -13,19 +14,25 @@ export const Card = ({
   title: string;
   shortDescription: string;
 }) => {
+  const router = useRouter();
   const [isTouching, setIsTouching] = useState(false);
   let touchTimer: NodeJS.Timeout;
+
+  const handleTouchStart = () => {
+    touchTimer = setTimeout(() => setIsTouching(true), 500);
+  };
+
+  const handleTouchEnd = () => {
+    clearTimeout(touchTimer);
+    setIsTouching(false);
+  };
 
   return (
     <div
       className={`group relative my-8 h-[13rem] w-[17rem] select-none overflow-hidden rounded-3xl border-b-2 border-b-beigeRed bg-black/50`}
-      onTouchStart={() => {
-        touchTimer = setTimeout(() => setIsTouching(true), 500);
-      }}
-      onTouchEnd={() => {
-        clearTimeout(touchTimer);
-        setIsTouching(false);
-      }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onClick={() => router.push(`/${title}`)}
     >
       <AnimatePresence>
         {isTouching && <CardBackdrop shortDescription={shortDescription} />}
