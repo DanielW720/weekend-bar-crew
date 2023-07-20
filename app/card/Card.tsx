@@ -31,7 +31,12 @@ export const Card = ({
         {isTouching && <CardBackdrop shortDescription={shortDescription} />}
       </AnimatePresence>
       <div className="relative top-0 h-[10.5rem] w-full">
-        <Image src={src} alt="Drink" fill className="object-cover" />
+        <Image
+          src={src}
+          alt="Drink"
+          fill
+          className="pointer-events-none object-cover"
+        />
       </div>
       <div className="flex h-[2.4rem] items-center justify-center rounded-b-3xl px-2 py-1 text-white backdrop-blur-sm">
         <h2 className="text-center text-[0.9rem]">{title}</h2>

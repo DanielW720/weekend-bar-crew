@@ -17,7 +17,7 @@ export const Tags = () => {
 };
 
 const baseTagStyle =
-  "flex w-fit items-center rounded-full bg-beigeLightTransparent px-[6px] py-1 outline-none backdrop-blur-[2px]";
+  "flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px]";
 
 const AlcoholicToggle = () => {
   const [checked, setChecked] = useState(true);
