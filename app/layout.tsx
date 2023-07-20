@@ -1,12 +1,6 @@
 import "./globals.css";
-import { Inknut_Antiqua } from "next/font/google";
-import { BackdropImage } from "./BackdropImage";
 import { Header } from "./Header";
-
-const inknut_antiqua = Inknut_Antiqua({
-  weight: ["800", "700", "300"],
-  subsets: ["devanagari"],
-});
+import { inknut_antiqua } from "./lib/globals/fonts";
 
 export const metadata = {
   title: "Weekend Bar Crew",
@@ -23,7 +17,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inknut_antiqua.className} bg-black`}>
         <Header />
-        <BackdropImage />
         <main>{children}</main>
       </body>
     </html>

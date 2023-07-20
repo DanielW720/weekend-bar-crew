@@ -4,7 +4,7 @@ import { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Toggle from "@radix-ui/react-toggle";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { roboto } from "./Search";
+import { roboto } from "../lib/globals/fonts";
 
 export const Tags = () => {
   return (

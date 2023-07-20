@@ -1,12 +1,7 @@
 import React from "react";
 import { Searchbar } from "./Searchbar";
 import { Tags } from "./Tags";
-import { Roboto } from "next/font/google";
-
-export const roboto = Roboto({
-  weight: ["400"],
-  subsets: ["cyrillic"],
-});
+import { roboto } from "../lib/globals/fonts";
 
 export const Search = () => {
   return (
