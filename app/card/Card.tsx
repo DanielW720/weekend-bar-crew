@@ -42,6 +42,8 @@ export const Card = ({
           src={src}
           alt="Drink"
           fill
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mMMPwIAAXgBHdkaTf8AAAAASUVORK5CYII="
           className="pointer-events-none object-cover"
         />
       </div>

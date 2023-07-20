@@ -6,7 +6,7 @@ import { roboto } from "../lib/globals/fonts";
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`px-6 ${roboto.className} h-[calc(100vh-theme(height.headerMobile))] bg-gradient-to-b from-black to-darkGray`}
+      className={`px-6 ${roboto.className} h-screen bg-gradient-to-b from-black to-darkGray`}
     >
       <div className="mt-4 flex justify-between">
         <Link href={"/"}>
