@@ -6,7 +6,7 @@ import { roboto } from "../lib/globals/fonts";
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`px-6 ${roboto.className} h-screen bg-gradient-to-b from-black to-darkGray`}
+      className={`px-6 ${roboto.className} bg-gradient-to-b from-black to-darkGray`}
     >
       <div className="mt-4 flex justify-between">
         <Link href={"/"}>
@@ -14,7 +14,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
         </Link>
         <MagnifyingGlassIcon className="text-beige" height={35} width={35} />
       </div>
-      <div>{children}</div>
+      <div className="py-4">{children}</div>
     </div>
   );
 }
