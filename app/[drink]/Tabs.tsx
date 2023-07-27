@@ -1,34 +1,61 @@
-import React from "react";
+import React, { ReactNode, useState } from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Tabs() {
+  const [tab, setTab] = useState("tab2");
+
+  // Reusable trigger component
+  const Trigger = ({
+    children,
+    value,
+  }: {
+    children: ReactNode;
+    value: string;
+  }) => (
+    <RadixTabs.Trigger
+      className="tracking-wider data-[state=active]:text-cyan"
+      value={value}
+    >
+      {children}
+    </RadixTabs.Trigger>
+  );
+
   return (
-    <RadixTabs.Root className="mt-6 w-full" defaultValue="tab2">
+    <RadixTabs.Root className="mt-6 w-full" value={tab} onValueChange={setTab}>
       <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beigeRed/20 to-transparent to-95% p-2 text-lg text-beige">
-        <RadixTabs.Trigger
-          className="tracking-wider data-[state=active]:text-cyan"
-          value="tab1"
-        >
-          Översikt
-        </RadixTabs.Trigger>
-        <RadixTabs.Trigger
-          className="tracking-wider data-[state=active]:text-cyan"
-          value="tab2"
-        >
-          Recept
-        </RadixTabs.Trigger>
-        <RadixTabs.Trigger
-          className="tracking-wider data-[state=active]:text-cyan"
-          value="tab3"
-        >
-          Utrustning
-        </RadixTabs.Trigger>
+        <Trigger value="tab1">Översikt</Trigger>
+        <Trigger value="tab2">Recept</Trigger>
+        <Trigger value="tab3">Utrustning</Trigger>
       </RadixTabs.List>
 
-      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab1">
+      <AnimatePresence mode="wait">
+        {tab === "tab1" ? (
+          <SectionOne key="tab1" />
+        ) : tab === "tab2" ? (
+          <SectionTwo key="tab3" />
+        ) : (
+          <SectionThree key="tab3" />
+        )}
+      </AnimatePresence>
+    </RadixTabs.Root>
+  );
+}
+
+function SectionOne() {
+  return (
+    <AnimateSection>
+      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab1" forceMount>
         <p className="tracking-wideer text-white/80">{data.overview}</p>
       </RadixTabs.Content>
-      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab2">
+    </AnimateSection>
+  );
+}
+
+function SectionTwo() {
+  return (
+    <AnimateSection>
+      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab2" forceMount>
         <div>
           <h3 className=" text-white">Ingredienser</h3>
           <ul className="ml-2 mt-4  text-white/80">
@@ -51,7 +78,14 @@ export default function Tabs() {
           </ol>
         </div>
       </RadixTabs.Content>
-      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab3">
+    </AnimateSection>
+  );
+}
+
+function SectionThree() {
+  return (
+    <AnimateSection>
+      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab3" forceMount>
         <ul className="mt-2 text-white/80">
           {data.equipment.map((item) => (
             <li key={item} className="my-1">
@@ -60,7 +94,20 @@ export default function Tabs() {
           ))}
         </ul>
       </RadixTabs.Content>
-    </RadixTabs.Root>
+    </AnimateSection>
+  );
+}
+
+function AnimateSection({ children }: { children: ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.15 }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
