@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
-import Tabs from "./Tabs";
+import Tabs from "./tabs";
 
 export default function Page() {
   // Go to top on first render

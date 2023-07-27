@@ -1,6 +1,6 @@
-import { Search } from "./search/Search";
-import { Card } from "./card/Card";
-import { BackdropImage } from "./BackdropImage";
+import { Search } from "./search/search";
+import { Card } from "./card/card";
+import { BackdropImage } from "./backdropImage";
 
 export default function Page() {
   return (

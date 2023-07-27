@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Header } from "./Header";
+import { Header } from "./header";
 import { inknut_antiqua } from "./lib/globals/fonts";
 
 export const metadata = {
