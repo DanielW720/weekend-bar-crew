@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { roboto } from "../lib/globals/fonts";
 import Background from "./background";
+import Search from "./search/search";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
         <Link href={"/"}>
           <ArrowLeftIcon className="text-beige" height={35} width={35} />
         </Link>
-        <MagnifyingGlassIcon className="text-beige" height={35} width={35} />
+        <Search />
       </div>
       <div className="py-4">{children}</div>
     </div>

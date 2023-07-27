@@ -47,7 +47,7 @@ const BaseSpiritTag = () => {
 
   // Todo: change to Radix Select component
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger className={`${baseTagStyle}`}>
         <p className="text-sm tracking-wider text-white">Base spirit</p>
         <ChevronDownIcon className="ml-[2px]" color="white" />
