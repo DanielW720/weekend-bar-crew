@@ -33,7 +33,7 @@ export default function Tabs() {
         {tab === "tab1" ? (
           <SectionOne key="tab1" />
         ) : tab === "tab2" ? (
-          <SectionTwo key="tab3" />
+          <SectionTwo key="tab2" />
         ) : (
           <SectionThree key="tab3" />
         )}
