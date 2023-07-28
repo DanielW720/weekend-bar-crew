@@ -1,84 +1,127 @@
 "use client";
 
 import { useState } from "react";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Toggle from "@radix-ui/react-toggle";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { roboto } from "../lib/globals/fonts";
+import { AnimatePresence, motion } from "framer-motion";
+import { useAnimate, stagger } from "framer-motion";
 
-export const Tags = () => {
+export function Tags() {
   return (
-    <div className={`mt-4 flex items-center justify-between`}>
+    <div className={`mt-6 flex items-center justify-between`}>
       <AlcoholicToggle />
-      <BaseSpiritTag />
-      <BaseSpiritTag />
+      <DropdownSelectionMenu
+        options={["Gin", "Whisky", "Rum", "Vodka"]}
+        title="Base Sprit"
+      />
+      <DropdownSelectionMenu
+        options={["Highball", "Fizz", "Martini"]}
+        title="Family"
+      />
     </div>
   );
-};
+}
 
-const baseTagStyle =
-  "flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px]";
-
-const AlcoholicToggle = () => {
+function AlcoholicToggle() {
   const [checked, setChecked] = useState(true);
 
   return (
-    <Toggle.Root
-      aria-label="Toggle italic"
-      className={`${baseTagStyle} ${checked && "bg-cyan"}`}
-      onClick={() => setChecked((prevState) => !prevState)}
-    >
-      <p
-        className={`text-sm tracking-wider ${
-          checked ? "text-black" : "text-white"
-        }`}
+    <motion.div whileTap={{ scale: 0.93 }}>
+      <Toggle.Root
+        aria-label="Toggle italic"
+        data-checked={checked}
+        className={`group flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px] data-[checked=true]:bg-cyan`}
+        onClick={() => setChecked((prevState) => !prevState)}
       >
-        Alcohol
-      </p>
-    </Toggle.Root>
-  );
-};
-
-type Spirit = "Gin" | "Whisky" | "Rum" | null;
-const spirits = ["Gin", "Whisky", "Rum", "Vodka"];
-
-const BaseSpiritTag = () => {
-  const [spirit, setSpirit] = useState<Spirit>(null);
-
-  // Todo: change to Radix Select component
-  return (
-    <DropdownMenu.Root modal={false}>
-      <DropdownMenu.Trigger className={`${baseTagStyle}`}>
-        <p className="text-sm tracking-wider text-white">Base spirit</p>
-        <ChevronDownIcon className="ml-[2px]" color="white" />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          sideOffset={6}
-          className={`${roboto.className} w-28 rounded-md bg-beige text-sm tracking-wider text-black`}
+        <p
+          className={`text-sm tracking-wider text-black group-data-[checked=false]:text-white`}
         >
-          {spirits.map((base, idx) => (
-            <DropdownMenu.CheckboxItem
-              key={base}
-              className={`flex flex-row items-center px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
-                idx === 0 && "rounded-t-md"
-              } ${idx === spirits.length - 1 && "rounded-b-md"}`}
-              checked={base === spirit}
-              onCheckedChange={() => {
-                if (base === spirit) setSpirit(null);
-                else setSpirit(base as Spirit);
-              }}
-            >
-              <DropdownMenu.ItemIndicator>
-                <CheckIcon />
-              </DropdownMenu.ItemIndicator>
-              <p className={`ml-auto w-fit`}>{base}</p>
-            </DropdownMenu.CheckboxItem>
-          ))}
-
-          <DropdownMenu.Arrow className="fill-beige" />
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
+          Alcohol
+        </p>
+      </Toggle.Root>
+    </motion.div>
   );
-};
+}
+
+function DropdownSelectionMenu({
+  options,
+  title,
+}: {
+  options: string[];
+  title: string;
+}) {
+  const [selected, setSelected] = useState<string[]>([]);
+  const [open, setOpen] = useState(false);
+
+  function onSelectClick(option: string) {
+    if (selected.includes(option)) {
+      const list = selected.filter((e) => e !== option);
+      setSelected(list);
+    } else {
+      const list = [...selected, option];
+      setSelected(list);
+    }
+  }
+
+  return (
+    <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
+      <motion.div whileTap={{ scale: 0.93 }}>
+        <RadixDropdownMenu.Trigger
+          className={`group relative flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px] data-[has-selected=true]:bg-cyan`}
+          data-has-selected={selected.length > 0}
+        >
+          <p className="text-sm tracking-wider text-white group-data-[has-selected=true]:text-black">
+            {title}
+          </p>
+          <ul
+            className={`pointer-events-none absolute top-8 rounded-md bg-black/50 px-2 py-1 tracking-wide backdrop-blur-sm group-data-[has-selected=false]:hidden`}
+          >
+            {selected.map((e) => (
+              <li key={e} className="text-xs text-cyan">
+                {e}
+              </li>
+            ))}
+          </ul>
+          <ChevronDownIcon className="ml-[2px] text-white group-data-[has-selected=true]:text-black" />
+        </RadixDropdownMenu.Trigger>
+      </motion.div>
+      <AnimatePresence mode="wait">
+        {open && (
+          <RadixDropdownMenu.Portal forceMount>
+            <motion.div
+              key={title}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <RadixDropdownMenu.Content
+                sideOffset={6}
+                className={`${roboto.className} w-28 rounded-md bg-beige/90 text-sm tracking-wider text-black`}
+              >
+                {options.map((option, idx) => (
+                  <RadixDropdownMenu.CheckboxItem
+                    key={option}
+                    className={`flex flex-row items-center px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
+                      idx === 0 && "rounded-t-md"
+                    } ${idx === options.length - 1 && "rounded-b-md"}`}
+                    checked={selected.includes(option)}
+                    onCheckedChange={() => onSelectClick(option)}
+                  >
+                    <RadixDropdownMenu.ItemIndicator>
+                      <CheckIcon />
+                    </RadixDropdownMenu.ItemIndicator>
+                    <p className={`ml-auto w-fit`}>{option}</p>
+                  </RadixDropdownMenu.CheckboxItem>
+                ))}
+                <RadixDropdownMenu.Arrow className="fill-beige" />
+              </RadixDropdownMenu.Content>
+            </motion.div>
+          </RadixDropdownMenu.Portal>
+        )}
+      </AnimatePresence>
+    </RadixDropdownMenu.Root>
+  );
+}

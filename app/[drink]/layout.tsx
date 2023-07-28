@@ -9,7 +9,10 @@ export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`px-6 ${roboto.className}`}>
       <Background />
-      <div className="fixed left-0 z-10 mt-4 flex w-full justify-between px-6">
+      <div
+        className="fixed left-0 z-10 mt-4 flex w-full justify-between px-6"
+        id="back-and-search"
+      >
         <Link href={"/"}>
           <ArrowLeftIcon className="text-beige" height={35} width={35} />
         </Link>

@@ -8,7 +8,7 @@ export default function Page() {
       <BackdropImage />
       <div className="flex w-full flex-col justify-center px-10 py-6">
         <Search />
-        <div className="mt-4 flex w-full flex-col items-center">
+        <div className="mt-8 flex w-full flex-col items-center">
           <Card
             src="/Negroni.jpg"
             title="Negroni"
