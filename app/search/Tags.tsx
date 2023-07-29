@@ -6,7 +6,6 @@ import * as Toggle from "@radix-ui/react-toggle";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { roboto } from "../lib/globals/fonts";
 import { AnimatePresence, motion } from "framer-motion";
-import { useAnimate, stagger } from "framer-motion";
 
 export function Tags() {
   return (
@@ -65,6 +64,23 @@ function DropdownSelectionMenu({
     }
   }
 
+  const list = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   return (
     <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
       <motion.div whileTap={{ scale: 0.93 }}>
@@ -75,6 +91,12 @@ function DropdownSelectionMenu({
           <p className="text-sm tracking-wider text-white group-data-[has-selected=true]:text-black">
             {title}
           </p>
+          <motion.div
+            transition={{ type: "keyframes", duration: 0.15 }}
+            animate={{ rotate: open ? 180 : 0 }}
+          >
+            <ChevronDownIcon className="ml-[2px] text-white group-data-[has-selected=true]:text-black" />
+          </motion.div>
           <ul
             className={`pointer-events-none absolute top-8 rounded-md bg-black/50 px-2 py-1 tracking-wide backdrop-blur-sm group-data-[has-selected=false]:hidden`}
           >
@@ -84,42 +106,45 @@ function DropdownSelectionMenu({
               </li>
             ))}
           </ul>
-          <ChevronDownIcon className="ml-[2px] text-white group-data-[has-selected=true]:text-black" />
         </RadixDropdownMenu.Trigger>
       </motion.div>
-      <AnimatePresence mode="wait">
+
+      <AnimatePresence>
         {open && (
-          <RadixDropdownMenu.Portal forceMount>
-            <motion.div
-              key={title}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="z-20"
+          >
+            <RadixDropdownMenu.Content
+              key="dropdown-content"
+              forceMount
+              sideOffset={6}
+              className={`${roboto.className} z-10 w-28 rounded-md bg-beige/90 text-sm tracking-wider text-black`}
             >
-              <RadixDropdownMenu.Content
-                sideOffset={6}
-                className={`${roboto.className} w-28 rounded-md bg-beige/90 text-sm tracking-wider text-black`}
-              >
+              <motion.ul initial="hidden" animate="visible" variants={list}>
                 {options.map((option, idx) => (
-                  <RadixDropdownMenu.CheckboxItem
-                    key={option}
-                    className={`flex flex-row items-center px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
-                      idx === 0 && "rounded-t-md"
-                    } ${idx === options.length - 1 && "rounded-b-md"}`}
-                    checked={selected.includes(option)}
-                    onCheckedChange={() => onSelectClick(option)}
-                  >
-                    <RadixDropdownMenu.ItemIndicator>
-                      <CheckIcon />
-                    </RadixDropdownMenu.ItemIndicator>
-                    <p className={`ml-auto w-fit`}>{option}</p>
-                  </RadixDropdownMenu.CheckboxItem>
+                  <motion.li key={option} variants={item}>
+                    <RadixDropdownMenu.CheckboxItem
+                      className={`flex flex-row items-center px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
+                        idx === 0 && "rounded-t-md"
+                      } ${idx === options.length - 1 && "rounded-b-md"}`}
+                      checked={selected.includes(option)}
+                      onCheckedChange={() => onSelectClick(option)}
+                    >
+                      <RadixDropdownMenu.ItemIndicator>
+                        <CheckIcon />
+                      </RadixDropdownMenu.ItemIndicator>
+                      <p className={`ml-auto w-fit`}>{option}</p>
+                    </RadixDropdownMenu.CheckboxItem>
+                  </motion.li>
                 ))}
-                <RadixDropdownMenu.Arrow className="fill-beige" />
-              </RadixDropdownMenu.Content>
-            </motion.div>
-          </RadixDropdownMenu.Portal>
+              </motion.ul>
+              <RadixDropdownMenu.Arrow className="fill-beige" />
+            </RadixDropdownMenu.Content>
+          </motion.div>
         )}
       </AnimatePresence>
     </RadixDropdownMenu.Root>
