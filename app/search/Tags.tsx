@@ -64,6 +64,7 @@ function DropdownSelectionMenu({
     }
   }
 
+  // Framer Motion animation variants
   const list = {
     hidden: {
       opacity: 0,
@@ -75,7 +76,6 @@ function DropdownSelectionMenu({
       },
     },
   };
-
   const item = {
     hidden: { opacity: 0, x: 100 },
     visible: { opacity: 1, x: 0 },
@@ -116,7 +116,7 @@ function DropdownSelectionMenu({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="z-20"
+            className="absolute z-10"
           >
             <RadixDropdownMenu.Content
               key="dropdown-content"
