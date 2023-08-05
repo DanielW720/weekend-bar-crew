@@ -77,8 +77,8 @@ function DropdownSelectionMenu({
     },
   };
   const item = {
-    hidden: { opacity: 0, x: 100 },
-    visible: { opacity: 1, x: 0 },
+    hidden: { opacity: 0, filter: "blur(10px)", x: 100 },
+    visible: { opacity: 1, filter: "blur(0px)", x: 0 },
   };
 
   return (
@@ -112,6 +112,7 @@ function DropdownSelectionMenu({
       <AnimatePresence>
         {open && (
           <motion.div
+            key="dropdown-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -119,7 +120,6 @@ function DropdownSelectionMenu({
             className="absolute z-10"
           >
             <RadixDropdownMenu.Content
-              key="dropdown-content"
               forceMount
               sideOffset={6}
               className={`${roboto.className} z-10 w-28 rounded-md bg-beige/90 text-sm tracking-wider text-black`}
