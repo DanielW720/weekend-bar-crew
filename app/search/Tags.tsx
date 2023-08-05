@@ -31,11 +31,11 @@ function AlcoholicToggle() {
       <Toggle.Root
         aria-label="Toggle italic"
         data-checked={checked}
-        className={`group flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px] data-[checked=true]:bg-cyan`}
+        className={`group flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px] transition-colors duration-200 data-[checked=true]:bg-cyan`}
         onClick={() => setChecked((prevState) => !prevState)}
       >
         <p
-          className={`text-sm tracking-wider text-black group-data-[checked=false]:text-white`}
+          className={`text-sm tracking-wider text-black transition-colors duration-200 group-data-[checked=false]:text-white`}
         >
           Alcohol
         </p>
@@ -85,10 +85,10 @@ function DropdownSelectionMenu({
     <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
       <motion.div whileTap={{ scale: 0.93 }}>
         <RadixDropdownMenu.Trigger
-          className={`group relative flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px] data-[has-selected=true]:bg-cyan`}
+          className={`group relative flex w-fit items-center rounded-full bg-beigeLightTransparent px-2 py-1 outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:bg-cyan`}
           data-has-selected={selected.length > 0}
         >
-          <p className="text-sm tracking-wider text-white group-data-[has-selected=true]:text-black">
+          <p className="text-sm tracking-wider text-white transition-colors duration-200 group-data-[has-selected=true]:text-black">
             {title}
           </p>
           <motion.div
@@ -114,7 +114,9 @@ function DropdownSelectionMenu({
           <motion.div
             key="dropdown-content"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{
+              opacity: 1,
+            }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="absolute z-10"
@@ -122,24 +124,29 @@ function DropdownSelectionMenu({
             <RadixDropdownMenu.Content
               forceMount
               sideOffset={6}
-              className={`${roboto.className} z-10 w-28 rounded-md bg-beige/90 text-sm tracking-wider text-black`}
+              className={`${roboto.className} z-10 w-24 rounded-md bg-beige/90 text-sm tracking-wider text-black`}
             >
               <motion.ul initial="hidden" animate="visible" variants={list}>
                 {options.map((option, idx) => (
-                  <motion.li key={option} variants={item}>
+                  <li key={option}>
                     <RadixDropdownMenu.CheckboxItem
-                      className={`flex flex-row items-center px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
+                      className={`px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
                         idx === 0 && "rounded-t-md"
                       } ${idx === options.length - 1 && "rounded-b-md"}`}
                       checked={selected.includes(option)}
                       onCheckedChange={() => onSelectClick(option)}
                     >
-                      <RadixDropdownMenu.ItemIndicator>
-                        <CheckIcon />
-                      </RadixDropdownMenu.ItemIndicator>
-                      <p className={`ml-auto w-fit`}>{option}</p>
+                      <motion.div
+                        variants={item}
+                        className="flex flex-row items-center justify-between"
+                      >
+                        <p>{option}</p>
+                        <RadixDropdownMenu.ItemIndicator>
+                          <CheckIcon />
+                        </RadixDropdownMenu.ItemIndicator>
+                      </motion.div>
                     </RadixDropdownMenu.CheckboxItem>
-                  </motion.li>
+                  </li>
                 ))}
               </motion.ul>
               <RadixDropdownMenu.Arrow className="fill-beige" />

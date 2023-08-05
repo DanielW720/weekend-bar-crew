@@ -6,6 +6,8 @@
 
 - Switcha mellan olika card layouts
 - Svårighetsgrad
+- Animera page transition
+- Visa valda filter snyggare
 
 ### Features
 
