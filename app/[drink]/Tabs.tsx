@@ -14,19 +14,27 @@ export default function Tabs() {
     value: string;
   }) => (
     <RadixTabs.Trigger
-      className="tracking-wider data-[state=active]:text-cyan"
+      className="relative tracking-wider data-[state=active]:text-cyan"
       value={value}
     >
       {children}
+      {tab === value && (
+        <motion.div
+          className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-cyan"
+          layoutId="underline"
+        />
+      )}
     </RadixTabs.Trigger>
   );
 
   return (
     <RadixTabs.Root className="mt-10 w-full" value={tab} onValueChange={setTab}>
       <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beigeRed/20 to-transparent to-95% p-2 text-lg text-beige">
-        <Trigger value="tab1">Översikt</Trigger>
-        <Trigger value="tab2">Recept</Trigger>
-        <Trigger value="tab3">Utrustning</Trigger>
+        {["Översikt", "Recept", "Utrustning"].map((value, idx) => (
+          <Trigger key={value} value={`tab${idx + 1}`}>
+            {value}
+          </Trigger>
+        ))}
       </RadixTabs.List>
 
       <AnimatePresence mode="wait">
