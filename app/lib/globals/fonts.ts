@@ -6,6 +6,6 @@ export const inknut_antiqua = Inknut_Antiqua({
 });
 
 export const roboto = Roboto({
-  weight: ["400"],
+  weight: ["400", "300"],
   subsets: ["cyrillic"],
 });

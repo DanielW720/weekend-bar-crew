@@ -1,7 +1,7 @@
 "use client";
 
 import { Search } from "./search/search";
-import { Card } from "./card/card";
+import { Card } from "./card";
 import { BackdropImage } from "./backdropImage";
 import { motion } from "framer-motion";
 

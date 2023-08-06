@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { roboto } from "./lib/globals/fonts";
 
 export const Card = ({
   src,
@@ -28,11 +29,13 @@ export const Card = ({
   };
 
   return (
-    <div
-      className={`group relative my-8 h-[13rem] w-[17rem] select-none overflow-hidden rounded-3xl border-b-2 border-b-beige bg-black/50`}
+    <motion.div
+      className={`${roboto.className} group relative my-8 h-[13rem] w-[17rem] select-none overflow-hidden rounded-3xl border-b-2 border-b-beige bg-black/50 tracking-wider`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => router.push(`/${title}`)}
+      initial={{ scale: 0.9 }}
+      animate={{ scale: 1 }}
     >
       <AnimatePresence>
         {isTouching && <CardBackdrop shortDescription={shortDescription} />}
@@ -48,9 +51,9 @@ export const Card = ({
         />
       </div>
       <div className="flex h-[2.4rem] items-center justify-center rounded-b-3xl px-2 py-1 text-white backdrop-blur-sm">
-        <h2 className="text-center text-[0.9rem]">{title}</h2>
+        <h2 className="text-center text-[1.1rem]">{title}</h2>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -64,7 +67,9 @@ const CardBackdrop = ({ shortDescription }: { shortDescription: string }) => {
       transition={{ duration: 0.3 }}
       className={`absolute z-10 h-[calc(100%-2rem)] w-full rounded-t-3xl bg-gradient-to-b from-cardBackdrop to-transparent px-2 pt-4 backdrop-blur-sm`}
     >
-      <p className="text-center text-xs text-beigeRed">{shortDescription}</p>
+      <p className="text-center text-sm font-light text-beige">
+        {shortDescription}
+      </p>
     </motion.div>
   );
 };
