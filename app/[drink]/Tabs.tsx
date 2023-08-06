@@ -5,36 +5,18 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function Tabs() {
   const [tab, setTab] = useState("tab2");
 
-  // Reusable trigger component
-  const Trigger = ({
-    children,
-    value,
-  }: {
-    children: ReactNode;
-    value: string;
-  }) => (
-    <RadixTabs.Trigger
-      className="relative tracking-wider data-[state=active]:text-cyan"
-      value={value}
-    >
-      {children}
-      {tab === value && (
-        <motion.div
-          className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-cyan"
-          layoutId="underline"
-        />
-      )}
-    </RadixTabs.Trigger>
-  );
-
   return (
     <RadixTabs.Root className="mt-10 w-full" value={tab} onValueChange={setTab}>
-      <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beigeRed/20 to-transparent to-95% p-2 text-lg text-beige">
-        {["Översikt", "Recept", "Utrustning"].map((value, idx) => (
-          <Trigger key={value} value={`tab${idx + 1}`}>
-            {value}
-          </Trigger>
-        ))}
+      <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beigeRed/20 to-transparent to-95% p-2">
+        <Trigger value="tab1" tab={tab}>
+          Översikt
+        </Trigger>
+        <Trigger value="tab2" tab={tab}>
+          Recept
+        </Trigger>
+        <Trigger value="tab3" tab={tab}>
+          Utrustning
+        </Trigger>
       </RadixTabs.List>
 
       <AnimatePresence mode="wait">
@@ -47,6 +29,31 @@ export default function Tabs() {
         )}
       </AnimatePresence>
     </RadixTabs.Root>
+  );
+}
+
+// Reusable Radix trigger tab button
+function Trigger({
+  children,
+  value,
+  tab,
+}: {
+  children: ReactNode;
+  value: string;
+  tab: string;
+}) {
+  return (
+    <RadixTabs.Trigger className="group relative tracking-wider" value={value}>
+      <h2 className="text-lg text-beige transition-colors duration-200 group-data-[state=active]:text-cyan">
+        {children}
+      </h2>
+      {tab === value && (
+        <motion.div
+          className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-cyan"
+          layoutId="underline"
+        />
+      )}
+    </RadixTabs.Trigger>
   );
 }
 
@@ -106,6 +113,9 @@ function SectionThree() {
   );
 }
 
+/**
+ * Reusable animation-component for the sections.
+ */
 function AnimateSection({ children }: { children: ReactNode }) {
   return (
     <motion.div
