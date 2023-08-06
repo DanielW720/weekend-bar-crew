@@ -25,7 +25,7 @@ export default function Page() {
           fill
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mMMPwIAAXgBHdkaTf8AAAAASUVORK5CYII="
-          className="rounded-[2rem] border-b-4 border-b-beigeRed object-cover"
+          className="rounded-[2rem] border-b-4 border-b-beige object-cover"
         />
       </motion.div>
       <Tabs />

@@ -4,14 +4,15 @@
 
 ### Enklare grejer
 
-- Switcha mellan olika card layouts
-- Svårighetsgrad
-- Animera page transition
-- Visa valda filter snyggare
+- [ ] Switcha mellan olika card layouts
+- [ ] Svårighetsgrad
+- [x] Animera page transition
+- [ ] Visa valda filter snyggare
+- [ ] Extra animering: card borders, ...
 
 ### Features
 
-- Dela med andra över <app> (messenger, snapchat, mail, sms etc)
-- Ratings
-- Kommentarer
-- Visa liknande
+- [ ] Dela med andra över <app> (messenger, snapchat, mail, sms etc)
+- [ ] Ratings
+- [ ] Kommentarer
+- [ ] Visa liknande

@@ -7,7 +7,7 @@ export default function Tabs() {
 
   return (
     <RadixTabs.Root className="mt-10 w-full" value={tab} onValueChange={setTab}>
-      <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beigeRed/20 to-transparent to-95% p-2">
+      <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
         <Trigger value="tab1" tab={tab}>
           Översikt
         </Trigger>

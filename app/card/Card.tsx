@@ -29,7 +29,7 @@ export const Card = ({
 
   return (
     <div
-      className={`group relative my-8 h-[13rem] w-[17rem] select-none overflow-hidden rounded-3xl border-b-2 border-b-beigeRed bg-black/50`}
+      className={`group relative my-8 h-[13rem] w-[17rem] select-none overflow-hidden rounded-3xl border-b-2 border-b-beige bg-black/50`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => router.push(`/${title}`)}
