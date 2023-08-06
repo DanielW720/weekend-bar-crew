@@ -51,6 +51,7 @@ function Trigger({
         <motion.div
           className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-cyan"
           layoutId="underline"
+          transition={{ duration: 0.2 }}
         />
       )}
     </RadixTabs.Trigger>
