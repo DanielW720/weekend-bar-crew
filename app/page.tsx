@@ -1,10 +1,27 @@
+"use client";
+
 import { Search } from "./search/search";
 import { Card } from "./card/card";
 import { BackdropImage } from "./backdropImage";
+import { motion } from "framer-motion";
 
 export default function Page() {
+  const variants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+    },
+  };
+
   return (
-    <div>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      transition={{ duration: 0.2 }}
+      variants={variants}
+    >
       <BackdropImage />
       <div className="flex w-full flex-col justify-center px-10 py-6">
         <Search />
@@ -13,7 +30,7 @@ export default function Page() {
             src="/Negroni.jpg"
             title="Negroni"
             shortDescription="Discover the bold allure of a Negroni, an exquisite blend of gin,
-          Campari, and vermouth"
+              Campari, and vermouth"
           />
           <Card
             src="/aperol-spritz.jpg"
@@ -29,10 +46,10 @@ export default function Page() {
             src="/Negroni.jpg"
             title="Negroni"
             shortDescription="Discover the bold allure of a Negroni, an exquisite blend of gin,
-          Campari, and vermouth"
+              Campari, and vermouth"
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

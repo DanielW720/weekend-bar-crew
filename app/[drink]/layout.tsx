@@ -1,13 +1,31 @@
+"use client";
+
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import React from "react";
 import { roboto } from "../lib/globals/fonts";
 import Background from "./background";
 import Search from "./search/search";
+import { motion } from "framer-motion";
 
 export default function layout({ children }: { children: React.ReactNode }) {
+  const variants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+    },
+  };
+
   return (
-    <div className={`px-6 ${roboto.className}`}>
+    <motion.div
+      className={`px-6 ${roboto.className}`}
+      initial="initial"
+      animate="animate"
+      transition={{ duration: 0.2 }}
+      variants={variants}
+    >
       <Background />
       <div
         className="fixed left-0 z-10 mt-4 flex w-full justify-between px-6"
@@ -19,6 +37,6 @@ export default function layout({ children }: { children: React.ReactNode }) {
         <Search />
       </div>
       <div className="py-12">{children}</div>
-    </div>
+    </motion.div>
   );
 }

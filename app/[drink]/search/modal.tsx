@@ -13,7 +13,7 @@ function Modal({ open, close }: { open: boolean; close: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 h-screen w-screen bg-black/40 px-10 pt-[60%] backdrop-blur-md"
             onClick={(e) => {
               if (e.target === e.currentTarget) close();
