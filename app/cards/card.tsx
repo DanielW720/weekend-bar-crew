@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { roboto } from "../lib/globals/fonts";
 
 export const Card = ({
@@ -17,20 +17,34 @@ export const Card = ({
 }) => {
   const router = useRouter();
   const [isTouching, setIsTouching] = useState(false);
-  let touchTimer: NodeJS.Timeout;
+  const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleBackdropStart = () => {
-    touchTimer = setTimeout(() => setIsTouching(true), 300);
+    // Clear any existing timers
+    if (touchTimerRef.current) {
+      clearTimeout(touchTimerRef.current);
+    }
+
+    // After x milliseconds, set isTouching to true
+    touchTimerRef.current = setTimeout(() => {
+      setIsTouching(true);
+      touchTimerRef.current = null; // Reset the timer ref
+    }, 300);
   };
 
   const handleBackdropEnd = () => {
-    clearTimeout(touchTimer);
+    // Clear the timer if it's still running
+    if (touchTimerRef.current) {
+      clearTimeout(touchTimerRef.current);
+      touchTimerRef.current = null; // Reset the timer ref
+    }
+
     setIsTouching(false);
   };
 
   return (
     <motion.div
-      className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-b-2 border-b-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem]`}
+      className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-[1px] border-b-[2px] border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem]`}
       onTouchStart={handleBackdropStart}
       onHoverStart={handleBackdropStart}
       onTouchEnd={handleBackdropEnd}
