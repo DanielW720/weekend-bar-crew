@@ -6,7 +6,11 @@ export default function Tabs() {
   const [tab, setTab] = useState("tab2");
 
   return (
-    <RadixTabs.Root className="mt-10 w-full" value={tab} onValueChange={setTab}>
+    <RadixTabs.Root
+      className="relative z-10 mt-10 w-full" // Position relative & z-10 to allow clicking when back/search button is on top of tabs
+      value={tab}
+      onValueChange={setTab}
+    >
       <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
         <Trigger value="tab1" tab={tab}>
           Översikt

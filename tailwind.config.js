@@ -18,7 +18,7 @@ module.exports = {
         xs: "475px",
       },
       colors: {
-        beige: "#E8DEC7",
+        beige: "#f0e6ce",
         cyan: "#00FFFF",
         darkGray: "#171717",
         backdropOverlay: "rgb(9,0,0,0.6)",

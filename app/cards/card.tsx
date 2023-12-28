@@ -83,9 +83,7 @@ const CardBackdrop = ({ shortDescription }: { shortDescription: string }) => {
       transition={{ duration: 0.3 }}
       className={`absolute z-10 h-[calc(100%-2rem)] w-full rounded-t-3xl bg-gradient-to-b from-cardBackdrop to-transparent px-2 pt-4 backdrop-blur-sm`}
     >
-      <p className="text-center text-xs font-light text-beige">
-        {shortDescription}
-      </p>
+      <p className="text-center text-xs text-beige">{shortDescription}</p>
     </motion.div>
   );
 };

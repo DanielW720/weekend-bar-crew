@@ -1,16 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import Tabs from "./tabs";
 import { motion } from "framer-motion";
 
 export default function Page() {
-  // Go to top on first render
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div className="flex min-h-screen w-full flex-col items-center">
       <h2 className="text-[2.125rem] tracking-widest text-cyan">Negroni</h2>
