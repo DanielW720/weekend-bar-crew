@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { roboto } from "./lib/globals/fonts";
+import { roboto } from "../lib/globals/fonts";
 
 export const Card = ({
   src,
@@ -20,7 +20,7 @@ export const Card = ({
   let touchTimer: NodeJS.Timeout;
 
   const handleBackdropStart = () => {
-    touchTimer = setTimeout(() => setIsTouching(true), 500);
+    touchTimer = setTimeout(() => setIsTouching(true), 300);
   };
 
   const handleBackdropEnd = () => {
