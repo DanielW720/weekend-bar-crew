@@ -4,33 +4,84 @@ import * as Toggle from "@radix-ui/react-toggle";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { roboto } from "../lib/globals/fonts";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  ReadonlyURLSearchParams,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+
+export type ParamTags = {
+  alcohol: boolean;
+  baseSpirit: string[];
+  type: string[];
+};
 
 export function Tags() {
+  const searchParams = useSearchParams();
+
   return (
-    <div className={`mt-6 flex items-center justify-between`}>
-      <AlcoholicToggle />
+    <div className={`mt-6 flex items-center justify-evenly`}>
+      <AlcoholicToggle searchParams={searchParams} />
       <DropdownSelectionMenu
-        options={["Gin", "Whisky", "Rum", "Vodka"]}
-        title="Base Sprit"
+        title={{ displayName: "Type", key: "type" }}
+        options={[
+          { displayName: "Highball", key: "highball" },
+          { displayName: "Sour", key: "sour" },
+          { displayName: "Fizz", key: "fizz" },
+        ]}
       />
       <DropdownSelectionMenu
-        options={["Highball", "Fizz", "Martini"]}
-        title="Family"
+        title={{ displayName: "Base Spirit", key: "baseSpirit" }}
+        options={[
+          {
+            displayName: "Vodka",
+            key: "vodka",
+          },
+          {
+            displayName: "Gin",
+            key: "gin",
+          },
+          {
+            displayName: "Whiskey",
+            key: "whiskey",
+          },
+        ]}
       />
     </div>
   );
 }
 
-function AlcoholicToggle() {
-  const [checked, setChecked] = useState(true);
+function AlcoholicToggle({
+  searchParams,
+}: {
+  searchParams: ReadonlyURLSearchParams;
+}) {
+  const router = useRouter();
+  const isAlcohol = searchParams.get("alcohol") !== "false";
+
+  const handleUpdateSearchParams = () => {
+    let paramsString: string;
+    if (searchParams.has("alcohol")) {
+      // "alcohol" param should be inverted
+      const params = [];
+      for (const [key, value] of searchParams.entries()) {
+        params.push(`${key}=${key === "alcohol" ? !isAlcohol : value}`);
+      }
+      paramsString = params.join("&");
+    } else {
+      // "alcohol" param does not exist in current search params, hence set it to false (defaults to true)
+      paramsString = searchParams.toString() + "&alcohol=false";
+    }
+    router.push(`/?${paramsString}`);
+  };
 
   return (
     <motion.div whileTap={{ scale: 0.93 }}>
       <Toggle.Root
         aria-label="Toggle italic"
-        data-checked={checked}
+        data-checked={isAlcohol}
         className={`group flex w-fit items-center rounded-full bg-beige/20 px-2 py-1 outline-none backdrop-blur-[2px] transition-colors duration-200 data-[checked=true]:bg-cyan`}
-        onClick={() => setChecked((prevState) => !prevState)}
+        onClick={handleUpdateSearchParams}
       >
         <p
           className={`text-sm tracking-wider text-black transition-colors duration-200 group-data-[checked=false]:text-white`}
@@ -43,23 +94,46 @@ function AlcoholicToggle() {
 }
 
 function DropdownSelectionMenu({
-  options,
   title,
+  options,
 }: {
-  options: string[];
-  title: string;
+  title: { displayName: string; key: string };
+  options: { displayName: string; key: string }[];
 }) {
-  const [selected, setSelected] = useState<string[]>([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
+  const selected: string[] = [];
+  searchParams
+    .get(title.key)
+    ?.split(";")
+    .forEach((value) => (value !== "" ? selected.push(value) : null));
 
-  function onSelectClick(option: string) {
-    if (selected.includes(option)) {
-      const list = selected.filter((e) => e !== option);
-      setSelected(list);
+  function onSelectClick(option: { displayName: string; key: string }) {
+    let valuesStringUpdated: string;
+    if (selected.includes(option.key)) {
+      // Option was already included, hence we un-include it
+      valuesStringUpdated = selected.filter((e) => e !== option.key).join(";");
     } else {
-      const list = [...selected, option];
-      setSelected(list);
+      // Option was not selected previously, hence we select it
+      valuesStringUpdated = [...selected, option.key].join(";");
     }
+    // Update search params
+    let paramString: string;
+    if (searchParams.has(title.key)) {
+      // Option exists and its values should be updated
+      const params = [];
+      for (const [key, value] of searchParams.entries()) {
+        params.push(
+          `${key}=${key === title.key ? valuesStringUpdated : value}`
+        );
+      }
+      paramString = params.join("&");
+    } else {
+      // Option not previously selected, should be added together with the recently selected value
+      paramString = `${searchParams.toString()}&${title.key}=${option.key}`;
+    }
+    router.push(`/?${paramString}`);
   }
 
   // Framer Motion animation variants
@@ -87,7 +161,7 @@ function DropdownSelectionMenu({
           data-has-selected={selected.length > 0}
         >
           <p className="text-sm tracking-wider text-white transition-colors duration-200 group-data-[has-selected=true]:text-black">
-            {title}
+            {title.displayName}
           </p>
           <motion.div
             transition={{ type: "keyframes", duration: 0.15 }}
@@ -98,11 +172,13 @@ function DropdownSelectionMenu({
           <ul
             className={`pointer-events-none absolute top-8 rounded-md bg-black/50 px-2 py-1 tracking-wide backdrop-blur-sm group-data-[has-selected=false]:hidden`}
           >
-            {selected.map((e) => (
-              <li key={e} className="text-xs text-cyan">
-                {e}
-              </li>
-            ))}
+            {options.map((option) =>
+              selected.includes(option.key) ? (
+                <li key={option.key} className="text-left text-xs text-cyan">
+                  {option.displayName}
+                </li>
+              ) : null
+            )}
           </ul>
         </RadixDropdownMenu.Trigger>
       </motion.div>
@@ -126,19 +202,21 @@ function DropdownSelectionMenu({
             >
               <motion.ul initial="hidden" animate="visible" variants={list}>
                 {options.map((option, idx) => (
-                  <li key={option}>
+                  <li key={option.key}>
                     <RadixDropdownMenu.CheckboxItem
                       className={`px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
                         idx === 0 && "rounded-t-md"
                       } ${idx === options.length - 1 && "rounded-b-md"}`}
-                      checked={selected.includes(option)}
-                      onCheckedChange={() => onSelectClick(option)}
+                      checked={selected.includes(option.key)}
+                      onClick={() => {
+                        onSelectClick(option);
+                      }}
                     >
                       <motion.div
                         variants={item}
                         className="flex flex-row items-center justify-between"
                       >
-                        <p>{option}</p>
+                        <p>{option.displayName}</p>
                         <RadixDropdownMenu.ItemIndicator>
                           <CheckIcon />
                         </RadixDropdownMenu.ItemIndicator>

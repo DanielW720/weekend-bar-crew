@@ -1,22 +1,37 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import "material-icons/iconfont/outlined.css";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Inputs = {
   query: string;
 };
 
-export const Searchbar = ({ query }: { query: string | null }) => {
+export const Searchbar = () => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<Inputs>();
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    router.push(`/?query=${data.query}`);
+  const onSubmit: SubmitHandler<Inputs> = (data) =>
+    updateSearchParams(data.query);
+
+  const updateSearchParams = (query: string) => {
+    // Update search params
+    let paramsString: string;
+    if (searchParams.has("query")) {
+      const params = [];
+      for (const [key, value] of searchParams.entries()) {
+        params.push(`${key}=${key === "query" ? query : value}`);
+      }
+      paramsString = params.join("&");
+    } else {
+      paramsString = `${searchParams}&query=${query}`;
+    }
+    router.push(`/?${paramsString}`);
   };
 
   return (
@@ -30,7 +45,7 @@ export const Searchbar = ({ query }: { query: string | null }) => {
       <input
         autoComplete="off"
         type="text"
-        placeholder={query ? query : "Search"}
+        placeholder={"Search"}
         {...register("query")}
         className="bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"
       />
