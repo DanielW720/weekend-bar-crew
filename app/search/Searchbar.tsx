@@ -45,7 +45,9 @@ export const Searchbar = () => {
       <input
         autoComplete="off"
         type="text"
-        placeholder={"Search"}
+        placeholder={`${
+          searchParams.has("query") ? searchParams.get("query") : "Search"
+        }`}
         {...register("query")}
         className="bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"
       />
