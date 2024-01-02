@@ -5,16 +5,9 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
 import { roboto } from "../lib/globals/fonts";
+import { DrinkItem } from "./resultGrid";
 
-export const Card = ({
-  src,
-  title,
-  shortDescription,
-}: {
-  src: string;
-  title: string;
-  shortDescription: string;
-}) => {
+export const Card = ({ drinkItem }: { drinkItem: DrinkItem }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isTouching, setIsTouching] = useState(false);
@@ -52,7 +45,7 @@ export const Card = ({
       onHoverEnd={handleBackdropEnd}
       onClick={() =>
         router.push(
-          `/${title}${
+          `/${drinkItem.title}${
             searchParams.toString().length > 0
               ? "?" + searchParams.toString()
               : ""
@@ -63,11 +56,13 @@ export const Card = ({
       animate={{ scale: 1 }}
     >
       <AnimatePresence>
-        {isTouching && <CardBackdrop shortDescription={shortDescription} />}
+        {isTouching && (
+          <CardBackdrop shortDescription={drinkItem.shortDescription} />
+        )}
       </AnimatePresence>
       <div className="relative top-0 h-[10.5rem] w-full md:h-[7.5rem]">
         <Image
-          src={src}
+          src={drinkItem.imageUrl}
           alt="Drink"
           fill
           placeholder="blur"
@@ -76,7 +71,9 @@ export const Card = ({
         />
       </div>
       <div className="flex h-[2.4rem] items-center justify-center rounded-b-3xl px-2 py-1 text-white backdrop-blur-sm">
-        <h2 className="text-center text-[1.1rem] md:text-sm">{title}</h2>
+        <h2 className="text-center text-[1.1rem] md:text-sm">
+          {drinkItem.title}
+        </h2>
       </div>
     </motion.div>
   );

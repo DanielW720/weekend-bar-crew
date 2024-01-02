@@ -25,7 +25,6 @@ export default function Page() {
     >
       <BackdropImage />
       <Search />
-
       <ResultGrid />
     </motion.div>
   );

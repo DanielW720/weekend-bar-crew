@@ -1,8 +1,9 @@
 import React, { ReactNode, useState } from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
+import { DrinkDetails } from "./page";
 
-export default function Tabs() {
+export default function Tabs({ drinkDetails }: { drinkDetails: DrinkDetails }) {
   const [tab, setTab] = useState("tab2");
 
   return (
@@ -25,11 +26,11 @@ export default function Tabs() {
 
       <AnimatePresence mode="wait">
         {tab === "tab1" ? (
-          <SectionOne key="tab1" />
+          <SectionOne key="tab1" overview={drinkDetails.description} />
         ) : tab === "tab2" ? (
-          <SectionTwo key="tab2" />
+          <SectionTwo key="tab2" data={drinkDetails.recepie} />
         ) : (
-          <SectionThree key="tab3" />
+          <SectionThree key="tab3" equipment={drinkDetails.equipment} />
         )}
       </AnimatePresence>
     </RadixTabs.Root>
@@ -62,17 +63,21 @@ function Trigger({
   );
 }
 
-function SectionOne() {
+function SectionOne({ overview }: { overview: string }) {
   return (
     <AnimateSection>
       <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab1" forceMount>
-        <p className="tracking-wideer text-white/80">{data.overview}</p>
+        <p className="tracking-wideer text-white/80">{overview}</p>
       </RadixTabs.Content>
     </AnimateSection>
   );
 }
 
-function SectionTwo() {
+function SectionTwo({
+  data,
+}: {
+  data: { ingredients: string[]; instructions: string[] };
+}) {
   return (
     <AnimateSection>
       <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab2" forceMount>
@@ -102,12 +107,12 @@ function SectionTwo() {
   );
 }
 
-function SectionThree() {
+function SectionThree({ equipment }: { equipment: string[] }) {
   return (
     <AnimateSection>
       <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab3" forceMount>
         <ul className="mt-2 text-white/80">
-          {data.equipment.map((item) => (
+          {equipment.map((item) => (
             <li key={item} className="my-1">
               {item}
             </li>
@@ -133,20 +138,3 @@ function AnimateSection({ children }: { children: ReactNode }) {
     </motion.div>
   );
 }
-
-const data = {
-  overview:
-    "Vuxendrink med beskt klös, en given aptitretare. Det sägs att drinken skapades av greve Camillo Negroni på 20-talet när han tröttnat på den då trendiga drinken Americano (campari och söt vermouth). Han spetsade den med gin och skapade därmed en ny klassiker.",
-  ingredients: [
-    "1 handfull is",
-    "2 cl gin",
-    "2 cl Martini Rosso",
-    "2 cl Campari Bitter",
-    "1 skiva apelsin",
-  ],
-  instructions: [
-    "Fyll ett tumblerglas med isbitar och häll i resten av ingredienserna.",
-    "Ta gärna även en bit apelsin och pressa den över drinken för att få ut apelsinskalets oljor. Gnid även mot glasets kant innan du stoppar ner den i drinken.",
-  ],
-  equipment: ["Tumblerglas eller liknande", "Kniv"],
-};
