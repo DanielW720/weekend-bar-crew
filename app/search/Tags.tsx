@@ -28,6 +28,10 @@ export function Tags() {
           { displayName: "Highball", key: "highball" },
           { displayName: "Sour", key: "sour" },
           { displayName: "Fizz", key: "fizz" },
+          { displayName: "Martini", key: "martini" },
+          { displayName: "Mule", key: "mule" },
+          { displayName: "Punch", key: "punch" },
+          { displayName: "Bubbles", key: "bubbles" },
         ]}
       />
       <DropdownSelectionMenu
@@ -36,6 +40,14 @@ export function Tags() {
           {
             displayName: "Vodka",
             key: "vodka",
+          },
+          {
+            displayName: "Rom",
+            key: "rom",
+          },
+          {
+            displayName: "Tequila",
+            key: "tequila",
           },
           {
             displayName: "Gin",
@@ -204,7 +216,7 @@ function DropdownSelectionMenu({
                 {options.map((option, idx) => (
                   <li key={option.key}>
                     <RadixDropdownMenu.CheckboxItem
-                      className={`px-2 py-1 text-sm data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
+                      className={`px-2 py-1 text-xs data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
                         idx === 0 && "rounded-t-md"
                       } ${idx === options.length - 1 && "rounded-b-md"}`}
                       checked={selected.includes(option.key)}
