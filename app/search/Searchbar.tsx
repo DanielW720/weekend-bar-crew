@@ -15,6 +15,7 @@ export const Searchbar = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const searchParams = useSearchParams();
+  const currentQuery = searchParams.get("query");
   const router = useRouter();
   const onSubmit: SubmitHandler<Inputs> = (data) =>
     updateSearchParams(data.query);
@@ -45,9 +46,8 @@ export const Searchbar = () => {
       <input
         autoComplete="off"
         type="text"
-        placeholder={`${
-          searchParams.has("query") ? searchParams.get("query") : "Search"
-        }`}
+        placeholder={`Search`}
+        defaultValue={currentQuery != null ? currentQuery : ""}
         {...register("query")}
         className="bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"
       />
