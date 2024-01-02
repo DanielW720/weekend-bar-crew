@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
 import { roboto } from "../lib/globals/fonts";
 
@@ -16,6 +16,7 @@ export const Card = ({
   shortDescription: string;
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isTouching, setIsTouching] = useState(false);
   const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -49,7 +50,15 @@ export const Card = ({
       onHoverStart={handleBackdropStart}
       onTouchEnd={handleBackdropEnd}
       onHoverEnd={handleBackdropEnd}
-      onClick={() => router.push(`/${title}`)}
+      onClick={() =>
+        router.push(
+          `/${title}${
+            searchParams.toString().length > 0
+              ? "?" + searchParams.toString()
+              : ""
+          }`
+        )
+      }
       initial={{ scale: 0.9 }}
       animate={{ scale: 1 }}
     >
