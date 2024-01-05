@@ -20,7 +20,7 @@ export function Tags() {
   const searchParams = useSearchParams();
 
   return (
-    <div className={`mt-6 flex items-center justify-evenly`}>
+    <div className={`mt-6 grid grid-cols-3 items-center gap-3 px-4`}>
       <AlcoholicToggle searchParams={searchParams} />
       <DropdownSelectionMenu
         title={{ displayName: "Type", key: "type" }}
@@ -124,7 +124,7 @@ function AlcoholicToggle({
         onClick={handleUpdateSearchParams}
       >
         <p
-          className={`text-sm tracking-wider text-black transition-colors duration-200 group-data-[checked=false]:text-white`}
+          className={`text-[0.8rem] tracking-wider text-black transition-colors duration-200 group-data-[checked=false]:text-white`}
         >
           Alcohol
         </p>
@@ -197,10 +197,10 @@ function DropdownSelectionMenu({
     <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
       <motion.div whileTap={{ scale: 0.93 }}>
         <RadixDropdownMenu.Trigger
-          className={`group relative flex w-fit items-center rounded-full bg-beige/20 px-2 py-1 outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:bg-cyan`}
+          className={`group relative col-span-3 col-start-2 col-end-4 flex w-max items-center rounded-full bg-beige/20 px-2 py-1 outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:bg-cyan`}
           data-has-selected={selected.length > 0}
         >
-          <p className="text-sm tracking-wider text-white transition-colors duration-200 group-data-[has-selected=true]:text-black">
+          <p className="text-[0.8rem] tracking-wider text-white transition-colors duration-200 group-data-[has-selected=true]:text-black">
             {title.displayName}
           </p>
           <motion.div
@@ -233,7 +233,7 @@ function DropdownSelectionMenu({
                 {options.map((option, idx) => (
                   <li key={option.key}>
                     <RadixDropdownMenu.CheckboxItem
-                      className={`px-2 py-1 text-xs data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
+                      className={`px-2 py-1 text-[0.8rem] data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
                         idx === 0 && "rounded-t-md"
                       } ${idx === options.length - 1 && "rounded-b-md"}`}
                       checked={selected.includes(option.key)}

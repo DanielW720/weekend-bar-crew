@@ -3,7 +3,7 @@ import { Card } from "./card";
 
 function ResultGrid() {
   return (
-    <div className="grid w-fit grid-cols-1 justify-items-center gap-16 px-10 py-6 sm:grid-cols-2 md:grid-cols-3">
+    <div className="grid w-fit grid-cols-1 justify-items-center gap-16 px-10 pb-6 sm:grid-cols-2 md:grid-cols-3">
       {data.drinks.map((drink) => (
         <Card key={drink.id} drinkItem={drink} />
       ))}
