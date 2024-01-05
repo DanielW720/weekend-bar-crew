@@ -18,6 +18,11 @@ export type DrinkItem = {
   title: string;
   shortDescription: string;
   imageUrl: string;
+  tags: {
+    alcohol: string;
+    type: string[];
+    baseSpirit: string[];
+  };
 };
 
 const data: { drinks: DrinkItem[] } = {
@@ -28,6 +33,11 @@ const data: { drinks: DrinkItem[] } = {
       shortDescription:
         "Discover the bold allure of a Negroni, an exquisite blend of gin, Campari, and vermouth",
       imageUrl: "/Negroni.jpg",
+      tags: {
+        alcohol: "yes",
+        type: ["stirred", "classic", "bitter", "strong"],
+        baseSpirit: ["gin", "sweet vermouth", "vermouth", "campari"],
+      },
     },
     {
       id: 2,
@@ -35,6 +45,11 @@ const data: { drinks: DrinkItem[] } = {
       shortDescription:
         "Embrace the vibrant effervescence of an Aperol Spritz, a captivating fusion of Aperol, prosecco, and a splash of soda",
       imageUrl: "/aperol-spritz.jpg",
+      tags: {
+        alcohol: "yes",
+        type: ["spritz"],
+        baseSpirit: ["aperol"],
+      },
     },
     {
       id: 3,
@@ -42,13 +57,11 @@ const data: { drinks: DrinkItem[] } = {
       shortDescription:
         "Experience the rhythmic flavors of Brazil in every sip with the irresistible caipirinha cocktail",
       imageUrl: "/caipirinha.jpg",
-    },
-    {
-      id: 4,
-      title: "Negroni",
-      shortDescription:
-        "Discover the bold allure of a Negroni, an exquisite blend of gin, Campari, and vermouth",
-      imageUrl: "/Negroni.jpg",
+      tags: {
+        alcohol: "yes",
+        type: ["sour", "smashed"],
+        baseSpirit: ["cachaça"],
+      },
     },
   ],
 };

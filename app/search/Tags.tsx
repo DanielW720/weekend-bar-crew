@@ -29,6 +29,10 @@ export function Tags() {
           { displayName: "Sour", key: "sour" },
           { displayName: "Fizz", key: "fizz" },
           { displayName: "Martini", key: "martini" },
+          { displayName: "Strong", key: "strong" },
+          { displayName: "Classic", key: "classic" },
+          { displayName: "Modern", key: "modern" },
+          { displayName: "Bitter", key: "bitter" },
           { displayName: "Mule", key: "mule" },
           { displayName: "Punch", key: "punch" },
           { displayName: "Bubbles", key: "bubbles" },
@@ -56,6 +60,30 @@ export function Tags() {
           {
             displayName: "Whiskey",
             key: "whiskey",
+          },
+          {
+            displayName: "Cachaça",
+            key: "cachaça",
+          },
+          {
+            displayName: "Aperol",
+            key: "aperol",
+          },
+          {
+            displayName: "Sweet Vermouth",
+            key: "sweetVermouth",
+          },
+          {
+            displayName: "Dry Vermouth",
+            key: "dryVermouth",
+          },
+          {
+            displayName: "Vermouth",
+            key: "vermouth",
+          },
+          {
+            displayName: "Campari",
+            key: "campari",
           },
         ]}
       />
@@ -181,17 +209,6 @@ function DropdownSelectionMenu({
           >
             <ChevronDownIcon className="ml-[2px] text-white group-data-[has-selected=true]:text-black" />
           </motion.div>
-          <ul
-            className={`pointer-events-none absolute top-8 rounded-md bg-black/50 px-2 py-1 tracking-wide backdrop-blur-sm group-data-[has-selected=false]:hidden`}
-          >
-            {options.map((option) =>
-              selected.includes(option.key) ? (
-                <li key={option.key} className="text-left text-xs text-cyan">
-                  {option.displayName}
-                </li>
-              ) : null
-            )}
-          </ul>
         </RadixDropdownMenu.Trigger>
       </motion.div>
 
