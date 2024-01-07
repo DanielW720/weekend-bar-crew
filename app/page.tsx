@@ -1,9 +1,9 @@
 "use client";
 
 import { Search } from "./search/search";
-import { BackdropImage } from "./backdropImage";
 import { motion } from "framer-motion";
 import ResultGrid from "./cards/resultGrid";
+import { BackdropImage } from "./backdropImage";
 
 export default function Page() {
   const variants = {
