@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const BackdropImage = () => {
   return (
-    <div className="absolute inset-0 -z-10 flex max-h-screen items-center justify-center">
+    <div className="fixed inset-0 -z-10 flex h-screen w-screen items-center justify-center">
       <Image
         className="object-cover"
         src={citrusGlassSplash}
@@ -11,7 +11,7 @@ export const BackdropImage = () => {
         fill
         priority
       />
-      <div className="absolute inset-0 bg-backdropOverlay" />
+      <div className="fixed inset-0 h-screen bg-backdropOverlay" />
     </div>
   );
 };
