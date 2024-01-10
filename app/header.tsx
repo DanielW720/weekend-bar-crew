@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useScroll } from "./lib/hooks/useScroll";
+import Link from "next/link";
 
 export const Header = () => {
   const scrollYposition = useScroll();
@@ -19,7 +20,8 @@ export const Header = () => {
       <div
         className={`ml-8 flex h-full flex-row items-end pb-2 group-data-[scrolling=true]:scale-y-[0.925] group-data-[scrolling=true]:pb-1 ${transition}`}
       >
-        <span
+        <Link
+          href="/"
           className={`text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]`}
         >
           <h1>
@@ -29,7 +31,7 @@ export const Header = () => {
             <br />
             Crew
           </h1>
-        </span>
+        </Link>
 
         <p className="w-[150px] overflow-hidden text-[0.575rem] leading-4 tracking-widest xxs:ml-10">
           Discover hundreds of tasty and beautiful cocktails
