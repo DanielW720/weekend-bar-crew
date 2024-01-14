@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <header
       data-scrolling={isScrolling}
-      className={`group sticky top-0 z-[100] flex flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige backdrop-blur-sm ${
+      className={`group sticky top-0 z-[100] flex w-screen flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige backdrop-blur-sm xxs:justify-center ${
         isScrolling ? "h-headerMobileScrolling" : "h-headerMobile"
       } ${transition}`}
     >
@@ -22,7 +22,7 @@ export const Header = () => {
       >
         <Link
           href="/"
-          className={`text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]`}
+          className={`w-fit text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]`}
         >
           <h1>
             Weekend
