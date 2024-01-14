@@ -222,12 +222,12 @@ function DropdownSelectionMenu({
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute z-10"
+            className="absolute z-20"
           >
             <RadixDropdownMenu.Content
               forceMount
               sideOffset={6}
-              className={`${roboto.className} z-10 w-[100px] rounded-md bg-beige text-sm tracking-wider text-darkGray backdrop-blur-sm`}
+              className={`${roboto.className} w-[100px] rounded-md bg-beige text-sm tracking-wider text-darkGray backdrop-blur-sm`}
             >
               <motion.ul initial="hidden" animate="visible" variants={list}>
                 {options.map((option, idx) => (
