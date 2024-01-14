@@ -8,17 +8,19 @@ export default function Tabs({ drinkDetails }: { drinkDetails: DrinkDetails }) {
 
   return (
     <RadixTabs.Root
-      className="relative z-10 mt-10 w-full" // Position relative & z-10 to allow clicking when back/search button is on top of tabs
+      className="relative z-10 mt-10 flex w-full flex-col items-center" // Position relative & z-10 to allow clicking when back/search button is on top of tabs
       value={tab}
       onValueChange={setTab}
     >
-      <RadixTabs.List className="flex max-w-sm justify-evenly bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
+      <RadixTabs.List className="flex bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
         <Trigger value="tab1" tab={tab}>
           Översikt
         </Trigger>
-        <Trigger value="tab2" tab={tab}>
-          Recept
-        </Trigger>
+        <div className="mx-4 sm:mx-8 md:mx-12">
+          <Trigger value="tab2" tab={tab}>
+            Recept
+          </Trigger>
+        </div>
         <Trigger value="tab3" tab={tab}>
           Utrustning
         </Trigger>
@@ -66,7 +68,11 @@ function Trigger({
 function SectionOne({ overview }: { overview: string }) {
   return (
     <AnimateSection>
-      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab1" forceMount>
+      <RadixTabs.Content
+        className="mt-4 max-w-md px-4 text-lg"
+        value="tab1"
+        forceMount
+      >
         <p className="tracking-wideer text-white/80">{overview}</p>
       </RadixTabs.Content>
     </AnimateSection>
@@ -80,7 +86,11 @@ function SectionTwo({
 }) {
   return (
     <AnimateSection>
-      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab2" forceMount>
+      <RadixTabs.Content
+        className="mt-4 max-w-md px-4 text-lg"
+        value="tab2"
+        forceMount
+      >
         <div>
           <h3 className=" text-white">Ingredienser</h3>
           <ul className="ml-2 mt-4  text-white/80">
@@ -110,7 +120,11 @@ function SectionTwo({
 function SectionThree({ equipment }: { equipment: string[] }) {
   return (
     <AnimateSection>
-      <RadixTabs.Content className="mt-4 px-4 text-lg" value="tab3" forceMount>
+      <RadixTabs.Content
+        className="mt-4 max-w-md px-4 text-lg"
+        value="tab3"
+        forceMount
+      >
         <ul className="mt-2 text-white/80">
           {equipment.map((item) => (
             <li key={item} className="my-1">
