@@ -233,7 +233,7 @@ function DropdownSelectionMenu({
                 {options.map((option, idx) => (
                   <li key={option.key}>
                     <RadixDropdownMenu.CheckboxItem
-                      className={`px-2 py-1 text-[0.8rem] data-[state=checked]:bg-cyan data-[state=checked]:shadow-md ${
+                      className={`px-2 py-1 text-[0.8rem] transition-all duration-200 hover:bg-white data-[state=checked]:bg-cyan data-[state=checked]:shadow-md data-[state=checked]:hover:bg-white/70 ${
                         idx === 0 && "rounded-t-md"
                       } ${idx === options.length - 1 && "rounded-b-md"}`}
                       checked={selected.includes(option.key)}
@@ -243,7 +243,7 @@ function DropdownSelectionMenu({
                     >
                       <motion.div
                         variants={item}
-                        className="flex flex-row items-center justify-between"
+                        className="flex cursor-default flex-row items-center justify-between"
                       >
                         <p>{option.displayName}</p>
                         <RadixDropdownMenu.ItemIndicator>
