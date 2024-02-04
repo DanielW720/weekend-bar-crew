@@ -64,6 +64,6 @@ const data: { drinkDetails: DrinkDetails } = {
       ],
     },
     equipment: ["Tumblerglas eller liknande", "Kniv"],
-    image: { url: "/Negroni.jpg", alt: "Negroni drink" },
+    image: { url: "/negroni.jpg", alt: "Negroni drink" },
   },
 };

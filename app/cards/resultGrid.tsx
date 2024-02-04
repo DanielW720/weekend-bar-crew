@@ -32,7 +32,7 @@ const data: { drinks: DrinkItem[] } = {
       title: "Negroni",
       shortDescription:
         "Discover the bold allure of a Negroni, an exquisite blend of gin, Campari, and vermouth",
-      imageUrl: "/Negroni.jpg",
+      imageUrl: "/negroni.jpg",
       tags: {
         alcohol: "yes",
         type: ["stirred", "classic", "bitter", "strong"],
