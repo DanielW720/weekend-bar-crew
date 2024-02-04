@@ -9,7 +9,7 @@ import Search from "./search/search";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
   const variants = {
     initial: {
