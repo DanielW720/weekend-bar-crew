@@ -1,8 +1,8 @@
-import Link from "next/link";
 import "./globals.css";
 import { Header } from "./header";
 import { inknut_antiqua } from "./lib/globals/fonts";
 import Footer from "./footer";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "Weekend Bar Crew",
@@ -16,6 +16,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <body
         className={`${inknut_antiqua.className} flex min-h-screen flex-col justify-between bg-black`}
       >
+        <Analytics />
         <div>
           <Header />
           <main>{children}</main>
