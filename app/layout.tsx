@@ -14,7 +14,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${inknut_antiqua.className} flex min-h-screen flex-col justify-between bg-black`}
+        className={`${inknut_antiqua.className} flex min-h-screen flex-col justify-between overflow-x-hidden bg-black`}
       >
         <Analytics />
         <div>
