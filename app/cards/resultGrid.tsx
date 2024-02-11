@@ -1,7 +1,13 @@
 import React from "react";
 import { Card } from "./card";
+import useFirestoreDrinks from "../hooks/useFirestoreDrinks";
 
 function ResultGrid() {
+  const [items, loading] = useFirestoreDrinks();
+
+  // Todo: Create skeleton loading component
+  if (loading) return <p>loading...</p>;
+
   return (
     <div className="grid w-fit grid-cols-1 justify-items-center gap-16 px-10 pb-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-32">
       {data.drinks.map((drink) => (
