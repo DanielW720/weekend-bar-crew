@@ -1,7 +1,9 @@
+"use client";
+
 import React, { ReactNode, useState } from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
-import { DrinkDetails } from "./page";
+import { DrinkDetails } from "./data";
 
 export default function Tabs({ drinkDetails }: { drinkDetails: DrinkDetails }) {
   const [tab, setTab] = useState("tab2");
