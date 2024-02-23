@@ -45,7 +45,7 @@ export const Card = ({ drinkItem }: { drinkItem: DrinkItem }) => {
       onHoverEnd={handleBackdropEnd}
       onClick={() =>
         router.push(
-          `/${drinkItem.title}${
+          `/${drinkItem.name}${
             searchParams.toString().length > 0
               ? "?" + searchParams.toString()
               : ""
@@ -72,7 +72,7 @@ export const Card = ({ drinkItem }: { drinkItem: DrinkItem }) => {
       </div>
       <div className="flex h-[2.4rem] items-center justify-center rounded-b-3xl px-2 py-1 text-white backdrop-blur-sm">
         <h2 className="text-center text-[1.1rem] md:text-sm">
-          {drinkItem.title}
+          {drinkItem.name}
         </h2>
       </div>
     </motion.div>
