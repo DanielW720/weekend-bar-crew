@@ -16,16 +16,6 @@ export const Search = () => {
   );
 };
 
-/**
- * Splits a string and lowercases all values. If value is null, return empty array
- * @param value String value to split and lowercase
- * @returns String array
- */
-// const toLowercaseArray = (value: string | null, delimiter: string = ";") =>
-//   value != null
-//     ? value.split(delimiter).map((value) => value.toLowerCase())
-//     : [];
-
 function SearchbarTagsFallback() {
   return <div>Placeholder for Searchbar and Tags</div>;
 }

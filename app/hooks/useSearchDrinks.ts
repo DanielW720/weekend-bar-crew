@@ -2,18 +2,20 @@ import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { firestore, storage } from "../firebase";
 import { getDownloadURL, ref } from "firebase/storage";
+import { useSearchParams } from "next/navigation";
 
 const collection = "drinks";
 const document = "4HqhhjG9Ofv8HJ31rgwk";
 const imageUrl = "public/drinkImages/old-fashioned.jpg";
 
 /**
- * Fetch drinks from Firestore.
+ * Fetch drinks from Firestore by listening to URL search params.
  * @returns List with items and loading state
  */
-export default function useFirestoreDrinks() {
+export default function useSearchDrinks() {
   const [items, setItems] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
   const docRef = doc(firestore, collection, document);
   const imageRef = ref(storage, imageUrl);
 
@@ -22,10 +24,8 @@ export default function useFirestoreDrinks() {
       try {
         const docSnap = await getDoc(docRef);
         const docData = docSnap.data();
-        console.log("Document data:", docData);
 
         const imageUrl = await getDownloadURL(imageRef);
-        console.log("Storage image url:", imageUrl);
 
         // Create an item and item to list of items
         if (
@@ -49,7 +49,7 @@ export default function useFirestoreDrinks() {
       }
     };
     fetchData();
-  }, []);
+  }, [searchParams]);
 
   return [items, loading];
 }
