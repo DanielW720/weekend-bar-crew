@@ -48,7 +48,7 @@ function extractParameters(searchParams: ReadonlyURLSearchParams): ParamDict {
   const baseSpirit = searchParams.get("baseSpirit");
 
   return {
-    query: query ? query : "",
+    query: query ? query.trim() : "",
     type: type ? type.split(";") : [],
     baseSpirit: baseSpirit ? baseSpirit.split(";") : [],
   };
