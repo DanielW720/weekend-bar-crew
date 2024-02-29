@@ -3,6 +3,7 @@
 import React from "react";
 import { Card } from "./card";
 import useSearchDrinks from "../hooks/useSearchDrinks";
+import { DrinkItem } from "../types";
 
 function ResultGrid() {
   // Get list of drinks according to query and tags in search params
@@ -17,42 +18,19 @@ function ResultGrid() {
         <Card key={drink.id} drinkItem={drink} />
       ))}
 
-      <Card
-        key={items[0]["name"]}
-        drinkItem={{
-          id: items[0]["name"],
-          name: items[0]["name"],
-          imageUrl: items[0]["imageUrl"],
-          shortDescription: items[0]["desciption_short"],
-          tags: {
-            alcohol: "true",
-            type: ["strong, classic"],
-            baseSpirit: ["whiskey"],
-          },
-        }}
-      />
+      {items.map((drink) => (
+        <Card key={drink.id} drinkItem={drink} />
+      ))}
     </div>
   );
 }
 
 export default ResultGrid;
 
-export type DrinkItem = {
-  id: number;
-  name: string;
-  shortDescription: string;
-  imageUrl: string;
-  tags: {
-    alcohol: string;
-    type: string[];
-    baseSpirit: string[];
-  };
-};
-
 const data: { drinks: DrinkItem[] } = {
   drinks: [
     {
-      id: 1,
+      id: "1",
       name: "Negroni",
       shortDescription:
         "Discover the bold allure of a Negroni, an exquisite blend of gin, Campari, and vermouth",
@@ -64,7 +42,7 @@ const data: { drinks: DrinkItem[] } = {
       },
     },
     {
-      id: 2,
+      id: "2",
       name: "Aperol Spritz",
       shortDescription:
         "Embrace the vibrant effervescence of an Aperol Spritz, a captivating fusion of Aperol, prosecco, and a splash of soda",
@@ -76,7 +54,7 @@ const data: { drinks: DrinkItem[] } = {
       },
     },
     {
-      id: 3,
+      id: "3",
       name: "Caipirinha",
       shortDescription:
         "Experience the rhythmic flavors of Brazil in every sip with the irresistible caipirinha cocktail",
