@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
 import { roboto } from "../lib/globals/fonts";
-import { DrinkItem } from "./resultGrid";
+import { DrinkItem } from "../types";
 
 export const Card = ({ drinkItem }: { drinkItem: DrinkItem }) => {
   const router = useRouter();

@@ -3,7 +3,7 @@
 import React, { ReactNode, useState } from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
-import { DrinkDetails } from "./data";
+import { DrinkDetails } from "../types";
 
 export default function Tabs({ drinkDetails }: { drinkDetails: DrinkDetails }) {
   const [tab, setTab] = useState("tab2");

@@ -1,27 +1,66 @@
-import { collection, getDocs } from "firebase/firestore";
-import { data } from "./data";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import DrinkImage from "./drinkImage";
 import Tabs from "./tabs";
 import { firestore } from "../firebase";
+import { DrinkDetails } from "../types";
 
-export default function Page({ params }: { params: { drink: string } }) {
+type DynamicDrinkParams = { drink: string };
+
+export default async function Page({ params }: { params: DynamicDrinkParams }) {
+  // Use the params.drink to fetch drink data at build time to statically render this page
+  const drink = await fetchDrink(params.drink);
+
+  console.log("/[drink] params.drink:", params.drink);
+
   return (
     <div className="flex min-h-screen w-full flex-col items-center">
       <h2 className="text-[2.125rem] tracking-widest text-cyan">
-        {params.drink}
+        {drink.name}
       </h2>
-      <DrinkImage />
-      <Tabs drinkDetails={data.drinkDetails} />
+      <DrinkImage image={drink.image} />
+      <Tabs drinkDetails={drink} />
     </div>
   );
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ drink: string }[]> {
   const querySnapshot = await getDocs(collection(firestore, "drinks"));
 
-  return querySnapshot.docs.map((drink) => ({
-    drink: drink.get("name"),
+  const drinks: { drink: string }[] = querySnapshot.docs.map((doc) => ({
+    drink: doc.get("name"),
   }));
+
+  console.log("DRINKS IN /drink page:", drinks);
+
+  return drinks;
+}
+
+// This async function only runs on the server, either during build time or during revalidation
+async function fetchDrink(drink: string) {
+  const drinksCollectionReference = collection(firestore, `drinks`);
+  const drinkQuery = query(
+    drinksCollectionReference,
+    where("name", "==", decode_utf8(drink))
+  );
+  const snapshot = await getDocs(drinkQuery);
+
+  // Perform validation on document. If incorrect, log info to console and return.
+  if (snapshot.empty || snapshot.size > 1) {
+    console.error(
+      `The number of documents in fetchDrink("${drink}") should be exactly 1 but were ${snapshot.size}`
+    );
+    throw new Error(
+      "Number of documents in snapshot is incorrect. Should be exactly one document."
+    );
+  }
+  // More validation...
+
+  const doc = snapshot.docs[0];
+  return doc.data() as DrinkDetails;
+}
+
+function decode_utf8(s: string) {
+  return decodeURIComponent(s);
 }
 
 // If user goes to /<drink-that-do-not-exist>, it will result in 404 not found

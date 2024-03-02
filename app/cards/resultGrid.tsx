@@ -14,10 +14,6 @@ function ResultGrid() {
 
   return (
     <div className="grid w-fit grid-cols-1 justify-items-center gap-16 px-10 pb-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-32">
-      {data.drinks.map((drink) => (
-        <Card key={drink.id} drinkItem={drink} />
-      ))}
-
       {items.map((drink) => (
         <Card key={drink.id} drinkItem={drink} />
       ))}

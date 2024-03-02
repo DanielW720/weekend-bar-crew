@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
-import { data } from "./data";
+import { DrinkDetails } from "../types";
 
-function DrinkImage() {
+function DrinkImage({ image }: { image: DrinkDetails["image"] }) {
   return (
     <motion.div
       className="relative mt-6 h-[21rem] w-[19rem]"
@@ -13,8 +13,8 @@ function DrinkImage() {
       animate={{ y: 0, scale: 1 }}
     >
       <Image
-        src={data.drinkDetails.image.url}
-        alt={data.drinkDetails.image.alt}
+        src={image.url}
+        alt={image.alt}
         fill
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mMMPwIAAXgBHdkaTf8AAAAASUVORK5CYII="
