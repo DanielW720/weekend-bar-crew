@@ -1,3 +1,4 @@
+import { DrinkItem } from "./../types";
 import {
   collection,
   query,
@@ -10,6 +11,7 @@ import { useEffect, useState } from "react";
 import { firestore } from "../firebase";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { DrinkItem } from "../types";
+import algoliasearch, { SearchIndex } from "algoliasearch";
 
 const DRINKS_COLLECTION = "drinks";
 
@@ -21,12 +23,17 @@ export default function useSearchDrinks(): [DrinkItem[], boolean] {
   const [items, setItems] = useState<DrinkItem[]>([]);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
+  const client = algoliasearch(
+    process.env.NEXT_PUBLIC_ALGOLIA_PROJECT_ID!,
+    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY!
+  );
+  const index = client.initIndex(DRINKS_COLLECTION);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Fetch list of drinks
-        const drinks = await getFirestoreDocs(searchParams);
+        const drinks = await searchDrinks(searchParams, index);
 
         // Update items
         setItems(drinks);
@@ -54,7 +61,10 @@ function extractParameters(searchParams: ReadonlyURLSearchParams): ParamDict {
   };
 }
 
-async function getFirestoreDocs(searchParams: ReadonlyURLSearchParams) {
+async function searchDrinks(
+  searchParams: ReadonlyURLSearchParams,
+  index: SearchIndex
+) {
   const paramDict = extractParameters(searchParams);
 
   // Create query for Firestore drink items
@@ -65,11 +75,31 @@ async function getFirestoreDocs(searchParams: ReadonlyURLSearchParams) {
 
   try {
     // Fetch documents
-    const querySnapshot = await getDocs(q);
+    // const querySnapshot = await getDocs(q);
     // Get the array of documents
-    const queryDocs = querySnapshot.docs;
+    // const queryDocs = querySnapshot.docs;
 
-    return constructDrinkArray(queryDocs);
+    // return constructDrinkArray(queryDocs);
+
+    // ### SEARCH BEGINS ###
+
+    console.log("SEARCH QUERY:", paramDict.query);
+
+    const searchResponse = await index.search(paramDict.query);
+    console.log("SEARCH RESPONSE HITS:", searchResponse.hits);
+
+    return searchResponse.hits.map(
+      (rec) =>
+        ({
+          id: rec.objectID,
+          imageUrl: rec["image_url"],
+          name: rec["name"],
+          shortDescription: rec["description_short"],
+          tags: rec["tags"],
+        } as DrinkItem)
+    );
+
+    // ### SEARCH ENDS ###
   } catch (error) {
     console.error("Error fetching from Firestore");
     return [];
