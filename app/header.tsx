@@ -22,6 +22,7 @@ export const Header = () => {
       >
         <Link
           href="/"
+          target="_blank"
           className={`w-fit text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]`}
         >
           <h1>
