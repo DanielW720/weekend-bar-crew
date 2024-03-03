@@ -12,7 +12,7 @@ function ResultGrid() {
   if (loading) return <p>loading...</p>;
 
   return (
-    <div className="grid w-fit grid-cols-1 justify-items-center gap-16 px-10 pb-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-32">
+    <div className="mt-6 grid w-fit grid-cols-1 justify-items-center gap-16 px-10 pb-6 sm:grid-cols-2 md:mt-10 md:grid-cols-3 lg:gap-32">
       {items.map((drink) => (
         <DrinkCard key={drink.id} drinkItem={drink} />
       ))}

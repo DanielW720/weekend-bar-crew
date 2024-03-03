@@ -1,7 +1,7 @@
 export type Drink = {
   id: string;
   name: string;
-  shortDescription: string;
+  description_short: string;
   description: string;
   recepie: {
     ingredients: string[];
@@ -10,7 +10,7 @@ export type Drink = {
   tags: {
     alcohol: string;
     type: string[];
-    baseSpirit: string[];
+    base_spirit: string[];
   };
   equipment: string[];
   image: { url: string; alt: string };

@@ -38,7 +38,7 @@ export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
 
   return (
     <motion.div
-      className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-[1px] border-b-[2px] border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem]`}
+      className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-[1px] border-b-[2px] border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
       onTouchStart={handleBackdropStart}
       onHoverStart={handleBackdropStart}
       onTouchEnd={handleBackdropEnd}
@@ -57,14 +57,15 @@ export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
     >
       <AnimatePresence>
         {isTouching && (
-          <CardBackdrop shortDescription={drinkItem.shortDescription} />
+          <CardBackdrop shortDescription={drinkItem.description_short} />
         )}
       </AnimatePresence>
-      <div className="relative top-0 h-[10.5rem] w-full md:h-[7.5rem]">
+      <div className="relative top-0 h-[10.5rem] w-[17rem] overflow-hidden md:h-[7.5rem] md:w-[13rem] lg:h-[10.5rem] lg:w-[17rem]">
         <Image
           src={drinkItem.image.url}
           alt={drinkItem.image.alt}
           fill
+          sizes="(min-width: 1024px) 272px, (min-width: 768px) 208px, 272px"
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mMMPwIAAXgBHdkaTf8AAAAASUVORK5CYII="
           className="pointer-events-none object-cover"

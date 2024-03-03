@@ -7,7 +7,9 @@ import { roboto } from "../lib/globals/fonts";
 
 export const Search = () => {
   return (
-    <div className={`${roboto.className} mb-10 mt-6 w-full max-w-xs px-4`}>
+    <div
+      className={`${roboto.className} mb-10 mt-6 w-full max-w-xs px-4 md:mt-12`}
+    >
       <Suspense fallback={<SearchbarTagsFallback />}>
         <Searchbar />
         <Tags />
