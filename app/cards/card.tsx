@@ -5,9 +5,9 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
 import { roboto } from "../lib/globals/fonts";
-import { DrinkItem } from "../types";
+import { DrinkDetails } from "../types";
 
-export const Card = ({ drinkItem }: { drinkItem: DrinkItem }) => {
+export const Card = ({ drinkItem }: { drinkItem: DrinkDetails }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isTouching, setIsTouching] = useState(false);
@@ -62,8 +62,8 @@ export const Card = ({ drinkItem }: { drinkItem: DrinkItem }) => {
       </AnimatePresence>
       <div className="relative top-0 h-[10.5rem] w-full md:h-[7.5rem]">
         <Image
-          src={drinkItem.imageUrl}
-          alt="Drink"
+          src={drinkItem.image.url}
+          alt={drinkItem.image.alt}
           fill
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mMMPwIAAXgBHdkaTf8AAAAASUVORK5CYII="

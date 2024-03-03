@@ -1,16 +1,6 @@
-import { DrinkItem } from "./../types";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  QueryDocumentSnapshot,
-  DocumentData,
-} from "firebase/firestore";
+import { DrinkDetails } from "./../types";
 import { useEffect, useState } from "react";
-import { firestore } from "../firebase";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { DrinkItem } from "../types";
 import algoliasearch, { SearchIndex } from "algoliasearch";
 
 const DRINKS_COLLECTION = "drinks";
@@ -19,8 +9,8 @@ const DRINKS_COLLECTION = "drinks";
  * Perfoms a search on drinks from Firestore/Algolia by listening to URL search params.
  * @returns List with items and loading state
  */
-export default function useSearchDrinks(): [DrinkItem[], boolean] {
-  const [items, setItems] = useState<DrinkItem[]>([]);
+export default function useSearchDrinks(): [DrinkDetails[], boolean] {
+  const [items, setItems] = useState<DrinkDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
   const client = algoliasearch(
@@ -31,17 +21,13 @@ export default function useSearchDrinks(): [DrinkItem[], boolean] {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        // Fetch list of drinks
-        const drinks = await searchDrinks(searchParams, index);
+      // Fetch list of drinks
+      const drinks = await searchDrinks(searchParams, index);
 
-        // Update items
-        setItems(drinks);
-        // Update loading state
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data", error);
-      }
+      // Update items
+      setItems(drinks);
+      // Update loading state
+      setLoading(false);
     };
     fetchData();
   }, [searchParams]);
@@ -67,63 +53,19 @@ async function searchDrinks(
 ) {
   const paramDict = extractParameters(searchParams);
 
-  // Create query for Firestore drink items
-  const q = query(
-    collection(firestore, DRINKS_COLLECTION),
-    where("name", "==", paramDict.query)
-  );
-
   try {
-    // Fetch documents
-    // const querySnapshot = await getDocs(q);
-    // Get the array of documents
-    // const queryDocs = querySnapshot.docs;
+    const searchResponse = await index.search<DrinkDetails>(paramDict.query);
 
-    // return constructDrinkArray(queryDocs);
-
-    // ### SEARCH BEGINS ###
-
-    console.log("SEARCH QUERY:", paramDict.query);
-
-    const searchResponse = await index.search(paramDict.query);
-    console.log("SEARCH RESPONSE HITS:", searchResponse.hits);
-
-    return searchResponse.hits.map(
-      (rec) =>
-        ({
-          id: rec.objectID,
-          imageUrl: rec["image_url"],
-          name: rec["name"],
-          shortDescription: rec["description_short"],
-          tags: rec["tags"],
-        } as DrinkItem)
-    );
-
-    // ### SEARCH ENDS ###
+    return searchResponse.hits.map((record) => ({
+      ...record,
+      id: record.objectID,
+    }));
   } catch (error) {
-    console.error("Error fetching from Firestore");
+    console.error(
+      "Error while searching 'drinks' index in Algolia. Returning empty list."
+    );
     return [];
   }
-}
-
-function constructDrinkArray(
-  drinks: QueryDocumentSnapshot<DocumentData, DocumentData>[]
-): DrinkItem[] {
-  return drinks.length >= 0
-    ? drinks.map((drink) => {
-        return {
-          id: drink.id,
-          name: drink.get("name"),
-          imageUrl: drink.get("image_url"),
-          shortDescription: drink.get("description_short"),
-          tags: {
-            alcohol: "true",
-            baseSpirit: ["whiskey"],
-            type: ["classic"],
-          },
-        };
-      })
-    : [];
 }
 
 type ParamDict = {
