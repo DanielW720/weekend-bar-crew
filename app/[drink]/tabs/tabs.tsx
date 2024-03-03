@@ -22,7 +22,7 @@ export default function Tabs({ drink: drink }: { drink: Drink }) {
   };
 
   return (
-    <section>
+    <section className="w-full">
       <RadixTabs.Root
         className="relative z-10 mt-10 flex w-full flex-col items-center"
         value={tab}
@@ -45,22 +45,16 @@ export default function Tabs({ drink: drink }: { drink: Drink }) {
         {/* AnimatePresence for smooth animations when swithing tabs */}
         <AnimatePresence mode="wait">
           {tab === DrinkPageTabs.Overview ? (
-            <AnimateTab>
-              <OverviewTab
-                key={DrinkPageTabs.Overview}
-                overview={drink.description}
-              />
+            <AnimateTab key={DrinkPageTabs.Overview}>
+              <OverviewTab overview={drink.description} />
             </AnimateTab>
           ) : tab === DrinkPageTabs.Recepie ? (
-            <AnimateTab>
-              <RecepieTab key={DrinkPageTabs.Recepie} recepie={drink.recepie} />
+            <AnimateTab key={DrinkPageTabs.Recepie}>
+              <RecepieTab recepie={drink.recepie} />
             </AnimateTab>
           ) : (
-            <AnimateTab>
-              <EquipmentTab
-                key={DrinkPageTabs.Equipment}
-                equipment={drink.equipment}
-              />
+            <AnimateTab key={DrinkPageTabs.Equipment}>
+              <EquipmentTab equipment={drink.equipment} />
             </AnimateTab>
           )}
         </AnimatePresence>
@@ -105,7 +99,7 @@ export function AnimateTab({ children }: { children: ReactNode }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="mt-4 max-w-md px-4 text-lg"
+      className="mt-6 flex w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
     >
       {children}
     </motion.div>

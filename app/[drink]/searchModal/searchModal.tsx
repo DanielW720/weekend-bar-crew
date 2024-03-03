@@ -13,7 +13,7 @@ function SearchModal({ open, close }: { open: boolean; close: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3 }}
             className="fixed inset-0 z-10 flex h-screen w-screen items-center justify-center bg-black/40 backdrop-blur-md"
             onClick={(e) => {
               if (e.target === e.currentTarget) close();
