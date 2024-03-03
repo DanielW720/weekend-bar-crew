@@ -13,7 +13,7 @@ export const Header = () => {
   return (
     <header
       data-scrolling={isScrolling}
-      className={`group sticky top-0 z-[100] flex w-screen flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige backdrop-blur-sm xxs:justify-center ${
+      className={`group sticky top-0 z-[100] flex w-full flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige backdrop-blur-sm xxs:justify-center ${
         isScrolling ? "h-headerMobileScrolling" : "h-headerMobile"
       } ${transition}`}
     >

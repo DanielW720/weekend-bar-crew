@@ -1,5 +1,5 @@
 import { Search } from "./search/search";
-import ResultGrid from "./cards/resultGrid";
+import ResultGrid from "./resultGrid";
 import { BackdropImage } from "./backdropImage";
 
 export default function Page() {

@@ -1,8 +1,8 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import DrinkImage from "./drinkImage";
-import Tabs from "./tabs";
+import Tabs from "./tabs/tabs";
 import { firestore } from "../firebase";
-import { DrinkDetails } from "../types";
+import { Drink } from "../types";
 
 type DynamicDrinkParams = { drink: string };
 
@@ -10,27 +10,24 @@ export default async function Page({ params }: { params: DynamicDrinkParams }) {
   // Use the params.drink to fetch drink data at build time to statically render this page
   const drink = await fetchDrink(params.drink);
 
-  console.log("/[drink] params.drink:", params.drink);
-
   return (
     <div className="flex min-h-screen w-full flex-col items-center">
-      <h2 className="text-[2.125rem] tracking-widest text-cyan">
+      <h1 className="text-[2.125rem] tracking-widest text-cyan">
         {drink.name}
-      </h2>
+      </h1>
       <DrinkImage image={drink.image} />
-      <Tabs drinkDetails={drink} />
+      <Tabs drink={drink} />
     </div>
   );
 }
 
+// generateStaticParams allows static rendering of all individual drink pages at build time
 export async function generateStaticParams(): Promise<{ drink: string }[]> {
   const querySnapshot = await getDocs(collection(firestore, "drinks"));
 
   const drinks: { drink: string }[] = querySnapshot.docs.map((doc) => ({
     drink: doc.get("name"),
   }));
-
-  console.log("DRINKS IN /drink page:", drinks);
 
   return drinks;
 }
@@ -56,7 +53,7 @@ async function fetchDrink(drink: string) {
   // More validation...
 
   const doc = snapshot.docs[0];
-  return doc.data() as DrinkDetails;
+  return doc.data() as Drink;
 }
 
 function decode_utf8(s: string) {

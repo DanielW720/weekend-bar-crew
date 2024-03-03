@@ -2,9 +2,9 @@
 
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
-import Modal from "./modal";
+import SearchModal from "./searchModal";
 
-function Search() {
+function SearchButton() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -12,9 +12,9 @@ function Search() {
       <button onClick={() => setOpen((prevState) => !prevState)}>
         <MagnifyingGlassIcon className="text-beige" height={35} width={35} />
       </button>
-      <Modal open={open} close={() => setOpen(false)} />
+      <SearchModal open={open} close={() => setOpen(false)} />
     </div>
   );
 }
 
-export default Search;
+export default SearchButton;

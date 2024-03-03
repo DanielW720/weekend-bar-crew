@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { roboto } from "../lib/globals/fonts";
 import Background from "./background";
-import Search from "./search/search";
+import SearchButton from "./searchModal/searchButton";
 import BackButton from "./backButton";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -14,8 +14,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <Suspense fallback={<BackButtonFallback />}>
           <BackButton />
-          <Search />
         </Suspense>
+        <SearchButton />
       </div>
       <div className="py-12">{children}</div>
     </div>

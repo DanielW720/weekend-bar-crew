@@ -5,9 +5,9 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
 import { roboto } from "../lib/globals/fonts";
-import { DrinkDetails } from "../types";
+import { Drink } from "../types";
 
-export const Card = ({ drinkItem }: { drinkItem: DrinkDetails }) => {
+export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isTouching, setIsTouching] = useState(false);

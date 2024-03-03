@@ -3,7 +3,7 @@ import React from "react";
 import { Search } from "@/app/search/search";
 import { AnimatePresence, motion } from "framer-motion";
 
-function Modal({ open, close }: { open: boolean; close: () => void }) {
+function SearchModal({ open, close }: { open: boolean; close: () => void }) {
   return (
     <AnimatePresence>
       {open && (
@@ -27,4 +27,4 @@ function Modal({ open, close }: { open: boolean; close: () => void }) {
   );
 }
 
-export default Modal;
+export default SearchModal;

@@ -1,4 +1,4 @@
-import { DrinkDetails } from "./../types";
+import { Drink } from "./../types";
 import { useEffect, useState } from "react";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import algoliasearch, { SearchIndex } from "algoliasearch";
@@ -9,8 +9,8 @@ const DRINKS_COLLECTION = "drinks";
  * Perfoms a search on drinks from Firestore/Algolia by listening to URL search params.
  * @returns List with items and loading state
  */
-export default function useSearchDrinks(): [DrinkDetails[], boolean] {
-  const [items, setItems] = useState<DrinkDetails[]>([]);
+export default function useSearchDrinks(): [Drink[], boolean] {
+  const [items, setItems] = useState<Drink[]>([]);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
   const client = algoliasearch(
@@ -54,7 +54,7 @@ async function searchDrinks(
   const paramDict = extractParameters(searchParams);
 
   try {
-    const searchResponse = await index.search<DrinkDetails>(paramDict.query);
+    const searchResponse = await index.search<Drink>(paramDict.query);
 
     return searchResponse.hits.map((record) => ({
       ...record,

@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
-import { DrinkDetails } from "../types";
+import { Drink } from "../types";
 
-function DrinkImage({ image }: { image: DrinkDetails["image"] }) {
+function DrinkImage({ image }: { image: Drink["image"] }) {
   return (
     <motion.div
       className="relative mt-6 h-[21rem] w-[19rem]"

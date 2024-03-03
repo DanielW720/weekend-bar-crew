@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Card } from "./card";
-import useSearchDrinks from "../hooks/useSearchDrinks";
+import { DrinkCard } from "./cards/drinkCard";
+import useSearchDrinks from "./hooks/useSearchDrinks";
 
 function ResultGrid() {
   // Get list of drinks according to query and tags in search params
@@ -14,7 +14,7 @@ function ResultGrid() {
   return (
     <div className="grid w-fit grid-cols-1 justify-items-center gap-16 px-10 pb-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-32">
       {items.map((drink) => (
-        <Card key={drink.id} drinkItem={drink} />
+        <DrinkCard key={drink.id} drinkItem={drink} />
       ))}
     </div>
   );
