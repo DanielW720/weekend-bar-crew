@@ -37,7 +37,11 @@ export const Searchbar = () => {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        handleSubmit(onSubmit)(e);
+        (e.target as HTMLFormElement).querySelector("input")?.blur();
+      }}
       className="caret-beigeRed flex h-12 w-full items-center rounded-full border-2 border-beige backdrop-blur-[1px]"
     >
       <button type="submit" className="mx-2 flex items-center">
