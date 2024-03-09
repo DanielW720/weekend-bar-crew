@@ -4,20 +4,29 @@ import React, { Suspense } from "react";
 import { Searchbar } from "./searchbar";
 import { Tags } from "./tags";
 import { roboto } from "../lib/globals/fonts";
+import ResultGrid from "./resultGrid";
+import useSearchDrinks from "../hooks/useSearchDrinks";
 
 export const Search = () => {
+  // Get list of drinks according to query and tags in search params
+  const [items, loading] = useSearchDrinks();
+
   return (
     <div
-      className={`${roboto.className} mb-10 mt-6 w-full max-w-xs px-4 md:mt-12`}
+      className={`${roboto.className} mt-6 flex w-full flex-col items-center md:mt-12`}
     >
-      <Suspense fallback={<SearchbarTagsFallback />}>
-        <Searchbar />
-        <Tags />
+      <Suspense fallback={<SearchFallback />}>
+        <div className="max-w-xs px-4">
+          <Searchbar />
+          <Tags />
+        </div>
+        <ResultGrid items={items} loading={loading} />
       </Suspense>
     </div>
   );
 };
 
-function SearchbarTagsFallback() {
+// TODO: Update fallback component
+function SearchFallback() {
   return <div>Placeholder for Searchbar and Tags</div>;
 }

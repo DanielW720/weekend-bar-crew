@@ -4,6 +4,7 @@ import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import algoliasearch, { SearchIndex } from "algoliasearch";
 
 const DRINKS_COLLECTION = "drinks";
+const FACETS = ["tags.base_spirit", "tags.type"];
 
 /**
  * Perfoms a search on drinks from Firestore/Algolia by listening to URL search params.
@@ -54,12 +55,18 @@ async function searchDrinks(
   const paramDict = extractParameters(searchParams);
 
   try {
-    const searchResponse = await index.search<Drink>(paramDict.query);
+    const searchResponse = await index.search<Drink>(paramDict.query, {
+      facets: FACETS,
+      // filters: "tags.alcohol:true",
+    });
 
-    return searchResponse.hits.map((record) => ({
-      ...record,
-      id: record.objectID,
-    }));
+    return searchResponse.hits.map(
+      (record) =>
+        ({
+          ...record,
+          id: record.objectID,
+        } as Drink)
+    );
   } catch (error) {
     console.error(
       "Error while searching 'drinks' index in Algolia. Returning empty list."
