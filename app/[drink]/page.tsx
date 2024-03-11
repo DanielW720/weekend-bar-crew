@@ -3,6 +3,7 @@ import DrinkImage from "./drinkImage";
 import Tabs from "./tabs/tabs";
 import { firestore } from "../firebase";
 import { Drink } from "../types";
+import { decode_utf8 } from "../lib/globals/encodeDecodeUTF8";
 
 type DynamicDrinkParams = { drink: string };
 
@@ -54,10 +55,6 @@ async function fetchDrink(drink: string) {
 
   const doc = snapshot.docs[0];
   return doc.data() as Drink;
-}
-
-function decode_utf8(s: string) {
-  return decodeURIComponent(s);
 }
 
 // If user goes to /<drink-that-do-not-exist>, it will result in 404 not found

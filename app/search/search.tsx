@@ -2,31 +2,79 @@
 
 import React, { Suspense } from "react";
 import { Searchbar } from "./searchbar";
-import { Tags } from "./tags";
 import { roboto } from "../lib/globals/fonts";
 import ResultGrid from "./resultGrid";
-import useSearchDrinks from "../hooks/useSearchDrinks";
+import { InstantSearch } from "react-instantsearch";
+import algoliasearch from "algoliasearch";
+import SearchFilters from "./searchFilters";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+
+const client = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_PROJECT_ID!,
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY!
+);
+
+const indexName = "drinks";
 
 export const Search = () => {
-  // Get list of drinks according to query and tags in search params
-  const [items, loading] = useSearchDrinks();
+  const searchParams = useSearchParams();
+
+  // Find any pre-existing URL query params and add them to initial state
+  const paramDictionary = getExistingQueryParameter(searchParams);
 
   return (
-    <div
-      className={`${roboto.className} mt-6 flex w-full flex-col items-center md:mt-12`}
+    <InstantSearch
+      searchClient={client}
+      indexName={indexName}
+      initialUiState={{
+        drinks: {
+          query: paramDictionary.query,
+          refinementList: {
+            "tags.booze_intensity": paramDictionary.boozeIntensity,
+            "tags.type": paramDictionary.type,
+            "tags.base_spirit": paramDictionary.baseSpirit,
+          },
+        },
+      }}
     >
-      <Suspense fallback={<SearchFallback />}>
-        <div className="max-w-xs px-4">
+      <div
+        className={`${roboto.className} mt-6 flex w-full flex-col items-center md:mt-12`}
+      >
+        <Suspense fallback={<SearchFallback />}>
           <Searchbar />
-          <Tags />
-        </div>
-        <ResultGrid items={items} loading={loading} />
-      </Suspense>
-    </div>
+          <SearchFilters />
+          <ResultGrid />
+        </Suspense>
+      </div>
+    </InstantSearch>
   );
 };
 
 // TODO: Update fallback component
 function SearchFallback() {
   return <div>Placeholder for Searchbar and Tags</div>;
+}
+
+function getExistingQueryParameter(searchParams: ReadonlyURLSearchParams) {
+  const paramDictionary = {
+    query: "",
+    boozeIntensity: [] as string[],
+    type: [] as string[],
+    baseSpirit: [] as string[],
+  };
+
+  const query = searchParams.get("query");
+  if (query) paramDictionary.query = query;
+
+  searchParams
+    .getAll("Booze Intensity")
+    .forEach((value) => paramDictionary.boozeIntensity.push(value));
+  searchParams
+    .getAll("Type")
+    .forEach((value) => paramDictionary.type.push(value));
+  searchParams
+    .getAll("Base Spirit")
+    .forEach((value) => paramDictionary.baseSpirit.push(value));
+
+  return paramDictionary;
 }
