@@ -1,18 +1,27 @@
 "use client";
 
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import React, { useState } from "react";
+import React from "react";
 import SearchModal from "./searchModal";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 function SearchButton() {
-  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   return (
     <div>
-      <button onClick={() => setOpen((prevState) => !prevState)}>
+      <button
+        onClick={() =>
+          router.push(
+            `${pathname}?${searchParams.toString()}&search-modal=open`
+          )
+        }
+      >
         <MagnifyingGlassIcon className="text-beige" height={35} width={35} />
       </button>
-      <SearchModal open={open} close={() => setOpen(false)} />
+      <SearchModal />
     </div>
   );
 }

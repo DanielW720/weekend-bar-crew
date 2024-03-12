@@ -36,6 +36,17 @@ export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
     setIsTouching(false);
   };
 
+  const pushDrinkRoute = () => {
+    // Remove search-modal parameter if present
+    const searchModalExpression: RegExp = /&?search-modal=[^&\s]*/g;
+    const leadingAmpersandExpression: RegExp = /^&/;
+    const updatedParams = searchParams
+      .toString()
+      .replace(searchModalExpression, "")
+      .replace(leadingAmpersandExpression, "");
+    router.push(`/${drinkItem.name}?${updatedParams}`);
+  };
+
   return (
     <motion.div
       className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-[1px] border-b-[2px] border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
@@ -43,15 +54,7 @@ export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
       onHoverStart={handleBackdropStart}
       onTouchEnd={handleBackdropEnd}
       onHoverEnd={handleBackdropEnd}
-      onClick={() =>
-        router.push(
-          `/${drinkItem.name}${
-            searchParams.toString().length > 0
-              ? "?" + searchParams.toString()
-              : ""
-          }`
-        )
-      }
+      onClick={pushDrinkRoute}
       initial={{ scale: 0.9 }}
       animate={{ scale: 1 }}
     >

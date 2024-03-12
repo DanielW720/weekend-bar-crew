@@ -14,8 +14,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <Suspense fallback={<BackButtonFallback />}>
           <BackButton />
+          <SearchButton />
         </Suspense>
-        <SearchButton />
       </div>
       <div className="py-12">{children}</div>
     </div>
