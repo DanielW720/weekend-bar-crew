@@ -9,7 +9,6 @@ module.exports = {
     extend: {
       height: {
         headerMobile: "6.25rem",
-        headerMobileScrolling: "5.25rem",
         headerSmall: "8rem",
         headerMedium: "10rem",
       },

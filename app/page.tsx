@@ -3,7 +3,7 @@ import { BackdropImage } from "./backdropImage";
 
 export default function Page() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center justify-start">
       <BackdropImage />
       <Search />
     </div>

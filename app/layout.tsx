@@ -14,14 +14,14 @@ export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body
-        className={`${inknut_antiqua.className} flex min-h-screen flex-col justify-between overflow-x-hidden bg-black`}
+        className={`${inknut_antiqua.className} min-h-screen overflow-x-hidden bg-black`}
       >
         <Analytics />
-        <div className="min-h-[calc(100vh-4rem)]">
-          <Header />
+        <Header />
+        <div className="flex min-h-[calc(100vh-6.25rem)] flex-col justify-between">
           <main>{children}</main>
+          <Footer />
         </div>
-        <Footer />
       </body>
     </html>
   );
