@@ -3,13 +3,14 @@ import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-import { useCurrentRefinements, useRefinementList } from "react-instantsearch";
+import { useRefinementList } from "react-instantsearch";
 import { roboto } from "../lib/globals/fonts";
 import { useRouter } from "next/navigation";
+import useSelectedFiltersDictionary from "../hooks/useSelectedFiltersDictionary";
 
 export default function SearchFilters() {
   const searchParams = useSearchParams();
-  const selectedFiltersDict = getSelectedFiltersDictionary();
+  const selectedFiltersDict = useSelectedFiltersDictionary();
 
   return (
     <div className="mt-6 flex max-w-lg flex-wrap items-center justify-center gap-3 px-4 md:gap-5">
@@ -29,12 +30,6 @@ export default function SearchFilters() {
         name="Base Spirit"
         selected={selectedFiltersDict.baseSpirit}
         attribute="tags.base_spirit"
-        searchParams={searchParams}
-      />
-      <Facet
-        name="Booze Intensity"
-        selected={selectedFiltersDict.boozeIntensity}
-        attribute="tags.booze_intensity"
         searchParams={searchParams}
       />
     </div>
@@ -203,38 +198,4 @@ function updateSearchParams(
   }
 
   return completeParamString;
-}
-
-/**
- * @returns Object with the selected filters of each facet
- */
-function getSelectedFiltersDictionary() {
-  const { items } = useCurrentRefinements();
-
-  // Lists of selected filters for each facet is needed for initial state for each facet
-  const selectedFiltersDict = {
-    boozeIntensity: [] as string[],
-    type: [] as string[],
-    baseSpirit: [] as string[],
-  };
-
-  items.forEach((item) => {
-    if (item.attribute === "tags.booze_intensity") {
-      item.refinements.forEach((filter) =>
-        selectedFiltersDict.boozeIntensity.push(filter.value.toString())
-      );
-    }
-    if (item.attribute === "tags.type") {
-      item.refinements.forEach((filter) =>
-        selectedFiltersDict.type.push(filter.value.toString())
-      );
-    }
-    if (item.attribute === "tags.base_spirit") {
-      item.refinements.forEach((filter) =>
-        selectedFiltersDict.baseSpirit.push(filter.value.toString())
-      );
-    }
-  });
-
-  return selectedFiltersDict;
 }
