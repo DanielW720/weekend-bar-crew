@@ -50,7 +50,7 @@ export const Searchbar = () => {
           handleSubmit(onSubmit)(e);
           (e.target as HTMLFormElement).querySelector("input")?.blur();
         }}
-        className="caret-beigeRed flex h-12  items-center rounded-full border-2 border-beige backdrop-blur-[1px]"
+        className="caret-beigeRed flex h-12 items-center rounded-full border-2 border-beige backdrop-blur-[1px]"
       >
         <button type="submit" className="mx-2 flex items-center">
           <MagnifyingGlassIcon color="beige" width={20} height={20} />
