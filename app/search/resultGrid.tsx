@@ -14,18 +14,6 @@ function ResultGrid() {
       {hits.hits.map((drink) => (
         <DrinkCard key={drink.objectID} drinkItem={drink} />
       ))}
-      {/* {hits.hits.map((drink) => (
-        <DrinkCard key={drink.objectID} drinkItem={drink} />
-      ))}
-      {hits.hits.map((drink) => (
-        <DrinkCard key={drink.objectID} drinkItem={drink} />
-      ))}
-      {hits.hits.map((drink) => (
-        <DrinkCard key={drink.objectID} drinkItem={drink} />
-      ))}
-      {hits.hits.map((drink) => (
-        <DrinkCard key={drink.objectID} drinkItem={drink} />
-      ))} */}
     </div>
   );
 }
