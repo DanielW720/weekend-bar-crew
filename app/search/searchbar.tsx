@@ -43,7 +43,7 @@ export const Searchbar = () => {
   };
 
   return (
-    <div className="w-full max-w-xs px-4">
+    <div className="w-full max-w-xs px-4 md:max-w-sm">
       <form
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();

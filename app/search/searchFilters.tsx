@@ -12,7 +12,7 @@ export default function SearchFilters() {
   const selectedFiltersDict = getSelectedFiltersDictionary();
 
   return (
-    <div className="mt-6 flex flex-wrap items-center gap-3 px-4">
+    <div className="mt-6 flex max-w-lg flex-wrap items-center justify-center gap-3 px-4 md:gap-5">
       <Facet
         name="Booze Intensity"
         selected={selectedFiltersDict.boozeIntensity}
@@ -29,6 +29,12 @@ export default function SearchFilters() {
         name="Base Spirit"
         selected={selectedFiltersDict.baseSpirit}
         attribute="tags.base_spirit"
+        searchParams={searchParams}
+      />
+      <Facet
+        name="Booze Intensity"
+        selected={selectedFiltersDict.boozeIntensity}
+        attribute="tags.booze_intensity"
         searchParams={searchParams}
       />
     </div>
@@ -98,7 +104,7 @@ function Facet({
           className={`group relative col-span-3 col-start-2 col-end-4 flex w-max flex-1 items-center rounded-full bg-beige/20 px-2 py-1 outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:bg-cyan`}
           data-has-selected={selected.length > 0}
         >
-          <div className="text-[0.8rem] tracking-wider text-white transition-colors duration-200 group-data-[has-selected=true]:text-black">
+          <div className="text-[0.8rem] tracking-wider text-white transition-colors duration-200 group-data-[has-selected=true]:text-black md:text-[0.95rem]">
             {name}
           </div>
           <motion.div
