@@ -99,7 +99,7 @@ export function AnimateTab({ children }: { children: ReactNode }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
-      className="mt-6 flex w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
+      className="mt-6 flex min-h-[12rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
     >
       {children}
     </motion.div>

@@ -12,7 +12,7 @@ export default async function Page({ params }: { params: DynamicDrinkParams }) {
   const drink = await fetchDrink(params.drink);
 
   return (
-    <div className="flex w-full flex-col items-center">
+    <div className="flex w-full flex-col items-center py-12">
       <h1 className="text-[2.125rem] tracking-widest text-cyan">
         {drink.name}
       </h1>

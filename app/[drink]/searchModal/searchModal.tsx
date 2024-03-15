@@ -21,7 +21,7 @@ function SearchModal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-10 flex flex-col items-center overflow-y-auto bg-black/40 pt-[8rem] backdrop-blur-md"
+            className="fixed inset-0 z-30 flex flex-col items-center overflow-y-auto bg-black/40 pt-[8rem] backdrop-blur-md"
           >
             <button
               className="relative mb-4 ml-8 mr-auto text-3xl text-white"
