@@ -67,14 +67,17 @@ function getExistingQueryParameter(searchParams: ReadonlyURLSearchParams) {
   if (query) paramDictionary.query = query;
 
   searchParams
-    .getAll("Booze Intensity")
-    .forEach((value) => paramDictionary.boozeIntensity.push(value));
+    .get("Booze Intensity")
+    ?.split(";")
+    .forEach((filter) => paramDictionary.boozeIntensity.push(filter));
   searchParams
-    .getAll("Type")
-    .forEach((value) => paramDictionary.type.push(value));
+    .get("Type")
+    ?.split(";")
+    .forEach((filter) => paramDictionary.type.push(filter));
   searchParams
-    .getAll("Base Spirit")
-    .forEach((value) => paramDictionary.baseSpirit.push(value));
+    .get("Base Spirit")
+    ?.split(";")
+    .forEach((filter) => paramDictionary.baseSpirit.push(filter));
 
   return paramDictionary;
 }
