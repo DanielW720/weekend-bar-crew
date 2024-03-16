@@ -1,23 +1,19 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import "material-icons/iconfont/outlined.css";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSearchBox } from "react-instantsearch";
 import useCurrentQuery from "../hooks/useCurrentQuery";
+import { RxCross1 } from "react-icons/rx";
+import { CiSearch } from "react-icons/ci";
 
 type Inputs = {
   query: string;
 };
 
 export const Searchbar = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const { refine, clear } = useSearchBox();
-  const currentQuery = useCurrentQuery();
+  const { setValue, register, handleSubmit } = useForm<Inputs>();
+  const { refine } = useSearchBox();
+  const currentQuery = useCurrentQuery(setValue);
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -53,8 +49,11 @@ export const Searchbar = () => {
         }}
         className="caret-beigeRed flex h-12 items-center rounded-full border-2 border-beige backdrop-blur-[1px]"
       >
-        <button type="submit" className="mx-2 flex items-center">
-          <MagnifyingGlassIcon color="beige" width={20} height={20} />
+        <button
+          type="submit"
+          className="mx-2 flex items-center text-lg text-beige"
+        >
+          <CiSearch />
         </button>
         <input
           autoComplete="off"
@@ -64,7 +63,15 @@ export const Searchbar = () => {
           {...register("query")}
           className="w-full bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"
         />
-        {/* Add clearing button */}
+        <button
+          className="mx-2 text-lg text-beige"
+          onClick={() => {
+            onSubmit({ query: "" });
+          }}
+          type="button"
+        >
+          <RxCross1 />
+        </button>
       </form>
     </div>
   );
