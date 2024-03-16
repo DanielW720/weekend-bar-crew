@@ -54,6 +54,9 @@ function Facet({
   const [open, setOpen] = useState(false);
   const router = useRouter();
 
+  // If there's no filters available, skip this facet
+  if (items.length === 0) return;
+
   const onFilterClick = (filter: string) => {
     // if already selected, un-select it
     // If not already selected, select it
