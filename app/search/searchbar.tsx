@@ -3,6 +3,7 @@ import "material-icons/iconfont/outlined.css";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSearchBox } from "react-instantsearch";
+import useCurrentQuery from "../hooks/useCurrentQuery";
 
 type Inputs = {
   query: string;
@@ -15,9 +16,9 @@ export const Searchbar = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const { query, refine, clear } = useSearchBox();
+  const { refine, clear } = useSearchBox();
+  const currentQuery = useCurrentQuery();
   const searchParams = useSearchParams();
-  const currentQuery = searchParams.get("query");
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -59,7 +60,7 @@ export const Searchbar = () => {
           autoComplete="off"
           type="text"
           placeholder={`Search`}
-          defaultValue={currentQuery != null ? currentQuery : ""}
+          defaultValue={currentQuery}
           {...register("query")}
           className="w-full bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"
         />

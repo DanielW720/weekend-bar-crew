@@ -8,7 +8,6 @@ import { roboto } from "../lib/globals/fonts";
 import { useRouter } from "next/navigation";
 
 export default function SearchFilters() {
-  const searchParams = useSearchParams();
   const { items } = useCurrentRefinements();
 
   // Lists of selected filters for each facet is needed for initial state for each facet
@@ -42,19 +41,16 @@ export default function SearchFilters() {
         name="Booze Intensity"
         selected={selectedFiltersDict.boozeIntensity}
         attribute="tags.booze_intensity"
-        searchParams={searchParams}
       />
       <Facet
         name="Type"
         selected={selectedFiltersDict.type}
         attribute="tags.type"
-        searchParams={searchParams}
       />
       <Facet
         name="Base Spirit"
         selected={selectedFiltersDict.baseSpirit}
         attribute="tags.base_spirit"
-        searchParams={searchParams}
       />
     </div>
   );
@@ -64,13 +60,12 @@ function Facet({
   name,
   selected,
   attribute,
-  searchParams,
 }: {
   name: string;
   selected: string[];
   attribute: string;
-  searchParams: ReadonlyURLSearchParams;
 }) {
+  const searchParams = useSearchParams();
   const { items, refine } = useRefinementList({
     attribute: attribute,
     sortBy: ["name:asc"],
