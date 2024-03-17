@@ -45,15 +45,31 @@ export default function Tabs({ drink: drink }: { drink: Drink }) {
         {/* AnimatePresence for smooth animations when swithing tabs */}
         <AnimatePresence mode="wait">
           {tab === DrinkPageTabs.Overview ? (
-            <AnimateTab key={DrinkPageTabs.Overview}>
+            <AnimateTab
+              key={DrinkPageTabs.Overview}
+              swipeLeft={() => {}}
+              swipeRight={() => setTab(DrinkPageTabs.Recepie)}
+            >
               <OverviewTab overview={drink.description} />
             </AnimateTab>
           ) : tab === DrinkPageTabs.Recepie ? (
-            <AnimateTab key={DrinkPageTabs.Recepie}>
+            <AnimateTab
+              key={DrinkPageTabs.Recepie}
+              swipeLeft={() => {
+                setTab(DrinkPageTabs.Overview);
+              }}
+              swipeRight={() => setTab(DrinkPageTabs.Equipment)}
+            >
               <RecepieTab recepie={drink.recepie} />
             </AnimateTab>
           ) : (
-            <AnimateTab key={DrinkPageTabs.Equipment}>
+            <AnimateTab
+              key={DrinkPageTabs.Equipment}
+              swipeLeft={() => {
+                setTab(DrinkPageTabs.Recepie);
+              }}
+              swipeRight={() => {}}
+            >
               <EquipmentTab equipment={drink.equipment} />
             </AnimateTab>
           )}
@@ -92,13 +108,29 @@ function Trigger({
 /**
  * Reusable animation-component for the sections.
  */
-export function AnimateTab({ children }: { children: ReactNode }) {
+export function AnimateTab({
+  children,
+  swipeLeft,
+  swipeRight,
+}: {
+  children: ReactNode;
+  swipeLeft: () => void;
+  swipeRight: () => void;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.15 }}
+      drag="x"
+      dragSnapToOrigin
+      dragElastic={0.1}
+      dragConstraints={{ left: -100, right: 100 }}
+      onDragEnd={(_, info) => {
+        if (info.offset.x > 90) swipeLeft();
+        if (info.offset.x < -90) swipeRight();
+      }}
       className="mt-6 flex min-h-[12rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
     >
       {children}
