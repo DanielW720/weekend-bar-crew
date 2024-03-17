@@ -1,7 +1,7 @@
 import "./globals.css";
-import { Header } from "./header";
-import { inknut_antiqua } from "./lib/globals/fonts";
-import Footer from "./footer";
+import { Header } from "./layout/header";
+import { inknut_antiqua } from "./lib/fonts";
+import Footer from "./layout/footer";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {

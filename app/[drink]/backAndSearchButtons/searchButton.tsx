@@ -2,8 +2,8 @@
 
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import React from "react";
-import SearchModal from "./searchModal";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import SearchModal from "../searchModal";
 
 function SearchButton() {
   const router = useRouter();

@@ -4,8 +4,10 @@ import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
 import { useCurrentRefinements, useRefinementList } from "react-instantsearch";
-import { roboto } from "../lib/globals/fonts";
+import { roboto } from "../lib/fonts";
 import { useRouter } from "next/navigation";
+import removeSearchModalParam from "../lib/removeSearchModalParam";
+import { unsetBodyOverflow } from "../lib/unsetBodyOverflow";
 
 export default function SearchFilters() {
   const { items } = useCurrentRefinements();
@@ -89,6 +91,9 @@ function Facet({
       selected,
       searchParams
     );
+
+    // Enable body scrolling (may have been disabled by modal)
+    unsetBodyOverflow();
 
     // Update search params
     router.push(`/?${updatedSearchParams}`);
@@ -218,6 +223,9 @@ function updateSearchParams(
       ";"
     )}`;
   }
+
+  // Remove search-modal param. May or may not exist
+  completeParamString = removeSearchModalParam(completeParamString);
 
   return completeParamString;
 }

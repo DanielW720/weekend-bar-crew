@@ -5,6 +5,8 @@ import { useSearchBox } from "react-instantsearch";
 import useCurrentQuery from "../hooks/useCurrentQuery";
 import { RxCross1 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
+import removeSearchModalParam from "../lib/removeSearchModalParam";
+import { unsetBodyOverflow } from "../lib/unsetBodyOverflow";
 
 type Inputs = {
   query: string;
@@ -20,6 +22,7 @@ export const Searchbar = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // Update search params
     let paramsString: string;
+
     if (searchParams.has("query")) {
       const params = [];
       for (const [key, value] of searchParams.entries()) {
@@ -34,6 +37,13 @@ export const Searchbar = () => {
     } else {
       paramsString = `${searchParams}&query=${data.query}`;
     }
+
+    // Remove search-modal param. May or may not exist
+    paramsString = removeSearchModalParam(paramsString);
+
+    // Enable body scrolling (may have been disabled by modal)
+    unsetBodyOverflow();
+
     router.push(`/?${paramsString}`);
     // Update search
     refine(data.query);

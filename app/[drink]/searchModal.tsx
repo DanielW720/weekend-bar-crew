@@ -8,6 +8,7 @@ import useOpenModal from "@/app/hooks/useOpenModal";
 
 function SearchModal() {
   const [isOpen, close] = useOpenModal();
+  // Enable/disable body scroll when modal is closed/opened
   useDisableBodyScroll(isOpen);
 
   return (

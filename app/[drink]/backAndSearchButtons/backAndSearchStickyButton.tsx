@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import BackButton from "./backButton";
-import SearchButton from "./searchModal/searchButton";
+import SearchButton from "./searchButton";
 
 export default function BackAndSearchStickyButtons() {
   return (

@@ -2,12 +2,12 @@
 
 import React, { Suspense } from "react";
 import { Searchbar } from "./searchbar";
-import { roboto } from "../lib/globals/fonts";
-import ResultGrid from "./resultGrid";
+import { roboto } from "../lib/fonts";
 import { InstantSearch } from "react-instantsearch";
 import algoliasearch from "algoliasearch";
 import SearchFilters from "./searchFilters";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import ResultGrid from "./results/resultGrid";
 
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_PROJECT_ID!,

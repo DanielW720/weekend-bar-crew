@@ -1,6 +1,8 @@
-import React from "react";
-import { DrinkCard } from "../cards/drinkCard";
-import { Drink } from "../types";
+"use client";
+
+import React, { Suspense } from "react";
+import { DrinkCard } from "./drinkCard";
+import { Drink } from "../../types";
 import { useHits, useInstantSearch } from "react-instantsearch";
 
 function ResultGrid() {

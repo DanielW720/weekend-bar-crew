@@ -1,11 +1,9 @@
-"use client";
-
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
-import { roboto } from "../lib/globals/fonts";
-import { Drink } from "../types";
+import { roboto } from "../../lib/fonts";
+import { Drink } from "../../types";
 
 export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
   const router = useRouter();
