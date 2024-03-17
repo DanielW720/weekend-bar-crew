@@ -22,9 +22,10 @@ export function RecepieTab({
       <hr className="my-6 border-beige" />
       <div>
         <h3 className="text-white">Instruktioner</h3>
-        <ol className="ml-2 mt-4 list-decimal leading-5 text-white/80">
-          {recepie.instructions.map((e) => (
+        <ol className="ml-2 mt-4 leading-5 text-white/80">
+          {recepie.instructions.map((e, idx) => (
             <li key={e} className="my-4">
+              <span>{idx + 1}. </span>
               {e.replace(/^"|"$/g, "")}
             </li>
           ))}
