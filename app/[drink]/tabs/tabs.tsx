@@ -2,7 +2,12 @@
 
 import React, { ReactNode, useState } from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 import { Drink } from "../../types";
 import { EquipmentTab } from "./equipmentTab";
 import { OverviewTab } from "./overviewTab";
@@ -117,6 +122,18 @@ export function AnimateTab({
   swipeLeft: () => void;
   swipeRight: () => void;
 }) {
+  const x = useMotionValue(0);
+  const color = useTransform(
+    x,
+    [-100, 0, 100],
+    ["#171717", "rgb(207, 207, 207, 100%)", "#171717"]
+  );
+  const borderColor = useTransform(
+    x,
+    [-100, 0, 100],
+    ["#171717", "rgb(207, 207, 207, 100%)", "#171717"]
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -125,12 +142,16 @@ export function AnimateTab({
       transition={{ duration: 0.15 }}
       drag="x"
       dragSnapToOrigin
-      dragElastic={0.1}
+      dragElastic={0.15}
       dragConstraints={{ left: -100, right: 100 }}
       onDragEnd={(_, info) => {
-        if (info.offset.x > 90) swipeLeft();
-        if (info.offset.x < -90) swipeRight();
+        if (info.offset.x > 90) {
+          swipeLeft();
+        } else if (info.offset.x < -90) {
+          swipeRight();
+        }
       }}
+      style={{ color, borderColor, x }}
       className="mt-6 flex min-h-[12rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
     >
       {children}
