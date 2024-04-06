@@ -40,20 +40,13 @@ export const Search = () => {
       <div
         className={`${roboto.className} mt-6 flex w-full flex-col items-center md:mt-12`}
       >
-        <Suspense fallback={<SearchFallback />}>
-          <Searchbar />
-          <SearchFilters />
-          <ResultGrid />
-        </Suspense>
+        <Searchbar />
+        <SearchFilters />
+        <ResultGrid />
       </div>
     </InstantSearch>
   );
 };
-
-// TODO: Update fallback component
-function SearchFallback() {
-  return <div>Placeholder for Searchbar and Tags</div>;
-}
 
 function getExistingQueryParameter(searchParams: ReadonlyURLSearchParams) {
   const paramDictionary = {
