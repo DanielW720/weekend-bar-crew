@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import { roboto } from "../../lib/fonts";
 import { Drink } from "../../types";
 
-export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
+export const DrinkCard = ({ drink }: { drink: Drink }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isTouching, setIsTouching] = useState(false);
@@ -42,7 +42,7 @@ export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
       .toString()
       .replace(searchModalExpression, "")
       .replace(leadingAmpersandExpression, "");
-    router.push(`/${drinkItem.name}?${updatedParams}`);
+    router.push(`/${drink.name}?${updatedParams}`);
   };
 
   return (
@@ -58,13 +58,13 @@ export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
     >
       <AnimatePresence>
         {isTouching && (
-          <CardBackdrop shortDescription={drinkItem.description_short} />
+          <CardBackdrop shortDescription={drink.description_short} />
         )}
       </AnimatePresence>
       <div className="relative top-0 h-[10.5rem] w-[17rem] overflow-hidden md:h-[7.5rem] md:w-[13rem] lg:h-[10.5rem] lg:w-[17rem]">
         <Image
-          src={drinkItem.image.url}
-          alt={drinkItem.image.alt}
+          src={drink.image.url}
+          alt={drink.image.alt}
           fill
           sizes="(min-width: 1024px) 272px, (min-width: 768px) 208px, 272px"
           placeholder="blur"
@@ -73,9 +73,7 @@ export const DrinkCard = ({ drinkItem }: { drinkItem: Drink }) => {
         />
       </div>
       <div className="flex h-[2.4rem] items-center justify-center rounded-b-3xl px-2 py-1 text-white backdrop-blur-sm">
-        <h2 className="text-center text-[1.1rem] md:text-sm">
-          {drinkItem.name}
-        </h2>
+        <h2 className="text-center text-[1.1rem] md:text-sm">{drink.name}</h2>
       </div>
     </motion.div>
   );

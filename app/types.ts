@@ -1,17 +1,27 @@
+/**
+ * Data model used in Cloud Firestore "drinks" collection.
+ */
 export type Drink = {
   id: string;
-  name: string;
-  description_short: string;
+  base_spirit: string[];
   description: string;
+  description_short: string;
+  difficulty_level: string;
+  equipment: string[];
+  flavor_profile: string[];
+  glassware: string[];
+  image: { url: string; alt: string };
+  language: string;
+  mocktail_available: string;
+  mocktail_recepie?: {
+    ingredients: string[];
+    instructions: string[];
+  };
+  name: string;
+  preparation_time_min: string;
   recepie: {
     ingredients: string[];
     instructions: string[];
   };
-  tags: {
-    alcohol: string;
-    type: string[];
-    base_spirit: string[];
-  };
-  equipment: string[];
-  image: { url: string; alt: string };
+  type: string[];
 };

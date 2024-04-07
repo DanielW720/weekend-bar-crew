@@ -19,7 +19,7 @@ export enum DrinkPageTabs {
   Equipment = "Utrustning",
 }
 
-export default function Tabs({ drink: drink }: { drink: Drink }) {
+export default function Tabs({ drink }: { drink: Drink }) {
   const [tab, setTab] = useState(DrinkPageTabs.Recepie);
 
   const handleTabChange = (value: string) => {
