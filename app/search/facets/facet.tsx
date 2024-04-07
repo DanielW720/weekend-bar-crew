@@ -5,7 +5,7 @@ import { unsetBodyOverflow } from "@/app/lib/unsetBodyOverflow";
 import { ChevronDownIcon, CheckIcon } from "@radix-ui/react-icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams, ReadonlyURLSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRefinementList } from "react-instantsearch";
 

@@ -7,7 +7,7 @@ import { InstantSearch } from "react-instantsearch";
 import algoliasearch from "algoliasearch";
 import { useSearchParams } from "next/navigation";
 import ResultGrid from "./results/resultGrid";
-import Facets from "./facets/Facets";
+import Facets from "./facets/facets";
 
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_PROJECT_ID!,
@@ -35,9 +35,13 @@ export const Search = () => {
         drinks: {
           query: query ? query : "",
           refinementList: {
-            // mocktail_available: getFacetParamValues("mocktail_available"),
-            // type: getFacetParamValues("type"),
             base_spirit: getFacetParamValues("base_spirit"),
+            difficulty_level: getFacetParamValues("difficulty_level"),
+            flavor_profile: getFacetParamValues("flavor_profile"),
+            glassware: getFacetParamValues("glassware"),
+            mocktail_available: getFacetParamValues("mocktail_available"),
+            preparation_time_min: getFacetParamValues("preparation_time_min"),
+            type: getFacetParamValues("type"),
           },
         },
       }}

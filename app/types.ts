@@ -14,13 +14,21 @@ export type Drink = {
   language: string;
   mocktail_available: string;
   mocktail_recepie?: {
-    ingredients: string[];
+    ingredients: {
+      name: string;
+      metricQuantity: string;
+      imperialQuantity: string;
+    }[];
     instructions: string[];
   };
   name: string;
   preparation_time_min: string;
   recepie: {
-    ingredients: string[];
+    ingredients: {
+      name: string;
+      metricQuantity: string;
+      imperialQuantity: string;
+    }[];
     instructions: string[];
   };
   type: string[];
