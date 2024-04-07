@@ -14,12 +14,12 @@ import { OverviewTab } from "./overviewTab";
 import { RecepieTab } from "./recepieTab";
 
 export enum DrinkPageTabs {
-  Overview = "Översikt",
-  Recepie = "Recept",
-  Equipment = "Utrustning",
+  Overview = "Overview",
+  Recepie = "Recepie",
+  Equipment = "Equipment",
 }
 
-export default function Tabs({ drink: drink }: { drink: Drink }) {
+export default function Tabs({ drink }: { drink: Drink }) {
   const [tab, setTab] = useState(DrinkPageTabs.Recepie);
 
   const handleTabChange = (value: string) => {
@@ -128,11 +128,6 @@ export function AnimateTab({
     [-100, 0, 100],
     ["#171717", "rgb(207, 207, 207, 100%)", "#171717"]
   );
-  const borderColor = useTransform(
-    x,
-    [-100, 0, 100],
-    ["#171717", "rgb(207, 207, 207, 100%)", "#171717"]
-  );
 
   return (
     <motion.div
@@ -151,8 +146,8 @@ export function AnimateTab({
           swipeRight();
         }
       }}
-      style={{ color, borderColor, x }}
-      className="mt-6 flex min-h-[12rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
+      style={{ color, x }}
+      className="mt-6 flex min-h-[25rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
     >
       {children}
     </motion.div>

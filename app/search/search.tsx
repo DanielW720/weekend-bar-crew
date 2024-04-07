@@ -1,13 +1,13 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React from "react";
 import { Searchbar } from "./searchbar";
 import { roboto } from "../lib/fonts";
 import { InstantSearch } from "react-instantsearch";
 import algoliasearch from "algoliasearch";
-import SearchFilters from "./searchFilters";
-import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import ResultGrid from "./results/resultGrid";
+import Facets from "./facets/facets";
 
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_PROJECT_ID!,
@@ -19,20 +19,29 @@ const indexName = "drinks";
 export const Search = () => {
   const searchParams = useSearchParams();
 
-  // Find any pre-existing URL query params and add them to initial state
-  const paramDictionary = getExistingQueryParameter(searchParams);
+  const getFacetParamValues = (facet: string) => {
+    const filters = searchParams.get(facet)?.split(",");
+    return filters ? filters : [];
+  };
+
+  const query = searchParams.get("query");
 
   return (
     <InstantSearch
       searchClient={client}
       indexName={indexName}
+      future={{ preserveSharedStateOnUnmount: true }}
       initialUiState={{
         drinks: {
-          query: paramDictionary.query,
+          query: query ? query : "",
           refinementList: {
-            "tags.booze_intensity": paramDictionary.boozeIntensity,
-            "tags.type": paramDictionary.type,
-            "tags.base_spirit": paramDictionary.baseSpirit,
+            base_spirit: getFacetParamValues("base_spirit"),
+            difficulty_level: getFacetParamValues("difficulty_level"),
+            flavor_profile: getFacetParamValues("flavor_profile"),
+            glassware: getFacetParamValues("glassware"),
+            mocktail_available: getFacetParamValues("mocktail_available"),
+            preparation_time_min: getFacetParamValues("preparation_time_min"),
+            type: getFacetParamValues("type"),
           },
         },
       }}
@@ -41,36 +50,9 @@ export const Search = () => {
         className={`${roboto.className} mt-6 flex w-full flex-col items-center md:mt-12`}
       >
         <Searchbar />
-        <SearchFilters />
+        <Facets />
         <ResultGrid />
       </div>
     </InstantSearch>
   );
 };
-
-function getExistingQueryParameter(searchParams: ReadonlyURLSearchParams) {
-  const paramDictionary = {
-    query: "",
-    boozeIntensity: [] as string[],
-    type: [] as string[],
-    baseSpirit: [] as string[],
-  };
-
-  const query = searchParams.get("query");
-  if (query) paramDictionary.query = query;
-
-  searchParams
-    .get("Booze Intensity")
-    ?.split(";")
-    .forEach((filter) => paramDictionary.boozeIntensity.push(filter));
-  searchParams
-    .get("Type")
-    ?.split(";")
-    .forEach((filter) => paramDictionary.type.push(filter));
-  searchParams
-    .get("Base Spirit")
-    ?.split(";")
-    .forEach((filter) => paramDictionary.baseSpirit.push(filter));
-
-  return paramDictionary;
-}

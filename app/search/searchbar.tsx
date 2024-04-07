@@ -45,8 +45,6 @@ export const Searchbar = () => {
     unsetBodyOverflow();
 
     router.push(`/?${paramsString}`);
-    // Update search
-    refine(data.query);
   };
 
   return (
