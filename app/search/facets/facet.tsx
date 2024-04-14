@@ -88,7 +88,7 @@ export default function Facet({
     <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
       <motion.div whileTap={{ scale: 0.93 }}>
         <RadixDropdownMenu.Trigger
-          className={`group relative col-span-3 col-start-2 col-end-4 flex flex-1 items-center rounded-[0.6rem] border-beige bg-beige/10 px-2 py-1 text-xs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:border-2 data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-[0.85rem]`}
+          className={`group relative col-span-3 col-start-2 col-end-4 flex flex-1 items-center rounded-[0.6rem] border-beige bg-beige/10 px-2 py-1 text-xs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:border-[1px] data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-[0.85rem]`}
           data-has-selected={hasSelectedItems}
         >
           <div className="font-thin tracking-wide">{displayName}</div>

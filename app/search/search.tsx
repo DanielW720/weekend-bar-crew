@@ -7,7 +7,7 @@ import { InstantSearch } from "react-instantsearch";
 import algoliasearch from "algoliasearch";
 import { useSearchParams } from "next/navigation";
 import ResultGrid from "./results/resultGrid";
-import Facets from "./facets/facets";
+import FacetsAccordion from "./facets/facetsAccordion";
 
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_PROJECT_ID!,
@@ -50,7 +50,7 @@ export const Search = () => {
         className={`${roboto.className} mt-6 flex w-full flex-col items-center md:mt-12`}
       >
         <Searchbar />
-        <Facets />
+        <FacetsAccordion />
         <ResultGrid />
       </div>
     </InstantSearch>

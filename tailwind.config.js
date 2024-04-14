@@ -41,7 +41,7 @@ module.exports = {
       },
       animation: {
         slideDown: "slideDown 300ms ease-in-out",
-        slideUp: "slideUp 300ms ease-in-out",
+        slideUp: "slideUp 400ms ease-in-out",
       },
     },
   },
