@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Facet from "./facet";
-import * as RadixAccordion from "@radix-ui/react-Accordion";
+import * as RadixAccordion from "@radix-ui/react-accordion";
 import { IoChevronDown } from "react-icons/io5";
-import { AnimatePresence, motion, useAnimate } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import useAnimateAccordionContent from "@/app/hooks/useAnimateAccordionContent";
 
 export default function FacetsAccordion() {
