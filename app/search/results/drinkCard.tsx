@@ -47,7 +47,7 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
 
   return (
     <motion.div
-      className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-[1px] border-b-[2px] border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
+      className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-2 border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
       onTouchStart={handleBackdropStart}
       onHoverStart={handleBackdropStart}
       onTouchEnd={handleBackdropEnd}

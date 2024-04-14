@@ -66,7 +66,7 @@ export const Searchbar = () => {
         <input
           autoComplete="off"
           type="text"
-          placeholder={`Search`}
+          placeholder="Search"
           defaultValue={currentQuery}
           {...register("query")}
           className="w-full bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"

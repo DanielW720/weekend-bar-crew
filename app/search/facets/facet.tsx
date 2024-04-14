@@ -88,17 +88,15 @@ export default function Facet({
     <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
       <motion.div whileTap={{ scale: 0.93 }}>
         <RadixDropdownMenu.Trigger
-          className={`group relative col-span-3 col-start-2 col-end-4 flex w-max flex-1 items-center rounded-full bg-beige/20 px-2 py-1 outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:bg-cyan`}
+          className={`group relative col-span-3 col-start-2 col-end-4 flex flex-1 items-center rounded-[0.6rem] border-beige bg-beige/10 px-2 py-1 text-xs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 data-[has-selected=true]:border-2 data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-[0.85rem]`}
           data-has-selected={hasSelectedItems}
         >
-          <div className="text-[0.8rem] tracking-wider text-white transition-colors duration-200 group-data-[has-selected=true]:text-black md:text-[0.95rem]">
-            {displayName}
-          </div>
+          <div className="font-thin tracking-wide">{displayName}</div>
           <motion.div
             transition={{ type: "keyframes", duration: 0.15 }}
             animate={{ rotate: open ? 180 : 0 }}
           >
-            <ChevronDownIcon className="ml-[2px] text-white group-data-[has-selected=true]:text-black" />
+            <ChevronDownIcon className="ml-[2px]" />
           </motion.div>
         </RadixDropdownMenu.Trigger>
       </motion.div>
@@ -117,14 +115,15 @@ export default function Facet({
           >
             <RadixDropdownMenu.Content
               forceMount
-              sideOffset={6}
-              className={`${roboto.className} w-[100px] rounded-md bg-beige text-sm tracking-wider text-darkGray backdrop-blur-sm`}
+              sideOffset={4}
+              className={`${roboto.className} w-[140%] rounded-md bg-extraDarkGray py-1 text-xs tracking-wider text-white transition-all duration-200 sm:py-2 sm:text-[0.85rem]`}
             >
+              <RadixDropdownMenu.Arrow className="fill-extraDarkGray" />
               <motion.ul initial="hidden" animate="visible" variants={list}>
                 {items.map((item, idx) => (
                   <li key={item.label}>
                     <RadixDropdownMenu.CheckboxItem
-                      className={`px-2 py-1 text-[0.8rem] transition-all duration-200 hover:bg-white data-[state=checked]:bg-cyan data-[state=checked]:shadow-md data-[state=checked]:hover:bg-white/70 ${
+                      className={`px-2 py-1 font-thin data-[state=checked]:text-beige sm:px-3 sm:py-2 ${
                         idx === 0 && "rounded-t-md"
                       } ${idx === items.length - 1 && "rounded-b-md"}`}
                       checked={item.isRefined}
@@ -143,7 +142,6 @@ export default function Facet({
                   </li>
                 ))}
               </motion.ul>
-              <RadixDropdownMenu.Arrow className="fill-beige/80" />
             </RadixDropdownMenu.Content>
           </motion.div>
         )}
