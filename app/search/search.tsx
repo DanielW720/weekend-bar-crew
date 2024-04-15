@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Searchbar } from "./searchbar";
-import { roboto } from "../lib/fonts";
 import { InstantSearch } from "react-instantsearch";
 import algoliasearch from "algoliasearch";
 import { useSearchParams } from "next/navigation";
@@ -46,9 +45,7 @@ export const Search = () => {
         },
       }}
     >
-      <div
-        className={`${roboto.className} mt-6 flex w-full flex-col items-center md:mt-12`}
-      >
+      <div className={`mt-6 flex w-full flex-col items-center md:mt-12`}>
         <Searchbar />
         <FacetsAccordion />
         <ResultGrid />

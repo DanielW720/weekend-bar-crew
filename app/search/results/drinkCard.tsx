@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
-import { roboto } from "../../lib/fonts";
 import { Drink } from "../../types";
 
 export const DrinkCard = ({ drink }: { drink: Drink }) => {
@@ -47,14 +46,12 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
 
   return (
     <motion.div
-      className={`${roboto.className} group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-2 border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
+      className={`group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-2 border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
       onTouchStart={handleBackdropStart}
       onHoverStart={handleBackdropStart}
       onTouchEnd={handleBackdropEnd}
       onHoverEnd={handleBackdropEnd}
       onClick={pushDrinkRoute}
-      initial={{ scale: 0.9 }}
-      animate={{ scale: 1 }}
     >
       <AnimatePresence>
         {isTouching && (
@@ -73,7 +70,7 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
         />
       </div>
       <div className="flex h-[2.4rem] items-center justify-center rounded-b-3xl px-2 py-1 text-white backdrop-blur-sm">
-        <h2 className="text-center text-[1.1rem] md:text-sm">{drink.name}</h2>
+        <h2 className="text-center text-[1rem] md:text-sm">{drink.name}</h2>
       </div>
     </motion.div>
   );

@@ -56,7 +56,7 @@ export default function FacetsAccordion() {
           <AnimatePresence>
             {open && (
               <motion.div
-                className="z-0 h-[170px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg"
+                className="z-0 h-[150px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg"
                 initial="closed"
                 animate="open"
                 exit="closed"
@@ -85,9 +85,9 @@ const AccordionContent = ({
   return (
     <motion.div
       ref={scope}
-      className={`absolute z-50 hidden h-[170px] w-full items-center justify-center px-4`}
+      className={`absolute z-50 hidden h-[150px] w-full items-center justify-center px-4`}
     >
-      <div className="grid h-fit w-fit grid-cols-2 items-center justify-items-start gap-x-3 gap-y-3 py-3 sm:grid-cols-3">
+      <div className="grid h-fit w-fit grid-cols-2 items-center justify-items-center gap-x-3 gap-y-3 py-3 sm:grid-cols-3 sm:gap-y-6">
         {facets.map((facet) => (
           <Facet
             attribute={facet.attribute}
@@ -115,17 +115,21 @@ const facets: { attribute: string; en: string }[] = [
     // is: "Grunnspyrt",
   },
   {
-    attribute: "difficulty_level",
-    en: "Difficulty",
+    attribute: "type",
+    en: "Type",
   },
   {
     attribute: "flavor_profile",
     en: "Flavor Profile",
   },
   {
-    attribute: "glassware",
-    en: "Glassware",
+    attribute: "difficulty_level",
+    en: "Difficulty",
   },
+  // {
+  //   attribute: "glassware",
+  //   en: "Glassware",
+  // },
   {
     attribute: "mocktail_available",
     en: "Non-Alcoholic",
@@ -133,9 +137,5 @@ const facets: { attribute: string; en: string }[] = [
   {
     attribute: "preparation_time_min",
     en: "Prep Time",
-  },
-  {
-    attribute: "type",
-    en: "Type",
   },
 ];

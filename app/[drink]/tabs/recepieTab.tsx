@@ -19,7 +19,7 @@ export function RecepieTab({ recepie }: { recepie: Drink["recepie"] }) {
 
       <div className="mt-12">
         <h3>Instructions</h3>
-        <ol className="ml-2 mt-4 leading-5">
+        <ol className="ml-2 mt-4 ">
           {recepie.instructions.map((instruction, idx) => (
             <li key={instruction} className="my-4">
               <span>{idx + 1}. </span>

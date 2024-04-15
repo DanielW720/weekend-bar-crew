@@ -4,8 +4,3 @@ export const inknut_antiqua = Inknut_Antiqua({
   weight: ["800", "700", "300"],
   subsets: ["devanagari"],
 });
-
-export const roboto = Roboto({
-  weight: ["400", "300"],
-  subsets: ["cyrillic"],
-});
