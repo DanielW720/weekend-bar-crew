@@ -12,13 +12,13 @@ function useAnimateAccordionContent(
     if (open) {
       animate(
         scope.current,
-        { y: 0, opacity: 1, scale: 1, display: "flex" },
+        { y: 0, scale: 1, display: "flex" },
         { delay: delay, duration: duration }
       );
     } else {
       animate(
         scope.current,
-        { y: -70, opacity: 0, scale: 0, display: "hidden" },
+        { y: -70, scale: 0, display: "hidden" },
         { duration: duration }
       );
     }

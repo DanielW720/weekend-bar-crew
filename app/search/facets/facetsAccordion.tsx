@@ -85,7 +85,7 @@ const AccordionContent = ({
   return (
     <motion.div
       ref={scope}
-      className={`absolute z-50 hidden h-[170px] w-full items-center justify-center px-4 opacity-0`}
+      className={`absolute z-50 hidden h-[170px] w-full items-center justify-center px-4`}
     >
       <div className="grid h-fit w-fit grid-cols-2 items-center justify-items-start gap-x-3 gap-y-3 py-3 sm:grid-cols-3">
         {facets.map((facet) => (
