@@ -9,7 +9,7 @@ export function EquipmentTab({ equipment }: { equipment: string[] }) {
       <ul className="list-none">
         {equipment.map((item) => (
           <li key={item} className="my-1">
-            <span className="inline-flex items-center">
+            <span className="inline-flex items-center text-sm sm:text-lg">
               <GoDotFill className="mr-2" /> {item}
             </span>
           </li>

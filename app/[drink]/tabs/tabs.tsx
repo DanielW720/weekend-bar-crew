@@ -33,17 +33,17 @@ export default function Tabs({ drink }: { drink: Drink }) {
         value={tab}
         onValueChange={handleTabChange}
       >
-        <RadixTabs.List className="flex bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
+        <RadixTabs.List className="mb-4 flex bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
           <Trigger value={DrinkPageTabs.Overview} tab={tab}>
-            Översikt
+            {DrinkPageTabs.Overview}
           </Trigger>
           <div className="mx-4 sm:mx-8 md:mx-12">
             <Trigger value={DrinkPageTabs.Recepie} tab={tab}>
-              Recept
+              {DrinkPageTabs.Recepie}
             </Trigger>
           </div>
           <Trigger value={DrinkPageTabs.Equipment} tab={tab}>
-            Utrustning
+            {DrinkPageTabs.Equipment}
           </Trigger>
         </RadixTabs.List>
 
@@ -147,7 +147,7 @@ export function AnimateTab({
         }
       }}
       style={{ color, x }}
-      className="mt-6 flex min-h-[25rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
+      className="mt-6 flex min-h-[25rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest lg:max-w-4xl xl:max-w-6xl"
     >
       {children}
     </motion.div>

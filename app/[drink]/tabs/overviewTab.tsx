@@ -5,7 +5,7 @@ import { DrinkPageTabs } from "./tabs";
 export function OverviewTab({ overview }: { overview: string }) {
   return (
     <RadixTabs.Content value={DrinkPageTabs.Overview} forceMount>
-      <p>{overview}</p>
+      <p className="tracking-normal">{overview}</p>
     </RadixTabs.Content>
   );
 }
