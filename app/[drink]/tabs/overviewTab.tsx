@@ -1,11 +1,26 @@
 import React from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { DrinkPageTabs } from "./tabs";
+import { Drink } from "@/app/types";
 
-export function OverviewTab({ overview }: { overview: string }) {
+export function OverviewTab({
+  description,
+}: {
+  description: Drink["description"];
+}) {
   return (
     <RadixTabs.Content value={DrinkPageTabs.Overview} forceMount>
-      <p className="tracking-normal">{overview}</p>
+      {description.map((paragraph, idx) => (
+        <p className="text-sm tracking-normal sm:text-lg">
+          {paragraph}{" "}
+          {idx < description.length - 1 && (
+            <span>
+              <br />
+              <br />
+            </span>
+          )}
+        </p>
+      ))}
     </RadixTabs.Content>
   );
 }

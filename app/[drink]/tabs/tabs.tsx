@@ -22,9 +22,7 @@ export enum DrinkPageTabs {
 export default function Tabs({ drink }: { drink: Drink }) {
   const [tab, setTab] = useState(DrinkPageTabs.Recepie);
 
-  const handleTabChange = (value: string) => {
-    setTab(value as DrinkPageTabs); // Cast the string value to the enum type
-  };
+  const handleTabChange = (value: string) => setTab(value as DrinkPageTabs);
 
   return (
     <section className="w-full">
@@ -55,7 +53,7 @@ export default function Tabs({ drink }: { drink: Drink }) {
               swipeLeft={() => {}}
               swipeRight={() => setTab(DrinkPageTabs.Recepie)}
             >
-              <OverviewTab overview={drink.description} />
+              <OverviewTab description={drink.description} />
             </AnimateTab>
           ) : tab === DrinkPageTabs.Recepie ? (
             <AnimateTab
@@ -96,12 +94,12 @@ function Trigger({
 }) {
   return (
     <RadixTabs.Trigger className="group relative tracking-wider" value={value}>
-      <h2 className="text-lg text-beige transition-colors duration-200 group-data-[state=active]:text-cyan">
+      <h2 className="text-lg text-beige transition-colors duration-200 group-data-[state=active]:text-white">
         {children}
       </h2>
       {tab === value && (
         <motion.div
-          className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-cyan"
+          className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
           layoutId="underline"
           transition={{ duration: 0.2 }}
         />
