@@ -4,7 +4,7 @@
 export type Drink = {
   id: string;
   base_spirit: string[];
-  description: string;
+  description: string[];
   description_short: string;
   difficulty_level: string;
   equipment: string[];

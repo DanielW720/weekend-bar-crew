@@ -15,16 +15,14 @@ import { RecepieTab } from "./recepieTab";
 
 export enum DrinkPageTabs {
   Overview = "Overview",
-  Recepie = "Recepie",
+  Recepie = "Recipe",
   Equipment = "Equipment",
 }
 
 export default function Tabs({ drink }: { drink: Drink }) {
   const [tab, setTab] = useState(DrinkPageTabs.Recepie);
 
-  const handleTabChange = (value: string) => {
-    setTab(value as DrinkPageTabs); // Cast the string value to the enum type
-  };
+  const handleTabChange = (value: string) => setTab(value as DrinkPageTabs);
 
   return (
     <section className="w-full">
@@ -33,17 +31,17 @@ export default function Tabs({ drink }: { drink: Drink }) {
         value={tab}
         onValueChange={handleTabChange}
       >
-        <RadixTabs.List className="flex bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
+        <RadixTabs.List className="mb-4 flex bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
           <Trigger value={DrinkPageTabs.Overview} tab={tab}>
-            Översikt
+            {DrinkPageTabs.Overview}
           </Trigger>
           <div className="mx-4 sm:mx-8 md:mx-12">
             <Trigger value={DrinkPageTabs.Recepie} tab={tab}>
-              Recept
+              {DrinkPageTabs.Recepie}
             </Trigger>
           </div>
           <Trigger value={DrinkPageTabs.Equipment} tab={tab}>
-            Utrustning
+            {DrinkPageTabs.Equipment}
           </Trigger>
         </RadixTabs.List>
 
@@ -55,7 +53,7 @@ export default function Tabs({ drink }: { drink: Drink }) {
               swipeLeft={() => {}}
               swipeRight={() => setTab(DrinkPageTabs.Recepie)}
             >
-              <OverviewTab overview={drink.description} />
+              <OverviewTab description={drink.description} />
             </AnimateTab>
           ) : tab === DrinkPageTabs.Recepie ? (
             <AnimateTab
@@ -96,12 +94,12 @@ function Trigger({
 }) {
   return (
     <RadixTabs.Trigger className="group relative tracking-wider" value={value}>
-      <h2 className="text-lg text-beige transition-colors duration-200 group-data-[state=active]:text-cyan">
+      <h2 className="text-lg text-beige transition-colors duration-200 group-data-[state=active]:text-white">
         {children}
       </h2>
       {tab === value && (
         <motion.div
-          className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-cyan"
+          className="absolute -bottom-[1px] left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent"
           layoutId="underline"
           transition={{ duration: 0.2 }}
         />
@@ -147,7 +145,7 @@ export function AnimateTab({
         }
       }}
       style={{ color, x }}
-      className="mt-6 flex min-h-[25rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest"
+      className="mt-6 flex min-h-[25rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest lg:max-w-4xl xl:max-w-6xl"
     >
       {children}
     </motion.div>

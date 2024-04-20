@@ -13,9 +13,7 @@ export default async function Page({ params }: { params: DynamicDrinkParams }) {
 
   return (
     <div className="flex w-full flex-col items-center py-12">
-      <h1 className="text-[2.125rem] tracking-widest text-beige">
-        {drink.name}
-      </h1>
+      <h1 className="text-4xl tracking-widest text-beige">{drink.name}</h1>
       <DrinkImage image={drink.image} />
       <Tabs drink={drink} />
     </div>

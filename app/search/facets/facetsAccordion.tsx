@@ -36,13 +36,13 @@ export default function FacetsAccordion() {
       <RadixAccordion.Item value="filters">
         <div className="my-4 flex w-full justify-center">
           <RadixAccordion.Header>
-            <RadixAccordion.Trigger className="group">
+            <RadixAccordion.Trigger className="group transform text-lightGray duration-500 data-[state=open]:text-beige">
               <motion.div
                 whileTap={{ scale: 0.93 }}
-                className="flex items-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider text-gray-200 sm:text-[1rem]"
+                className="flex items-center justify-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider sm:text-[1rem]"
               >
-                <span>Options</span>
-                <IoChevronDown className="transform duration-300 group-data-[state=open]:rotate-180" />
+                <p>Options</p>
+                <IoChevronDown className="transform duration-500 group-data-[state=open]:rotate-180" />
               </motion.div>
             </RadixAccordion.Trigger>
           </RadixAccordion.Header>
