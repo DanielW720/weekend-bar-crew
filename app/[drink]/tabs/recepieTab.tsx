@@ -14,13 +14,15 @@ export function RecepieTab({ recepie }: { recepie: Drink["recepie"] }) {
           <ul className="ml-2 mt-4 text-sm tracking-wide sm:text-lg">
             {recepie.ingredients.map((ingredient, idx) => (
               <li key={ingredient.name} className="my-0.5 w-[80%] xl:w-full">
-                <div className="flex justify-between">
+                <div
+                  className={`my-1 flex justify-between py-2 ${
+                    idx % 2 === 0 &&
+                    "bg-gradient-to-r from-transparent via-darkGray to-transparent"
+                  }`}
+                >
                   <p>{`${ingredient.name}: `}</p>
                   <p className="ml-8">{`${ingredient.metricQuantity}`}</p>
                 </div>
-                {idx < recepie.ingredients.length - 1 && (
-                  <div className="my-2 h-[2px] bg-gradient-to-r from-transparent via-gray to-transparent" />
-                )}
               </li>
             ))}
           </ul>

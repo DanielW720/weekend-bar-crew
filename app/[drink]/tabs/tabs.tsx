@@ -15,7 +15,7 @@ import { RecepieTab } from "./recepieTab";
 
 export enum DrinkPageTabs {
   Overview = "Overview",
-  Recepie = "Recepie",
+  Recepie = "Recipe",
   Equipment = "Equipment",
 }
 
