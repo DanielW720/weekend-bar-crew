@@ -11,8 +11,8 @@ export function OverviewTab({
   return (
     <RadixTabs.Content value={DrinkPageTabs.Overview} forceMount>
       {description.map((paragraph, idx) => (
-        <p className="text-sm tracking-normal sm:text-lg">
-          {paragraph}{" "}
+        <p key={paragraph} className="text-sm tracking-normal sm:text-lg">
+          {paragraph}
           {idx < description.length - 1 && (
             <span>
               <br />
