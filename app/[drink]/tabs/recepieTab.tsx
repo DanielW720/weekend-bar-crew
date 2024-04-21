@@ -6,7 +6,7 @@ import { Drink } from "@/app/types";
 export function RecepieTab({ recepie }: { recepie: Drink["recepie"] }) {
   return (
     <RadixTabs.Content value={DrinkPageTabs.Recepie} forceMount asChild>
-      <div className="w-full items-start justify-evenly xl:flex">
+      <div className="w-full items-start justify-evenly lg:max-w-xl xl:flex xl:max-w-none">
         <div>
           <h3 className="text-xl tracking-wider sm:mb-10 sm:text-2xl">
             Ingredients

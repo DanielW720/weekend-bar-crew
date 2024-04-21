@@ -122,7 +122,7 @@ export default function Facet({
                 {items.map((item, idx) => (
                   <li key={item.label}>
                     <RadixDropdownMenu.CheckboxItem
-                      className={`px-2 py-1 font-thin transition-all duration-300 hover:bg-cyan/20 data-[state=checked]:text-beige sm:px-3 sm:py-3 ${
+                      className={`px-2 py-1 font-thin transition-all duration-300 hover:bg-beige hover:text-darkGray data-[state=checked]:text-beige data-[state=checked]:hover:text-darkGray sm:px-3 sm:py-3 ${
                         idx === 0 && "rounded-t-md"
                       } ${idx === items.length - 1 && "rounded-b-md"}`}
                       checked={item.isRefined}

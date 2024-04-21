@@ -145,7 +145,7 @@ export function AnimateTab({
         }
       }}
       style={{ color, x }}
-      className="mt-6 flex min-h-[25rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest lg:max-w-4xl xl:max-w-6xl"
+      className="mt-6 flex min-h-[25rem] w-full max-w-md flex-col items-start p-2 text-lg tracking-widest lg:max-w-xl xl:max-w-6xl"
     >
       {children}
     </motion.div>

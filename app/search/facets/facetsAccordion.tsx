@@ -39,7 +39,7 @@ export default function FacetsAccordion() {
             <RadixAccordion.Trigger className="group transform text-lightGray duration-500 data-[state=open]:text-beige">
               <motion.div
                 whileTap={{ scale: 0.93 }}
-                className="flex items-center justify-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider sm:text-[1rem]"
+                className="flex items-center justify-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider transition-colors hover:text-beige sm:text-[1rem]"
               >
                 <p>Options</p>
                 <IoChevronDown className="transform duration-500 group-data-[state=open]:rotate-180" />

@@ -46,12 +46,14 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
 
   return (
     <motion.div
-      className={`group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-2 border-beige bg-black/50 tracking-wider md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
+      className={`group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-2 border-beige bg-black/50 tracking-wider transition-all hover:scale-105 hover:border-white md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
       onTouchStart={handleBackdropStart}
       onHoverStart={handleBackdropStart}
       onTouchEnd={handleBackdropEnd}
       onHoverEnd={handleBackdropEnd}
       onClick={pushDrinkRoute}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
       <AnimatePresence>
         {isTouching && (
@@ -86,7 +88,9 @@ const CardBackdrop = ({ shortDescription }: { shortDescription: string }) => {
       transition={{ duration: 0.3 }}
       className={`absolute z-10 h-[calc(100%-2rem)] w-full rounded-t-3xl bg-gradient-to-b from-cardBackdrop to-transparent px-2 pt-4 backdrop-blur-sm`}
     >
-      <p className="text-center text-xs text-beige">{shortDescription}</p>
+      <p className="text-center text-xs tracking-normal text-beige">
+        {shortDescription}
+      </p>
     </motion.div>
   );
 };
