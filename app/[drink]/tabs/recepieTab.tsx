@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { DrinkPageTabs } from "./tabs";
 import { Drink } from "@/app/types";
