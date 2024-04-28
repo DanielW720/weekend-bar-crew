@@ -1,9 +1,11 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import removeSearchModalParam from "../lib/removeSearchModalParam";
 
 function useOpenModal(): [boolean, () => void] {
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
@@ -18,7 +20,10 @@ function useOpenModal(): [boolean, () => void] {
     else if (isOpen) setIsOpen(false);
   }, [searchParams]);
 
-  const close = () => router.back();
+  const close = () =>
+    router.push(
+      `${pathname}?${removeSearchModalParam(searchParams.toString())}`
+    );
 
   return [isOpen, close];
 }

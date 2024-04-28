@@ -1,8 +1,9 @@
-import "./globals.css";
+import "@/app/globals.css";
 import { Header } from "./layout/header";
-import { inknut_antiqua } from "./lib/fonts";
 import Footer from "./layout/footer";
 import { Analytics } from "@vercel/analytics/react";
+import { inknut_antiqua } from "../lib/fonts";
+import { supported_locales } from "@/middleware";
 
 export const metadata = {
   title: "Weekend Bar Crew",
@@ -10,9 +11,15 @@ export const metadata = {
     "Weekend Bar Crew - Discover hundreds of tasty and beautiful cockatils.",
 };
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function Root({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: { lang: string };
+}) {
   return (
-    <html lang="en">
+    <html lang={params.lang}>
       <body
         className={`${inknut_antiqua.className} min-h-screen overflow-x-hidden bg-black`}
       >
@@ -26,3 +33,9 @@ export default function layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
+
+export async function generateStaticParams(): Promise<{ lang: string }[]> {
+  return supported_locales.map((lang) => ({ lang: lang }));
+}
+
+export const dynamicParams = false;

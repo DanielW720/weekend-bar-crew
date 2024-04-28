@@ -1,13 +1,11 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import DrinkImage from "./drinkImage";
 import Tabs from "./tabs/tabs";
-import { firestore } from "../firebase";
-import { Drink } from "../types";
-import { decode_utf8 } from "../lib/encodeDecodeUTF8";
+import { decode_utf8 } from "@/app/lib/encodeDecodeUTF8";
+import { Drink } from "@/app/types";
+import { firestore } from "@/app/firebase";
 
-type DynamicDrinkParams = { drink: string };
-
-export default async function Page({ params }: { params: DynamicDrinkParams }) {
+export default async function Page({ params }: { params: { drink: string } }) {
   // Use the params.drink to fetch drink data at build time to statically render this page
   const drink = await fetchDrink(params.drink);
 
@@ -20,7 +18,6 @@ export default async function Page({ params }: { params: DynamicDrinkParams }) {
   );
 }
 
-// generateStaticParams allows static rendering of all individual drink pages at build time
 export async function generateStaticParams(): Promise<{ drink: string }[]> {
   const querySnapshot = await getDocs(collection(firestore, "drinks"));
 

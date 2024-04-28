@@ -2,7 +2,7 @@
 
 import React from "react";
 import { DrinkCard } from "./drinkCard";
-import { Drink } from "../../types";
+import { Drink } from "../../../types";
 import { useHits, useInstantSearch } from "react-instantsearch";
 
 function ResultGrid() {

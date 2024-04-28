@@ -1,11 +1,12 @@
 import Image from "next/image";
+import citrusGlassSplash from "@/public/citrus-glass-splash.jpg";
 
 export const BackdropImage = () => {
   return (
     <div className="fixed top-20 -z-10 h-screen w-screen max-w-lg overflow-hidden xs:max-w-xl sm:max-w-3xl">
       <Image
         className="object-cover"
-        src="/citrus-glass-splash.jpg"
+        src={citrusGlassSplash}
         alt="Citrus glass splash"
         fill
         priority

@@ -1,5 +1,5 @@
-import Link from "next/link";
 import React from "react";
+import FooterLinks from "./footerLinks";
 
 export default function Footer() {
   return (
@@ -15,17 +15,7 @@ export default function Footer() {
           Crew
         </h3>
       </div>
-      <ul className="text-xs text-white sm:ml-20">
-        <li className="inline-block">
-          <Link href={"/info"}>About</Link>
-        </li>
-        <li className="mx-4 inline-block">
-          <Link href={"/info"}>Contact</Link>
-        </li>
-        <li className="inline-block">
-          <Link href={"#"}>Instagram</Link>
-        </li>
-      </ul>
+      <FooterLinks />
     </footer>
   );
 }

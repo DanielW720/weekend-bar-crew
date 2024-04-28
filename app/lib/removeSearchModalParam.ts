@@ -1,5 +1,5 @@
-function removeSearchModalParam(queryParams: string): string {
-  const urlObj = new URLSearchParams(queryParams);
+function removeSearchModalParam(params: string): string {
+  const urlObj = new URLSearchParams(params);
   urlObj.delete("search-modal");
   return urlObj.toString();
 }

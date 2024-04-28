@@ -1,12 +1,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef } from "react";
-import { Drink } from "../../types";
+import { Drink } from "../../../types";
+import useLanguagePathname from "@/app/hooks/useLanguagePathname";
+import useSearchParamsString from "@/app/hooks/useSearchParamsString";
 
 export const DrinkCard = ({ drink }: { drink: Drink }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParamsString();
+  const pathname = useLanguagePathname();
   const [isTouching, setIsTouching] = useState(false);
   const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -41,7 +44,7 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
       .toString()
       .replace(searchModalExpression, "")
       .replace(leadingAmpersandExpression, "");
-    router.push(`/${drink.name}?${updatedParams}`);
+    router.push(`${pathname}/${drink.name}${updatedParams}`);
   };
 
   return (

@@ -1,12 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import "material-icons/iconfont/outlined.css";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useSearchBox } from "react-instantsearch";
-import useCurrentQuery from "../hooks/useCurrentQuery";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { RxCross1 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
-import removeSearchModalParam from "../lib/removeSearchModalParam";
-import { unsetBodyOverflow } from "../lib/unsetBodyOverflow";
+import useCurrentQuery from "@/app/hooks/useCurrentQuery";
+import { unsetBodyOverflow } from "@/app/lib/unsetBodyOverflow";
 
 type Inputs = {
   query: string;
@@ -14,9 +12,9 @@ type Inputs = {
 
 export const Searchbar = () => {
   const { setValue, register, handleSubmit } = useForm<Inputs>();
-  const { refine } = useSearchBox();
   const currentQuery = useCurrentQuery(setValue);
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -38,13 +36,10 @@ export const Searchbar = () => {
       paramsString = `${searchParams}&query=${data.query}`;
     }
 
-    // Remove search-modal param. May or may not exist
-    paramsString = removeSearchModalParam(paramsString);
-
     // Enable body scrolling (may have been disabled by modal)
     unsetBodyOverflow();
 
-    router.push(`/?${paramsString}`);
+    router.push(`${pathname}?${paramsString}`);
   };
 
   return (
@@ -69,7 +64,7 @@ export const Searchbar = () => {
           placeholder="Search"
           defaultValue={currentQuery}
           {...register("query")}
-          className="w-full bg-inherit tracking-wide text-white outline-none placeholder:text-gray-400"
+          className="placeholder:text-gray-400 w-full bg-inherit tracking-wide text-white outline-none"
         />
         <button
           className="mx-2 text-lg text-beige"

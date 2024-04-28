@@ -1,6 +1,6 @@
 import * as Portal from "@radix-ui/react-portal";
 import React from "react";
-import { Search } from "@/app/search/search";
+import { Search } from "../search/search";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxCross1 } from "react-icons/rx";
 import { useDisableBodyScroll } from "@/app/hooks/useDisableBodyScroll";
