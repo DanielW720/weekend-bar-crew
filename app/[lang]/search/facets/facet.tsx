@@ -121,9 +121,9 @@ export default function Facet({
             <RadixDropdownMenu.Content
               forceMount
               sideOffset={4}
-              className={`w-[140%] rounded-md bg-extraDarkGray py-1 text-xxs tracking-wider text-white transition-all duration-200 sm:py-2 sm:text-xs`}
+              className={`w-[140%] rounded-md border-[1px] border-white bg-extraDarkGray text-xxs tracking-wider text-white transition-all duration-200 sm:text-xs`}
             >
-              <RadixDropdownMenu.Arrow className="fill-extraDarkGray" />
+              <RadixDropdownMenu.Arrow className="fill-white" />
               <motion.ul initial="hidden" animate="visible" variants={list}>
                 {items.map((item, idx) => (
                   <li key={item.label}>
