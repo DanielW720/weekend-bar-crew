@@ -1,7 +1,13 @@
-import Link from "next/link";
 import React from "react";
+import FooterLinks from "./footerLinks";
 
-export default function Footer() {
+export default function Footer({
+  about,
+  contact,
+}: {
+  about: string;
+  contact: string;
+}) {
   return (
     <footer className="z-50 flex h-16 w-full items-center justify-evenly border-t-2 border-beige bg-[#121212] px-6 py-2 sm:justify-center">
       <div
@@ -15,17 +21,7 @@ export default function Footer() {
           Crew
         </h3>
       </div>
-      <ul className="text-xs text-white sm:ml-20">
-        <li className="inline-block">
-          <Link href={"/info"}>About</Link>
-        </li>
-        <li className="mx-4 inline-block">
-          <Link href={"/info"}>Contact</Link>
-        </li>
-        <li className="inline-block">
-          <Link href={"#"}>Instagram</Link>
-        </li>
-      </ul>
+      <FooterLinks about={about} contact={contact} />
     </footer>
   );
 }

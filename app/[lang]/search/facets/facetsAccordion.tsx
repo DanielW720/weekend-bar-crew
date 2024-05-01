@@ -4,8 +4,15 @@ import * as RadixAccordion from "@radix-ui/react-accordion";
 import { IoChevronDown } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import useAnimateAccordionContent from "@/app/hooks/useAnimateAccordionContent";
+import { Facets } from "@/app/types";
 
-export default function FacetsAccordion() {
+export default function FacetsAccordion({
+  facets,
+  options,
+}: {
+  facets: Facets;
+  options: string;
+}) {
   const [open, setOpen] = useState(false);
   const animationDuration = 0.3;
   const animationDelay = 0.2;
@@ -36,18 +43,19 @@ export default function FacetsAccordion() {
       <RadixAccordion.Item value="filters">
         <div className="my-4 flex w-full justify-center">
           <RadixAccordion.Header>
-            <RadixAccordion.Trigger className="group transform text-lightGray duration-300 data-[state=open]:text-beige">
+            <RadixAccordion.Trigger className="group text-lightGray data-[state=open]:text-beige">
               <motion.div
                 whileTap={{ scale: 0.93 }}
-                className="flex items-center justify-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider transition-colors hover:text-beige sm:text-[1rem]"
+                className="flex items-center justify-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider hover:text-beige sm:text-[1rem]"
               >
-                <p>Options</p>
+                <p className="transition-colors duration-300">{options}</p>
                 <IoChevronDown className="transform duration-300 group-data-[state=open]:rotate-180" />
               </motion.div>
             </RadixAccordion.Trigger>
           </RadixAccordion.Header>
         </div>
         <AccordionContent
+          facets={facets}
           open={open}
           duration={animationDuration}
           delay={animationDelay}
@@ -72,10 +80,12 @@ export default function FacetsAccordion() {
 
 // The facets must always be rendered (not lazy loaded) to not mess with chosen filters
 const AccordionContent = ({
+  facets,
   open,
   duration,
   delay,
 }: {
+  facets: Facets;
   open: boolean;
   duration: number;
   delay: number;
@@ -85,13 +95,13 @@ const AccordionContent = ({
   return (
     <motion.div
       ref={scope}
-      className={`absolute z-50 hidden h-[150px] w-full items-center justify-center px-4`}
+      className={`absolute z-50 hidden h-[150px] w-full items-center justify-center`}
     >
-      <div className="grid h-fit w-fit grid-cols-2 items-center justify-items-center gap-x-3 gap-y-3 py-3 sm:grid-cols-3 sm:gap-y-6">
+      <div className="grid h-fit w-fit grid-cols-2 items-center justify-items-center gap-x-2 gap-y-3 px-2 py-3 sm:grid-cols-3 sm:gap-y-6">
         {facets.map((facet) => (
           <Facet
             attribute={facet.attribute}
-            displayName={facet.en}
+            displayName={facet.displayName}
             key={facet.attribute}
           />
         ))}
@@ -99,43 +109,3 @@ const AccordionContent = ({
     </motion.div>
   );
 };
-
-/**
- * Facets with display names for different languages.
- */
-const facets: { attribute: string; en: string }[] = [
-  {
-    attribute: "base_spirit",
-    // Based on the selected language by user, use the appropriate display name
-    en: "Base Spirit",
-    // sv: "Grundspirit",
-    // no: "Basisånd",
-    // dk: "Basisalkohol",
-    // fi: "Pohja-alkoholi",
-    // is: "Grunnspyrt",
-  },
-  {
-    attribute: "type",
-    en: "Type",
-  },
-  {
-    attribute: "flavor_profile",
-    en: "Flavor Profile",
-  },
-  {
-    attribute: "difficulty_level",
-    en: "Difficulty",
-  },
-  // {
-  //   attribute: "glassware",
-  //   en: "Glassware",
-  // },
-  {
-    attribute: "mocktail_available",
-    en: "Non-Alcoholic",
-  },
-  {
-    attribute: "preparation_time_min",
-    en: "Prep Time",
-  },
-];

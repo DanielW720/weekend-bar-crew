@@ -1,0 +1,39 @@
+{
+  "header": {
+    "slogan": "Discover hundreds of tasty and beautiful cocktails"
+  },
+  "search": {
+    "options": "Options",
+    "placeholder": "Search",
+    "facets": [
+      {
+        "attribute": "base_spirit",
+        "displayName": "Base Spirit"
+      },
+      {
+        "attribute": "type",
+        "displayName": "Type"
+      },
+      {
+        "attribute": "flavor_profile",
+        "displayName": "Flavor Profile"
+      },
+      {
+        "attribute": "difficulty_level",
+        "displayName": "Difficulty"
+      },
+      {
+        "attribute": "mocktail_available",
+        "displayName": "Non-Alcoholic"
+      },
+      {
+        "attribute": "preparation_time_min",
+        "displayName": "Prep Time"
+      }
+    ]
+  },
+  "footer": {
+    "about": "About",
+    "contact": "Contact"
+  }
+}

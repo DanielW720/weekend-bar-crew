@@ -2,11 +2,13 @@
 
 import React from "react";
 import { Searchbar } from "./searchbar";
-import { InstantSearch } from "react-instantsearch";
+import { Configure, InstantSearch } from "react-instantsearch";
 import algoliasearch from "algoliasearch";
 import { useSearchParams } from "next/navigation";
 import ResultGrid from "./results/resultGrid";
 import FacetsAccordion from "./facets/facetsAccordion";
+import useLanguagePathname from "@/app/hooks/useLanguagePathname";
+import { Search as SearchType } from "@/app/types";
 
 const client = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_PROJECT_ID!,
@@ -15,8 +17,9 @@ const client = algoliasearch(
 
 const indexName = "drinks";
 
-export const Search = () => {
+export const Search = ({ search }: { search: SearchType }) => {
   const searchParams = useSearchParams();
+  const language = useLanguagePathname(true);
 
   const getFacetParamValues = (facet: string) => {
     const filters = searchParams.get(facet)?.split(",");
@@ -45,9 +48,10 @@ export const Search = () => {
         },
       }}
     >
+      <Configure filters={`language:${language}`} />
       <div className={`mt-6 flex w-full flex-col items-center md:mt-12`}>
-        <Searchbar />
-        <FacetsAccordion />
+        <Searchbar placeholder={search.placeholder} />
+        <FacetsAccordion facets={search.facets} options={search.options} />
         <ResultGrid />
       </div>
     </InstantSearch>

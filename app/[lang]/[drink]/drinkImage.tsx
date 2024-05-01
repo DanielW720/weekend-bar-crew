@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
-import { Drink } from "../types";
+import { Drink } from "../../types";
 
 function DrinkImage({ image }: { image: Drink["image"] }) {
   return (

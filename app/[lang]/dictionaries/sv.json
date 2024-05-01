@@ -1,0 +1,39 @@
+{
+  "header": {
+    "slogan": "Upptäck hundratals snygga och goda cocktails"
+  },
+  "search": {
+    "options": "Alternativ",
+    "placeholder": "Sök",
+    "facets": [
+      {
+        "attribute": "base_spirit",
+        "displayName": "Bas"
+      },
+      {
+        "attribute": "type",
+        "displayName": "Typ"
+      },
+      {
+        "attribute": "flavor_profile",
+        "displayName": "Smakprofil"
+      },
+      {
+        "attribute": "difficulty_level",
+        "displayName": "Komplexitet"
+      },
+      {
+        "attribute": "mocktail_available",
+        "displayName": "Alkoholfri"
+      },
+      {
+        "attribute": "preparation_time_min",
+        "displayName": "Tid (min)"
+      }
+    ]
+  },
+  "footer": {
+    "about": "Om WBC",
+    "contact": "Kontakt"
+  }
+}

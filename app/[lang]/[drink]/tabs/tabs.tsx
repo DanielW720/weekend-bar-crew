@@ -8,7 +8,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { Drink } from "../../types";
+import { Drink } from "../../../types";
 import { EquipmentTab } from "./equipmentTab";
 import { OverviewTab } from "./overviewTab";
 import { RecepieTab } from "./recepieTab";

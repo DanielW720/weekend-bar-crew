@@ -1,12 +1,13 @@
 import * as Portal from "@radix-ui/react-portal";
 import React from "react";
-import { Search } from "@/app/search/search";
+import { Search } from "../search/search";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxCross1 } from "react-icons/rx";
 import { useDisableBodyScroll } from "@/app/hooks/useDisableBodyScroll";
 import useOpenModal from "@/app/hooks/useOpenModal";
+import { Search as SearchType } from "@/app/types";
 
-function SearchModal() {
+function SearchModal({ search }: { search: SearchType }) {
   const [isOpen, close] = useOpenModal();
   // Enable/disable body scroll when modal is closed/opened
   useDisableBodyScroll(isOpen);
@@ -14,7 +15,7 @@ function SearchModal() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <Portal.Root>
+        <Portal.Root key="search-modal-root">
           <motion.div
             id="search-modal"
             key="search-modal"
@@ -25,7 +26,7 @@ function SearchModal() {
             className="fixed inset-0 z-30 flex flex-col items-center overflow-y-auto bg-black/40 pt-[8rem] backdrop-blur-md"
           >
             <ExitModalButton close={close} />
-            <Search />
+            <Search search={search} />
           </motion.div>
         </Portal.Root>
       )}

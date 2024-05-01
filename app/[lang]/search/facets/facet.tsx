@@ -1,12 +1,16 @@
 import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
-import removeSearchModalParam from "@/app/lib/removeSearchModalParam";
 import { unsetBodyOverflow } from "@/app/lib/unsetBodyOverflow";
 import { ChevronDownIcon, CheckIcon } from "@radix-ui/react-icons";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSearchParams, ReadonlyURLSearchParams } from "next/navigation";
+import {
+  useSearchParams,
+  ReadonlyURLSearchParams,
+  usePathname,
+} from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRefinementList } from "react-instantsearch";
+import useLanguagePathname from "@/app/hooks/useLanguagePathname";
 
 export default function Facet({
   attribute,
@@ -16,6 +20,8 @@ export default function Facet({
   displayName: string;
 }) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const languagePathname = useLanguagePathname();
   const { items, refine } = useRefinementList({
     attribute: attribute,
     sortBy: ["name:asc"],
@@ -57,7 +63,7 @@ export default function Facet({
     unsetBodyOverflow();
 
     // Update search params
-    router.push(`/?${updatedSearchParams}`);
+    router.push(`${pathname}?${updatedSearchParams}`);
 
     // Refine search state
     refine(filter);
@@ -115,9 +121,9 @@ export default function Facet({
             <RadixDropdownMenu.Content
               forceMount
               sideOffset={4}
-              className={`w-[140%] rounded-md bg-extraDarkGray py-1 text-xxs tracking-wider text-white transition-all duration-200 sm:py-2 sm:text-xs`}
+              className={`w-[140%] rounded-md border-[1px] border-white bg-extraDarkGray text-xxs tracking-wider text-white transition-all duration-200 sm:text-xs`}
             >
-              <RadixDropdownMenu.Arrow className="fill-extraDarkGray" />
+              <RadixDropdownMenu.Arrow className="fill-white" />
               <motion.ul initial="hidden" animate="visible" variants={list}>
                 {items.map((item, idx) => (
                   <li key={item.label}>
@@ -181,9 +187,6 @@ function getUpdatedSearchParams(
     // Option not previously selected, should be added together with the recently selected value
     completeParamString = `${searchParams.toString()}&${key}=${values.join()}`;
   }
-
-  // Remove search-modal param. May or may not exist
-  completeParamString = removeSearchModalParam(completeParamString);
 
   return completeParamString;
 }
