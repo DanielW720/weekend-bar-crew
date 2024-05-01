@@ -1,3 +1,5 @@
+import dict from "./[lang]/dictionaries/en.json";
+
 /**
  * Data model used in Cloud Firestore "drinks" collection.
  */
@@ -33,3 +35,10 @@ export type Drink = {
   };
   type: string[];
 };
+
+// According to supported languages in middleware.js
+export type Locale = "en" | "sv";
+
+// Search types
+export type Search = typeof dict.search;
+export type Facets = typeof dict.search.facets;

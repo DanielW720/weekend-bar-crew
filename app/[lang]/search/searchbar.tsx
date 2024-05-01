@@ -10,7 +10,7 @@ type Inputs = {
   query: string;
 };
 
-export const Searchbar = () => {
+export const Searchbar = ({ placeholder }: { placeholder: string }) => {
   const { setValue, register, handleSubmit } = useForm<Inputs>();
   const currentQuery = useCurrentQuery(setValue);
   const searchParams = useSearchParams();
@@ -61,7 +61,7 @@ export const Searchbar = () => {
         <input
           autoComplete="off"
           type="text"
-          placeholder="Search"
+          placeholder={placeholder}
           defaultValue={currentQuery}
           {...register("query")}
           className="placeholder:text-gray-400 w-full bg-inherit tracking-wide text-white outline-none"

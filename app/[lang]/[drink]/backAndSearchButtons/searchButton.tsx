@@ -4,8 +4,9 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SearchModal from "../searchModal";
+import { Search } from "@/app/types";
 
-function SearchButton() {
+function SearchButton({ search }: { search: Search }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -21,7 +22,7 @@ function SearchButton() {
       >
         <MagnifyingGlassIcon className="text-beige" height={35} width={35} />
       </button>
-      <SearchModal />
+      <SearchModal search={search} />
     </div>
   );
 }
