@@ -1,6 +1,6 @@
 import "@/app/globals.css";
-import Header from "./layout/header";
-import Footer from "./layout/footer";
+import Header from "./layout/header/header";
+import Footer from "./layout/footer/footer";
 import { Analytics } from "@vercel/analytics/react";
 import { inknut_antiqua } from "../lib/fonts";
 import { supported_locales } from "@/middleware";
