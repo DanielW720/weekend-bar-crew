@@ -2,11 +2,17 @@ import React, { Suspense } from "react";
 import HeaderLogo from "./headerLogo";
 import LanguageSelection from "./languageSelection";
 
-export default async function Header({ slogan }: { slogan: string }) {
+export default async function Header({
+  slogan,
+  language,
+}: {
+  slogan: string;
+  language: string;
+}) {
   return (
-    <header className="group sticky top-0 z-[100] flex h-headerMobile w-full flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent text-beige backdrop-blur-sm xxs:justify-center">
+    <header className="group sticky top-0 z-[100] flex h-headerMobile w-full flex-row items-center justify-start border-b-4 border-beige bg-headerTransparent pl-[15%] text-beige backdrop-blur-sm xxs:justify-center sm:pl-0">
       <Suspense fallback={<SearchFallback />}>
-        <LanguageSelection />
+        <LanguageSelection language={language} />
       </Suspense>
       <div className="flex h-full flex-row items-end gap-x-4 pb-2 group-data-[scrolling=true]:scale-y-[0.925] group-data-[scrolling=true]:pb-1 xxs:gap-x-8 sm:gap-x-16 ">
         <HeaderLogo />
@@ -20,5 +26,5 @@ export default async function Header({ slogan }: { slogan: string }) {
 
 // TODO: Update fallback component
 function SearchFallback() {
-  return <div>Placeholder for Search</div>;
+  return <div>Loading...</div>;
 }

@@ -28,7 +28,7 @@ export default async function Root({
         className={`${inknut_antiqua.className} min-h-screen overflow-x-hidden bg-black`}
       >
         <Analytics />
-        <Header slogan={dict.header.slogan} />
+        <Header slogan={dict.header.slogan} language={dict.header.language} />
         <div className="flex min-h-[calc(100vh-6.25rem)] flex-col justify-between">
           <main>{children}</main>
           <Footer about={dict.footer.about} contact={dict.footer.contact} />
