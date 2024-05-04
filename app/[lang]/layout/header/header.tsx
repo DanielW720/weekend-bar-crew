@@ -26,5 +26,5 @@ export default async function Header({
 
 // TODO: Update fallback component
 function SearchFallback() {
-  return <div>Loading...</div>;
+  return <div className="hidden">Loading...</div>;
 }
