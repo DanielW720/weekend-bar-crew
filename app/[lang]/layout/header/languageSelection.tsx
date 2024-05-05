@@ -33,7 +33,7 @@ function LanguageSelection({ language }: { language: string }) {
       open={open}
       onOpenChange={onOpenChangeHandler}
     >
-      <Select.Trigger className="absolute left-2 top-2 p-1 text-xs text-beige/80 outline-none transition-colors duration-200 hover:text-beige sm:left-4 sm:top-4 sm:text-sm">
+      <Select.Trigger className="absolute left-2 top-2 p-1 text-xs text-beige/80 outline-none transition-colors duration-200 hover:text-white sm:left-4 sm:top-4 sm:text-sm">
         <motion.div
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.1 }}

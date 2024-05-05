@@ -12,7 +12,7 @@ function HeaderLink() {
       target="_parent"
       className="w-fit text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]"
     >
-      <h1>
+      <h1 className="transition-colors duration-200 hover:text-white">
         Weekend
         <br />
         Bar

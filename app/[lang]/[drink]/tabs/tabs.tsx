@@ -106,7 +106,7 @@ function Trigger({
 }) {
   return (
     <RadixTabs.Trigger className="group relative tracking-wider" value={value}>
-      <h2 className="text-lg text-beige transition-colors duration-200 group-data-[state=active]:text-white">
+      <h2 className="text-lg text-beige transition-colors duration-200 hover:text-white group-data-[state=active]:text-white">
         {children}
       </h2>
       {tab === value && (
