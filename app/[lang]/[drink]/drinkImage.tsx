@@ -8,7 +8,7 @@ import { Drink } from "../../types";
 function DrinkImage({ image }: { image: Drink["image"] }) {
   return (
     <motion.div
-      className="relative mt-6 h-[21rem] w-[19rem]"
+      className="relative mt-10 h-[21rem] w-[19rem]"
       initial={{ y: 100, scale: 0.8 }}
       animate={{ y: 0, scale: 1 }}
     >

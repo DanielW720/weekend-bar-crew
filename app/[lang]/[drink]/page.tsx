@@ -13,19 +13,17 @@ export default async function Page({
 }) {
   // Use the params.drink to fetch drink data at build time to statically render this page
   const drink = await fetchDrink(params.drink, params.lang);
+  const dict = await getDictionary(params.lang);
 
-  return drink ? (
+  return (
     <div className="flex w-full flex-col items-center py-12">
-      <h1 className="text-4xl tracking-widest text-beige">{drink.name}</h1>
+      <h1 className="mt-6 text-4xl tracking-widest text-beige">{drink.name}</h1>
       <DrinkImage image={drink.image} />
-      <Tabs drink={drink} />
-    </div>
-  ) : (
-    <div>
-      <h1>
-        We&apos;re sorry, the {params.drink} is not available in {params.lang}
-        !😢 (yet)
-      </h1>
+      <Tabs
+        drink={drink}
+        tabs={dict.drinkpage.tabs}
+        recipeDisplayNames={dict.drinkpage.recipe}
+      />
     </div>
   );
 }
@@ -60,8 +58,6 @@ async function fetchDrink(name: string, language: string) {
     where("language", "==", decode_utf8(language))
   );
   const snapshot = await getDocs(drinkQuery);
-
-  if (snapshot.empty) return null;
 
   const doc = snapshot.docs[0];
   return doc.data() as Drink;

@@ -36,5 +36,16 @@
   "footer": {
     "about": "Om WBC",
     "contact": "Kontakt"
+  },
+  "drinkpage": {
+    "tabs": {
+      "overview": "Översikt",
+      "recipe": "Recept",
+      "equipment": "Utrustning"
+    },
+    "recipe": {
+      "ingredients": "Ingredienser",
+      "instructions": "Instruktioner"
+    }
   }
 }

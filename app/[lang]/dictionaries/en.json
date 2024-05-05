@@ -36,5 +36,16 @@
   "footer": {
     "about": "About",
     "contact": "Contact"
+  },
+  "drinkpage": {
+    "tabs": {
+      "overview": "Overview",
+      "recipe": "Recipe",
+      "equipment": "Equipment"
+    },
+    "recipe": {
+      "ingredients": "Ingredients",
+      "instructions": "Instructions"
+    }
   }
 }

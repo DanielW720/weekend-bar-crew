@@ -1,15 +1,22 @@
 import React from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
-import { DrinkPageTabs } from "./tabs";
-import { Drink } from "@/app/types";
+import { Drink, RecipeDisplayNames } from "@/app/types";
 
-export function RecepieTab({ recepie }: { recepie: Drink["recepie"] }) {
+export function RecepieTab({
+  recepie,
+  value,
+  displayNames,
+}: {
+  recepie: Drink["recepie"];
+  value: string;
+  displayNames: RecipeDisplayNames;
+}) {
   return (
-    <RadixTabs.Content value={DrinkPageTabs.Recepie} forceMount asChild>
+    <RadixTabs.Content value={value} forceMount asChild>
       <div className="w-full items-start justify-evenly lg:max-w-xl xl:flex xl:max-w-none">
         <div>
           <h3 className="text-xl tracking-wider sm:mb-10 sm:text-2xl">
-            Ingredients
+            {displayNames.ingredients}
           </h3>
           <ul className="ml-2 mt-4 text-sm tracking-wide sm:text-lg">
             {recepie.ingredients.map((ingredient, idx) => (
@@ -29,7 +36,7 @@ export function RecepieTab({ recepie }: { recepie: Drink["recepie"] }) {
         </div>
         <div className="mt-12 xl:mt-0 xl:max-w-lg">
           <h3 className="text-xl tracking-wider sm:mb-10 sm:text-2xl">
-            Instructions
+            {displayNames.instructions}
           </h3>
           <ol className="ml-2 mt-4 text-sm tracking-wide sm:text-lg">
             {recepie.instructions.map((instruction, idx) => (

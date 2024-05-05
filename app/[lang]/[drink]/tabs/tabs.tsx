@@ -8,72 +8,84 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { Drink } from "../../../types";
+import { Drink, RecipeDisplayNames, Tabs } from "../../../types";
 import { EquipmentTab } from "./equipmentTab";
 import { OverviewTab } from "./overviewTab";
 import { RecepieTab } from "./recepieTab";
 
-export enum DrinkPageTabs {
-  Overview = "Overview",
-  Recepie = "Recipe",
-  Equipment = "Equipment",
-}
+export default function Tabs({
+  drink,
+  tabs,
+  recipeDisplayNames,
+}: {
+  drink: Drink;
+  tabs: Tabs;
+  recipeDisplayNames: RecipeDisplayNames;
+}) {
+  const [tab, setTab] = useState(tabs.recipe);
 
-export default function Tabs({ drink }: { drink: Drink }) {
-  const [tab, setTab] = useState(DrinkPageTabs.Recepie);
-
-  const handleTabChange = (value: string) => setTab(value as DrinkPageTabs);
+  const handleTabChange = (value: string) => setTab(value);
 
   return (
     <section className="w-full">
       <RadixTabs.Root
-        className="relative z-10 mt-10 flex w-full flex-col items-center"
+        className="relative z-10 mt-12 flex w-full flex-col items-center"
         value={tab}
         onValueChange={handleTabChange}
       >
         <RadixTabs.List className="mb-4 flex bg-gradient-to-r from-transparent from-5% via-beige/10 to-transparent to-95% p-2">
-          <Trigger value={DrinkPageTabs.Overview} tab={tab}>
-            {DrinkPageTabs.Overview}
+          <Trigger value={tabs.overview} tab={tab}>
+            {tabs.overview}
           </Trigger>
           <div className="mx-4 sm:mx-8 md:mx-12">
-            <Trigger value={DrinkPageTabs.Recepie} tab={tab}>
-              {DrinkPageTabs.Recepie}
+            <Trigger value={tabs.recipe} tab={tab}>
+              {tabs.recipe}
             </Trigger>
           </div>
-          <Trigger value={DrinkPageTabs.Equipment} tab={tab}>
-            {DrinkPageTabs.Equipment}
+          <Trigger value={tabs.equipment} tab={tab}>
+            {tabs.equipment}
           </Trigger>
         </RadixTabs.List>
 
         {/* AnimatePresence for smooth animations when swithing tabs */}
         <AnimatePresence mode="wait">
-          {tab === DrinkPageTabs.Overview ? (
+          {tab === tabs.overview ? (
             <AnimateTab
-              key={DrinkPageTabs.Overview}
+              key={tabs.overview}
               swipeLeft={() => {}}
-              swipeRight={() => setTab(DrinkPageTabs.Recepie)}
+              swipeRight={() => setTab(tabs.recipe)}
             >
-              <OverviewTab description={drink.description} />
+              <OverviewTab
+                description={drink.description}
+                value={tabs.overview}
+              />
             </AnimateTab>
-          ) : tab === DrinkPageTabs.Recepie ? (
+          ) : tab === tabs.recipe ? (
             <AnimateTab
-              key={DrinkPageTabs.Recepie}
+              key={tabs.recipe}
               swipeLeft={() => {
-                setTab(DrinkPageTabs.Overview);
+                setTab(tabs.overview);
               }}
-              swipeRight={() => setTab(DrinkPageTabs.Equipment)}
+              swipeRight={() => setTab(tabs.equipment)}
             >
-              <RecepieTab recepie={drink.recepie} />
+              <RecepieTab
+                recepie={drink.recepie}
+                value={tabs.recipe}
+                displayNames={recipeDisplayNames}
+              />
             </AnimateTab>
           ) : (
             <AnimateTab
-              key={DrinkPageTabs.Equipment}
+              key={tabs.equipment}
               swipeLeft={() => {
-                setTab(DrinkPageTabs.Recepie);
+                setTab(tabs.recipe);
               }}
               swipeRight={() => {}}
             >
-              <EquipmentTab equipment={drink.equipment} />
+              <EquipmentTab
+                equipment={drink.equipment}
+                value={tabs.equipment}
+              />
             </AnimateTab>
           )}
         </AnimatePresence>
@@ -90,7 +102,7 @@ function Trigger({
 }: {
   children: ReactNode;
   value: string;
-  tab: DrinkPageTabs;
+  tab: string;
 }) {
   return (
     <RadixTabs.Trigger className="group relative tracking-wider" value={value}>

@@ -42,3 +42,9 @@ export type Locale = "en" | "sv";
 // Search types
 export type Search = typeof dict.search;
 export type Facets = typeof dict.search.facets;
+
+// Drink page tabs type
+export type Tabs = typeof dict.drinkpage.tabs;
+
+// Recipe display names
+export type RecipeDisplayNames = typeof dict.drinkpage.recipe;
