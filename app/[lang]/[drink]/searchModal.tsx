@@ -3,14 +3,11 @@ import React from "react";
 import { Search } from "../search/search";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxCross1 } from "react-icons/rx";
-import { useDisableBodyScroll } from "@/app/hooks/useDisableBodyScroll";
-import useOpenModal from "@/app/hooks/useOpenModal";
+import useOpenSearchModal from "@/app/hooks/useOpenModal";
 import { Search as SearchType } from "@/app/types";
 
 function SearchModal({ search }: { search: SearchType }) {
-  const [isOpen, close] = useOpenModal();
-  // Enable/disable body scroll when modal is closed/opened
-  useDisableBodyScroll(isOpen);
+  const [isOpen, close] = useOpenSearchModal();
 
   return (
     <AnimatePresence>

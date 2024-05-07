@@ -1,8 +1,12 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import removeSearchModalParam from "../lib/removeSearchModalParam";
+import {
+  setBodyOverflowHidden,
+  unsetBodyOverflow,
+} from "../lib/unsetBodyOverflow";
 
-function useOpenModal(): [boolean, () => void] {
+function useOpenSearchModal(): [boolean, () => void] {
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -10,14 +14,21 @@ function useOpenModal(): [boolean, () => void] {
 
   useEffect(() => {
     const doOpen = searchParams.get("search-modal") === "open";
-
-    // Is already open, do nothing
-    if (isOpen && doOpen) return;
-
-    // Should open
-    if (doOpen) setIsOpen(true);
-    // Is already open but should be closed (search-modal != "open")
-    else if (isOpen) setIsOpen(false);
+    // Is already open, do nothing (except keep body scrolling disabled)
+    if (isOpen && doOpen) {
+      setBodyOverflowHidden();
+      return;
+    }
+    // Should be opened
+    else if (doOpen) {
+      setBodyOverflowHidden();
+      setIsOpen(true);
+    }
+    // Is already open but should be closed
+    else if (isOpen) {
+      unsetBodyOverflow();
+      setIsOpen(false);
+    }
   }, [searchParams]);
 
   const close = () =>
@@ -28,4 +39,4 @@ function useOpenModal(): [boolean, () => void] {
   return [isOpen, close];
 }
 
-export default useOpenModal;
+export default useOpenSearchModal;
