@@ -49,6 +49,20 @@ export async function generateStaticParams({
   return drinks;
 }
 
+// Generates dynamic metadata, other than those defined statically in parent rout
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: Locale; drink: string };
+}) {
+  const drink = await fetchDrink(params.drink, params.lang);
+
+  return {
+    title: `Weekend Bar Crew - ${params.drink}`,
+    description: drink.description_short,
+  };
+}
+
 // This async function only runs on the server, either during build time or during revalidation. It fetches drinks that fulfills both the name field and the language field, which should be at most one drink.
 async function fetchDrink(name: string, language: string) {
   const drinksCollectionReference = collection(firestore, `drinks`);

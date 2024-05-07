@@ -11,6 +11,14 @@ export const metadata = {
   title: "Weekend Bar Crew",
   description:
     "Weekend Bar Crew - Discover hundreds of tasty and beautiful cockatils.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL as string),
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "en",
+      sv: "sv",
+    },
+  },
 };
 
 export default async function Root({
