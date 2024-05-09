@@ -5,6 +5,8 @@ import { decode_utf8 } from "@/app/lib/encodeDecodeUTF8";
 import { Drink, Locale } from "@/app/types";
 import { firestore } from "@/app/firebase";
 import { getDictionary } from "../dictionaries";
+import { supported_locales } from "@/middleware";
+import getAlternateLanguages from "@/app/lib/getAlternateLanguages";
 
 export default async function Page({
   params,
@@ -57,9 +59,15 @@ export async function generateMetadata({
 }) {
   const drink = await fetchDrink(params.drink, params.lang);
 
+  const languages = getAlternateLanguages(params.lang, params.drink);
+
   return {
     title: `Weekend Bar Crew - ${params.drink}`,
     description: drink.description_short,
+    alternates: {
+      canonical: `/${params.lang}/${drink.name}`,
+      languages: languages,
+    },
   };
 }
 

@@ -6,20 +6,26 @@ import { inknut_antiqua } from "../lib/fonts";
 import { supported_locales } from "@/middleware";
 import { getDictionary } from "./dictionaries";
 import { Locale } from "../types";
+import getAlternateLanguages from "../lib/getAlternateLanguages";
 
-export const metadata = {
-  title: "Weekend Bar Crew",
-  description:
-    "Weekend Bar Crew - Discover hundreds of tasty and beautiful cockatils.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_URL as string),
-  alternates: {
-    canonical: "/",
-    languages: {
-      en: "en",
-      sv: "sv",
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: Locale };
+}) {
+  const languages = getAlternateLanguages(params.lang);
+  const dict = await getDictionary(params.lang);
+
+  return {
+    title: "Weekend Bar Crew",
+    description: `Weekend Bar Crew - ${dict.header.slogan}`,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_URL as string),
+    alternates: {
+      canonical: `/${params.lang}`,
+      languages: languages,
     },
-  },
-};
+  };
+}
 
 export default async function Root({
   children,
