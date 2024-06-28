@@ -86,7 +86,7 @@ async function fetchDrink(name: string, language: string) {
 }
 
 // If user goes to /<drink-that-do-not-exist>, it will result in 404 not found
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
-// Revalidate every hour
-export const revalidate = 3600;
+// Revalidate every minute
+export const revalidate = 60;
