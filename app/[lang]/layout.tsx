@@ -55,5 +55,3 @@ export default async function Root({
 export async function generateStaticParams(): Promise<{ lang: string }[]> {
   return supported_locales.map((lang) => ({ lang: lang }));
 }
-
-export const dynamicParams = false;
