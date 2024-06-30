@@ -8,10 +8,10 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { Drink, RecipeDisplayNames, Tabs } from "../../../types";
+import { Drink, RecipeDisplayNames, Tabs as TabsType } from "../../../types";
 import { EquipmentTab } from "./equipmentTab";
 import { OverviewTab } from "./overviewTab";
-import { RecepieTab } from "./recepieTab";
+import { RecipeTab } from "./recipeTab";
 
 export default function Tabs({
   drink,
@@ -19,7 +19,7 @@ export default function Tabs({
   recipeDisplayNames,
 }: {
   drink: Drink;
-  tabs: Tabs;
+  tabs: TabsType;
   recipeDisplayNames: RecipeDisplayNames;
 }) {
   const [tab, setTab] = useState(tabs.recipe);
@@ -68,8 +68,8 @@ export default function Tabs({
               }}
               swipeRight={() => setTab(tabs.equipment)}
             >
-              <RecepieTab
-                recepie={drink.recepie}
+              <RecipeTab
+                recipe={drink.recipe}
                 value={tabs.recipe}
                 displayNames={recipeDisplayNames}
               />

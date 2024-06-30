@@ -2,12 +2,12 @@ import React from "react";
 import * as RadixTabs from "@radix-ui/react-tabs";
 import { Drink, RecipeDisplayNames } from "@/app/types";
 
-export function RecepieTab({
-  recepie,
+export function RecipeTab({
+  recipe,
   value,
   displayNames,
 }: {
-  recepie: Drink["recepie"];
+  recipe: Drink["recipe"];
   value: string;
   displayNames: RecipeDisplayNames;
 }) {
@@ -19,7 +19,7 @@ export function RecepieTab({
             {displayNames.ingredients}
           </h3>
           <ul className="ml-2 mt-4 text-sm tracking-wide sm:text-lg">
-            {recepie.ingredients.map((ingredient, idx) => (
+            {recipe.ingredients.map((ingredient, idx) => (
               <li key={ingredient.name} className="my-0.5 w-[80%] xl:w-full">
                 <div
                   className={`my-1 flex justify-between py-2 ${
@@ -28,7 +28,7 @@ export function RecepieTab({
                   }`}
                 >
                   <p>{`${ingredient.name}: `}</p>
-                  <p className="ml-8">{`${ingredient.metricQuantity}`}</p>
+                  <p className="ml-8">{`${ingredient.quantity}`}</p>
                 </div>
               </li>
             ))}
@@ -39,7 +39,7 @@ export function RecepieTab({
             {displayNames.instructions}
           </h3>
           <ol className="ml-2 mt-4 text-sm tracking-wide sm:text-lg">
-            {recepie.instructions.map((instruction, idx) => (
+            {recipe.instructions.map((instruction, idx) => (
               <li key={instruction} className="my-4">
                 <span>{idx + 1}. </span>
                 {instruction.replace(/^"|"$/g, "")}

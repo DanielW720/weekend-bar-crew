@@ -1,12 +1,11 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import DrinkImage from "./drinkImage";
 import Tabs from "./tabs/tabs";
-import { decode_utf8 } from "@/app/lib/encodeDecodeUTF8";
-import { Drink, Locale } from "@/app/types";
+import { decode_utf8, encode_utf8 } from "@/app/lib/encodeDecodeUTF8";
+import { Locale, drinkConverter } from "@/app/types";
 import { firestore } from "@/app/firebase";
 import { getDictionary } from "../dictionaries";
-import { supported_locales } from "@/middleware";
-import getAlternateLanguages from "@/app/lib/getAlternateLanguages";
+import getAlternativeLanguages from "@/app/lib/getAlternateLanguages";
 
 export default async function Page({
   params,
@@ -22,7 +21,7 @@ export default async function Page({
       <h1 className="mt-6 text-4xl tracking-widest text-beige">{drink.name}</h1>
       <DrinkImage image={drink.image} />
       <Tabs
-        drink={drink}
+        drink={JSON.parse(JSON.stringify(drink))}
         tabs={dict.drinkpage.tabs}
         recipeDisplayNames={dict.drinkpage.recipe}
       />
@@ -42,10 +41,10 @@ export async function generateStaticParams({
     drinksCollection,
     where("language", "==", decode_utf8(params.lang))
   );
-  const snapshot = await getDocs(drinksQuery);
+  const snapshot = await getDocs(drinksQuery.withConverter(drinkConverter));
 
-  const drinks: { drink: string }[] = snapshot.docs.map((doc) => ({
-    drink: doc.get("name"),
+  const drinks = snapshot.docs.map((doc) => ({
+    drink: encode_utf8(doc.data().name),
   }));
 
   return drinks;
@@ -59,7 +58,7 @@ export async function generateMetadata({
 }) {
   const drink = await fetchDrink(params.drink, params.lang);
 
-  const languages = getAlternateLanguages(params.lang, params.drink);
+  const languages = getAlternativeLanguages(params.lang, params.drink);
 
   return {
     title: `Weekend Bar Crew - ${params.drink}`,
@@ -79,14 +78,14 @@ async function fetchDrink(name: string, language: string) {
     where("name", "==", decode_utf8(name)),
     where("language", "==", decode_utf8(language))
   );
-  const snapshot = await getDocs(drinkQuery);
+  const snapshot = await getDocs(drinkQuery.withConverter(drinkConverter));
 
   const doc = snapshot.docs[0];
-  return doc.data() as Drink;
+  return doc.data();
 }
 
 // If user goes to /<drink-that-do-not-exist>, it will result in 404 not found
-// export const dynamicParams = false;
+export const dynamicParams = true;
 
 // Revalidate every minute
 export const revalidate = 60;
