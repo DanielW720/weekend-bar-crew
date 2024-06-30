@@ -38,12 +38,12 @@ export async function generateStaticParams({
   const drinksCollection = collection(firestore, "drinks");
   const drinksQuery = query(
     drinksCollection,
-    where("language", "==", decodeURI(params.lang))
+    where("language", "==", params.lang)
   );
   const snapshot = await getDocs(drinksQuery.withConverter(drinkConverter));
 
   const drinks = snapshot.docs.map((doc) => ({
-    drink: doc.data().name,
+    drink: encodeURI(doc.data().name),
   }));
 
   return drinks;
@@ -75,7 +75,7 @@ async function fetchDrink(name: string, language: string) {
 
   const drinkQuery = query(
     drinksCollectionReference,
-    where("name", "==", decodeURI(name)),
+    where("name", "==", decodeURI(decodeURI(name))),
     where("language", "==", language)
   );
   const snapshot = await getDocs(drinkQuery.withConverter(drinkConverter));
@@ -83,6 +83,8 @@ async function fetchDrink(name: string, language: string) {
   const doc = snapshot.docs[0];
   return doc.data();
 }
+
+export const dynamicParams = true;
 
 // Revalidate every minute
 export const revalidate = 60;
