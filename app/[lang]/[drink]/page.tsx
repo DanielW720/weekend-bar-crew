@@ -1,7 +1,6 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import DrinkImage from "./drinkImage";
 import Tabs from "./tabs/tabs";
-import { decode_utf8, encode_utf8 } from "@/app/lib/encodeDecodeUTF8";
 import { Locale, drinkConverter } from "@/app/types";
 import { firestore } from "@/app/firebase";
 import { getDictionary } from "../dictionaries";
@@ -39,12 +38,12 @@ export async function generateStaticParams({
   const drinksCollection = collection(firestore, "drinks");
   const drinksQuery = query(
     drinksCollection,
-    where("language", "==", decode_utf8(params.lang))
+    where("language", "==", decodeURI(params.lang))
   );
   const snapshot = await getDocs(drinksQuery.withConverter(drinkConverter));
 
   const drinks = snapshot.docs.map((doc) => ({
-    drink: encode_utf8(doc.data().name),
+    drink: doc.data().name,
   }));
 
   return drinks;
@@ -73,19 +72,17 @@ export async function generateMetadata({
 // This async function only runs on the server, either during build time or during revalidation. It fetches drinks that fulfills both the name field and the language field, which should be at most one drink.
 async function fetchDrink(name: string, language: string) {
   const drinksCollectionReference = collection(firestore, `drinks`);
+
   const drinkQuery = query(
     drinksCollectionReference,
-    where("name", "==", decode_utf8(name)),
-    where("language", "==", decode_utf8(language))
+    where("name", "==", decodeURI(name)),
+    where("language", "==", language)
   );
   const snapshot = await getDocs(drinkQuery.withConverter(drinkConverter));
 
   const doc = snapshot.docs[0];
   return doc.data();
 }
-
-// If user goes to /<drink-that-do-not-exist>, it will result in 404 not found
-export const dynamicParams = true;
 
 // Revalidate every minute
 export const revalidate = 60;
