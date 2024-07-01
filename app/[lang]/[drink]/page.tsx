@@ -5,6 +5,7 @@ import { Locale, drinkConverter } from "@/app/types";
 import { firestore } from "@/app/firebase";
 import { getDictionary } from "../dictionaries";
 import getAlternativeLanguages from "@/app/lib/getAlternateLanguages";
+import { notFound } from "next/navigation";
 
 export default async function Page({
   params,
@@ -14,6 +15,8 @@ export default async function Page({
   // Use the params.drink to fetch drink data at build time to statically render this page
   const drink = await fetchDrink(params.drink, params.lang);
   const dict = await getDictionary(params.lang);
+
+  if (!drink) notFound();
 
   return (
     <div className="flex w-full flex-col items-center py-12">
@@ -57,6 +60,11 @@ export async function generateMetadata({
 }) {
   const drink = await fetchDrink(params.drink, params.lang);
 
+  if (!drink)
+    return {
+      title: "Weekend Bar Crew - 404",
+    };
+
   const languages = getAlternativeLanguages(params.lang, params.drink);
 
   return {
@@ -80,10 +88,13 @@ async function fetchDrink(name: string, language: string) {
   );
   const snapshot = await getDocs(drinkQuery.withConverter(drinkConverter));
 
+  if (snapshot.empty) return null;
+
   const doc = snapshot.docs[0];
   return doc.data();
 }
 
+// If route is not prerendered, handle it dynamically
 export const dynamicParams = true;
 
 // Revalidate every minute
