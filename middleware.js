@@ -33,6 +33,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - icon.png (icon file)
      */
-    "/((?!api|_next/static|_next/image|icon.png).*)",
+    "/((?!api|_next/static|_next/image|images|icon.ico).*)",
   ],
 };
