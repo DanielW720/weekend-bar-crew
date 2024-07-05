@@ -2,7 +2,7 @@ import { match } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextResponse } from "next/server";
 
-export const supported_locales = ["en", "sv"];
+export const supported_locales = ["en", "sv", "da", "no", "fi"];
 const defaultLocale = "en";
 
 export function middleware(request) {

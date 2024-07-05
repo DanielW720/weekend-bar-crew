@@ -1,0 +1,51 @@
+{
+  "header": {
+    "slogan": "Löydä satoja tyylikkäitä ja herkullisia cocktaileja",
+    "language": "Kieli"
+  },
+  "search": {
+    "options": "Suodatin",
+    "placeholder": "Hae",
+    "facets": [
+      {
+        "attribute": "base_spirit",
+        "displayName": "Perusalkoholi"
+      },
+      {
+        "attribute": "type",
+        "displayName": "Tyyppi"
+      },
+      {
+        "attribute": "flavor_profile",
+        "displayName": "Makuprofiili"
+      },
+      {
+        "attribute": "difficulty_level",
+        "displayName": "Vaikeustaso"
+      },
+      {
+        "attribute": "mocktail_available",
+        "displayName": "Alkoholiton"
+      },
+      {
+        "attribute": "preparation_time_min",
+        "displayName": "Valmistusaika"
+      }
+    ]
+  },
+  "footer": {
+    "about": "Tietoja",
+    "contact": "Yhteystiedot"
+  },
+  "drinkpage": {
+    "tabs": {
+      "overview": "Yleiskatsaus",
+      "recipe": "Resepti",
+      "equipment": "Välineet"
+    },
+    "recipe": {
+      "ingredients": "Ainekset",
+      "instructions": "Ohjeet"
+    }
+  }
+}

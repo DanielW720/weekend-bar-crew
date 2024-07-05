@@ -1,27 +1,27 @@
 {
   "header": {
-    "slogan": "Upptäck hundratals snygga och goda cocktails",
+    "slogan": "Oppdag hundrevis av stilige og gode cocktails",
     "language": "Språk"
   },
   "search": {
     "options": "Filter",
-    "placeholder": "Sök",
+    "placeholder": "Søk",
     "facets": [
       {
         "attribute": "base_spirit",
-        "displayName": "Bas"
+        "displayName": "Baseres på"
       },
       {
         "attribute": "type",
-        "displayName": "Typ"
+        "displayName": "Type"
       },
       {
         "attribute": "flavor_profile",
-        "displayName": "Smakprofil"
+        "displayName": "Smaksprofil"
       },
       {
         "attribute": "difficulty_level",
-        "displayName": "Komplexitet"
+        "displayName": "Vanskelighetsgrad"
       },
       {
         "attribute": "mocktail_available",
@@ -29,23 +29,23 @@
       },
       {
         "attribute": "preparation_time_min",
-        "displayName": "Tid (min)"
+        "displayName": "Forberedelsestid"
       }
     ]
   },
   "footer": {
-    "about": "Om WBC",
+    "about": "Om",
     "contact": "Kontakt"
   },
   "drinkpage": {
     "tabs": {
-      "overview": "Översikt",
-      "recipe": "Recept",
-      "equipment": "Utrustning"
+      "overview": "Oversikt",
+      "recipe": "Oppskrift",
+      "equipment": "Utstyr"
     },
     "recipe": {
       "ingredients": "Ingredienser",
-      "instructions": "Instruktioner"
+      "instructions": "Instruksjoner"
     }
   }
 }
