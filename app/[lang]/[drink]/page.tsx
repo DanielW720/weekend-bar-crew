@@ -7,6 +7,12 @@ import { getDictionary } from "../dictionaries";
 import getAlternativeLanguages from "@/app/lib/getAlternateLanguages";
 import { notFound } from "next/navigation";
 
+// Dynamic segments not included in generateStaticParams are generated on demand. E.g., when a new
+// recipe is added to the database, the new drink page should be available directly waiting for revalidation.
+export const dynamicParams = true;
+// Revalidate every 15th minute. If a recipe is removed from the database, the page will be removed after revalidation.
+export const revalidate = 900;
+
 export default async function Page({
   params,
 }: {
@@ -93,9 +99,3 @@ async function fetchDrink(name: string, language: string) {
   const doc = snapshot.docs[0];
   return doc.data();
 }
-
-// If route is not prerendered, handle it dynamically
-export const dynamicParams = true;
-
-// Revalidate every minute
-export const revalidate = 60;
