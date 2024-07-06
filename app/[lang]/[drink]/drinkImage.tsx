@@ -16,7 +16,7 @@ function DrinkImage({ image }: { image: Drink["image"] }) {
         src={image.url}
         alt={image.alt}
         fill
-        sizes="304px"
+        sizes="500px"
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mMMPwIAAXgBHdkaTf8AAAAASUVORK5CYII="
         className="rounded-[2rem] border-b-4 border-b-beige object-cover"
