@@ -42,8 +42,8 @@ export default function Tabs({
               {tabs.recipe}
             </Trigger>
           </div>
-          <Trigger value={tabs.equipment} tab={tab}>
-            {tabs.equipment}
+          <Trigger value={tabs.equipments} tab={tab}>
+            {tabs.equipments}
           </Trigger>
         </RadixTabs.List>
 
@@ -66,7 +66,7 @@ export default function Tabs({
               swipeLeft={() => {
                 setTab(tabs.overview);
               }}
-              swipeRight={() => setTab(tabs.equipment)}
+              swipeRight={() => setTab(tabs.equipments)}
             >
               <RecipeTab
                 recipe={drink.recipe}
@@ -76,15 +76,15 @@ export default function Tabs({
             </AnimateTab>
           ) : (
             <AnimateTab
-              key={tabs.equipment}
+              key={tabs.equipments}
               swipeLeft={() => {
                 setTab(tabs.recipe);
               }}
               swipeRight={() => {}}
             >
               <EquipmentTab
-                equipment={drink.equipment}
-                value={tabs.equipment}
+                equipments={drink.equipments}
+                value={tabs.equipments}
               />
             </AnimateTab>
           )}

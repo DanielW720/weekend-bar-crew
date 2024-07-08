@@ -8,7 +8,7 @@
     "placeholder": "Hae",
     "facets": [
       {
-        "attribute": "base_spirit",
+        "attribute": "base_spirits",
         "displayName": "Perusalkoholi"
       },
       {
@@ -16,16 +16,12 @@
         "displayName": "Tyyppi"
       },
       {
-        "attribute": "flavor_profile",
+        "attribute": "flavor_profiles",
         "displayName": "Makuprofiili"
       },
       {
-        "attribute": "difficulty_level",
-        "displayName": "Vaikeustaso"
-      },
-      {
-        "attribute": "mocktail_available",
-        "displayName": "Alkoholiton"
+        "attribute": "contains_alcohol",
+        "displayName": "Alkoholillinen"
       },
       {
         "attribute": "preparation_time_min",
@@ -41,7 +37,7 @@
     "tabs": {
       "overview": "Yleiskatsaus",
       "recipe": "Resepti",
-      "equipment": "Välineet"
+      "equipments": "Välineet"
     },
     "recipe": {
       "ingredients": "Ainekset",

@@ -37,9 +37,9 @@ export const Search = ({ search }: { search: SearchType }) => {
         drinks: {
           query: query ? query : "",
           refinementList: {
-            base_spirit: getFacetParamValues("base_spirit"),
-            difficulty_level: getFacetParamValues("difficulty_level"),
-            flavor_profile: getFacetParamValues("flavor_profile"),
+            base_spirits: getFacetParamValues("base_spirits"),
+            // difficulty_level: getFacetParamValues("difficulty_level"), // Fixa diff level indexering i WBC revision
+            flavor_profiles: getFacetParamValues("flavor_profiles"),
             glassware: getFacetParamValues("glassware"),
             mocktail_available: getFacetParamValues("mocktail_available"),
             preparation_time_min: getFacetParamValues("preparation_time_min"),

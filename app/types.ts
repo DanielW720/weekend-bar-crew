@@ -17,10 +17,10 @@ export type Drink = {
   language: string;
   description_short: string;
   description: string[];
-  base_spirit: string[];
-  flavor_profile: string[];
+  base_spirits: string[];
+  flavor_profiles: string[];
   type: string[];
-  equipment: string[];
+  equipments: string[];
   difficulty_level: string;
   preparation_time_min: string;
   glassware: string[];
@@ -58,10 +58,10 @@ export const drinkConverter: FirestoreDataConverter<Drink> = {
       description: drink.description,
       contains_alcohol: drink.contains_alcohol,
       language: drink.language,
-      base_spirit: drink.base_spirit,
-      flavor_profile: drink.flavor_profile,
+      base_spirits: drink.base_spirits,
+      flavor_profiles: drink.flavor_profiles,
       type: drink.type,
-      equipment: drink.equipment,
+      equipments: drink.equipments,
       difficulty_level: drink.difficulty_level,
       preparation_time_min: drink.preparation_time_min,
       glassware: drink.glassware,
@@ -90,10 +90,10 @@ export const drinkConverter: FirestoreDataConverter<Drink> = {
       description: data.description,
       contains_alcohol: data.contains_alcohol,
       language: data.language,
-      base_spirit: data.base_spirit,
-      flavor_profile: data.flavor_profile,
+      base_spirits: data.base_spirits,
+      flavor_profiles: data.flavor_profiles,
       type: data.type,
-      equipment: data.equipment,
+      equipments: data.equipments,
       difficulty_level: data.difficulty_level,
       preparation_time_min: data.preparation_time_min,
       glassware: data.glassware,

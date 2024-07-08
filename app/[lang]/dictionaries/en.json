@@ -4,28 +4,24 @@
     "language": "Language"
   },
   "search": {
-    "options": "Options",
+    "options": "Filters",
     "placeholder": "Search",
     "facets": [
       {
-        "attribute": "base_spirit",
-        "displayName": "Base Spirit"
+        "attribute": "base_spirits",
+        "displayName": "Base Spirits"
       },
       {
         "attribute": "type",
         "displayName": "Type"
       },
       {
-        "attribute": "flavor_profile",
-        "displayName": "Flavor Profile"
+        "attribute": "flavor_profiles",
+        "displayName": "Flavor Profiles"
       },
       {
-        "attribute": "difficulty_level",
-        "displayName": "Difficulty"
-      },
-      {
-        "attribute": "mocktail_available",
-        "displayName": "Non-Alcoholic"
+        "attribute": "contains_alcohol",
+        "displayName": "Contains Alcohol"
       },
       {
         "attribute": "preparation_time_min",
@@ -41,7 +37,7 @@
     "tabs": {
       "overview": "Overview",
       "recipe": "Recipe",
-      "equipment": "Equipment"
+      "equipments": "Equipment"
     },
     "recipe": {
       "ingredients": "Ingredients",

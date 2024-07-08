@@ -8,7 +8,7 @@
     "placeholder": "Søk",
     "facets": [
       {
-        "attribute": "base_spirit",
+        "attribute": "base_spirits",
         "displayName": "Baseres på"
       },
       {
@@ -16,16 +16,12 @@
         "displayName": "Type"
       },
       {
-        "attribute": "flavor_profile",
+        "attribute": "flavor_profiles",
         "displayName": "Smaksprofil"
       },
       {
-        "attribute": "difficulty_level",
-        "displayName": "Vanskelighetsgrad"
-      },
-      {
-        "attribute": "mocktail_available",
-        "displayName": "Alkoholfri"
+        "attribute": "contains_alcohol",
+        "displayName": "Alkoholholdig"
       },
       {
         "attribute": "preparation_time_min",
@@ -41,7 +37,7 @@
     "tabs": {
       "overview": "Oversikt",
       "recipe": "Oppskrift",
-      "equipment": "Utstyr"
+      "equipments": "Utstyr"
     },
     "recipe": {
       "ingredients": "Ingredienser",

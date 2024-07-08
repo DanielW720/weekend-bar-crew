@@ -64,7 +64,7 @@ export default function FacetsAccordion({
           <AnimatePresence>
             {open && (
               <motion.div
-                className="z-0 h-[150px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg"
+                className="z-0 h-[180px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg"
                 initial="closed"
                 animate="open"
                 exit="closed"

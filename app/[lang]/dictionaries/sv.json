@@ -8,7 +8,7 @@
     "placeholder": "Sök",
     "facets": [
       {
-        "attribute": "base_spirit",
+        "attribute": "base_spirits",
         "displayName": "Bas"
       },
       {
@@ -16,7 +16,7 @@
         "displayName": "Typ"
       },
       {
-        "attribute": "flavor_profile",
+        "attribute": "flavor_profiles",
         "displayName": "Smakprofil"
       },
       {
@@ -24,8 +24,8 @@
         "displayName": "Komplexitet"
       },
       {
-        "attribute": "mocktail_available",
-        "displayName": "Alkoholfri"
+        "attribute": "contains_alcohol",
+        "displayName": "Alkolhaltig"
       },
       {
         "attribute": "preparation_time_min",
@@ -41,7 +41,7 @@
     "tabs": {
       "overview": "Översikt",
       "recipe": "Recept",
-      "equipment": "Utrustning"
+      "equipments": "Utrustning"
     },
     "recipe": {
       "ingredients": "Ingredienser",

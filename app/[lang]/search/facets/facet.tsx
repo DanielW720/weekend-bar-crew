@@ -96,7 +96,9 @@ export default function Facet({
           className={`group relative col-span-3 col-start-2 col-end-4 flex flex-1 items-center rounded-[0.6rem] border-[1px] border-beige/0 bg-beige/10 px-2 py-1 text-xxs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 hover:border-beige data-[has-selected=true]:border-beige data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-xs`}
           data-has-selected={hasSelectedItems}
         >
-          <div className="font-[300] tracking-wider">{displayName}</div>
+          <div className="max-w-[4.8rem] font-[300] tracking-wider">
+            {displayName}
+          </div>
           <motion.div
             transition={{ type: "keyframes", duration: 0.15 }}
             animate={{ rotate: open ? 180 : 0 }}

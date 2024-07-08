@@ -8,7 +8,7 @@
     "placeholder": "Søg",
     "facets": [
       {
-        "attribute": "base_spirit",
+        "attribute": "base_spirits",
         "displayName": "Basis Spiritus"
       },
       {
@@ -16,16 +16,12 @@
         "displayName": "Type"
       },
       {
-        "attribute": "flavor_profile",
-        "displayName": "Smagsprofil"
+        "attribute": "flavor_profiles",
+        "displayName": "Smagsprofiler"
       },
       {
-        "attribute": "difficulty_level",
-        "displayName": "Sværhedsgrad"
-      },
-      {
-        "attribute": "mocktail_available",
-        "displayName": "Alkoholfri"
+        "attribute": "contains_alcohol",
+        "displayName": "Alkoholholdig"
       },
       {
         "attribute": "preparation_time_min",
@@ -41,7 +37,7 @@
     "tabs": {
       "overview": "Oversigt",
       "recipe": "Opskrift",
-      "equipment": "Udstyr"
+      "equipments": "Udstyr"
     },
     "recipe": {
       "ingredients": "Ingredienser",
