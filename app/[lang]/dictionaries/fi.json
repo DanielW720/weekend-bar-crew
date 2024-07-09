@@ -20,6 +20,10 @@
         "displayName": "Makuprofiili"
       },
       {
+        "attribute": "difficulty_level.label",
+        "displayName": "Vaikeustaso"
+      },
+      {
         "attribute": "contains_alcohol",
         "displayName": "Alkoholillinen"
       },

@@ -20,8 +20,12 @@
         "displayName": "Flavor Profiles"
       },
       {
+        "attribute": "difficulty_level.label",
+        "displayName": "Difficulty"
+      },
+      {
         "attribute": "contains_alcohol",
-        "displayName": "Contains Alcohol"
+        "displayName": "Alcoholic"
       },
       {
         "attribute": "preparation_time_min",

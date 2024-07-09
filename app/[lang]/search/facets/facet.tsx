@@ -93,7 +93,7 @@ export default function Facet({
     <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
       <motion.div whileTap={{ scale: 0.93 }}>
         <RadixDropdownMenu.Trigger
-          className={`group relative col-span-3 col-start-2 col-end-4 flex flex-1 items-center rounded-[0.6rem] border-[1px] border-beige/0 bg-beige/10 px-2 py-1 text-xxs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 hover:border-beige data-[has-selected=true]:border-beige data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-xs`}
+          className={`group relative flex flex-1 flex-wrap items-center gap-x-[2px] rounded-[0.6rem] border-[1px] border-beige/0 bg-beige/10 px-2 py-1 text-xxs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 hover:border-beige data-[has-selected=true]:border-beige data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-xs`}
           data-has-selected={hasSelectedItems}
         >
           <div className="max-w-[4.8rem] font-[300] tracking-wider">
@@ -103,7 +103,7 @@ export default function Facet({
             transition={{ type: "keyframes", duration: 0.15 }}
             animate={{ rotate: open ? 180 : 0 }}
           >
-            <ChevronDownIcon className="ml-[2px]" />
+            <ChevronDownIcon />
           </motion.div>
         </RadixDropdownMenu.Trigger>
       </motion.div>

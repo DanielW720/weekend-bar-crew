@@ -20,6 +20,10 @@
         "displayName": "Smaksprofil"
       },
       {
+        "attribute": "difficulty_level.label",
+        "displayName": "Vanskelighetsgrad"
+      },
+      {
         "attribute": "contains_alcohol",
         "displayName": "Alkoholholdig"
       },

@@ -20,6 +20,10 @@
         "displayName": "Smagsprofiler"
       },
       {
+        "attribute": "difficulty_level.label",
+        "displayName": "Sværhedsgrad"
+      },
+      {
         "attribute": "contains_alcohol",
         "displayName": "Alkoholholdig"
       },

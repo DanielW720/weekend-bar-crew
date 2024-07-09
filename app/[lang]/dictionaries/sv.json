@@ -20,6 +20,10 @@
         "displayName": "Smakprofil"
       },
       {
+        "attribute": "difficulty_level.label",
+        "displayName": "Komplexitet"
+      },
+      {
         "attribute": "difficulty_level",
         "displayName": "Komplexitet"
       },
