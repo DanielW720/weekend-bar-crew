@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { Drink } from "../../../types";
 import useLanguagePathname from "@/app/hooks/useLanguagePathname";
@@ -48,7 +48,7 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
   };
 
   return (
-    <motion.div
+    <motion.li
       className={`group relative h-[13rem] w-[17rem] cursor-pointer select-none overflow-hidden rounded-3xl border-2 border-beige bg-black/50 tracking-wider transition-all hover:scale-105 hover:border-white md:h-[10rem] md:w-[13rem] lg:h-[13rem] lg:w-[17rem]`}
       onTouchStart={handleBackdropStart}
       onHoverStart={handleBackdropStart}
@@ -77,7 +77,7 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
       <div className="flex h-[2.4rem] items-center justify-center rounded-b-3xl px-2 py-1 text-white backdrop-blur-sm">
         <h2 className="text-center text-[1rem] md:text-sm">{drink.name}</h2>
       </div>
-    </motion.div>
+    </motion.li>
   );
 };
 
