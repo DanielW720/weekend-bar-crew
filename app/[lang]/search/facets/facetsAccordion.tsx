@@ -64,7 +64,7 @@ export default function FacetsAccordion({
           <AnimatePresence>
             {open && (
               <motion.div
-                className="z-0 h-[180px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg"
+                className="z-0 h-[220px] sm:h-[170px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg"
                 initial="closed"
                 animate="open"
                 exit="closed"
@@ -95,9 +95,9 @@ const AccordionContent = ({
   return (
     <motion.div
       ref={scope}
-      className={`absolute z-50 hidden h-[150px] w-full items-center justify-center`}
+      className={`absolute z-50 hidden h-[220px] sm:h-[170px] w-full items-center justify-center`}
     >
-      <div className="grid h-fit w-fit grid-cols-2 items-center justify-items-center gap-x-2 gap-y-3 px-2 py-3 sm:grid-cols-3 sm:gap-y-6">
+      <div className="h-full w-full px-7 py-6 flex flex-wrap gap-3 justify-center items-center">
         {facets.map((facet) => (
           <Facet
             attribute={facet.attribute}

@@ -10,7 +10,6 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useRefinementList } from "react-instantsearch";
-import useLanguagePathname from "@/app/hooks/useLanguagePathname";
 
 export default function Facet({
   attribute,
@@ -21,7 +20,6 @@ export default function Facet({
 }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const languagePathname = useLanguagePathname();
   const { items, refine } = useRefinementList({
     attribute: attribute,
     sortBy: ["name:asc"],
@@ -93,10 +91,10 @@ export default function Facet({
     <RadixDropdownMenu.Root modal={false} open={open} onOpenChange={setOpen}>
       <motion.div whileTap={{ scale: 0.93 }}>
         <RadixDropdownMenu.Trigger
-          className={`group relative flex flex-1 flex-wrap items-center gap-x-[2px] rounded-[0.6rem] border-[1px] border-beige/0 bg-beige/10 px-2 py-1 text-xxs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 hover:border-beige data-[has-selected=true]:border-beige data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-xs`}
+          className={`group relative flex items-center gap-x-[1px] rounded-[0.6rem] border-[1px] border-beige/0 bg-beige/10 px-2 py-1 text-xxs text-white outline-none backdrop-blur-[2px] transition-colors duration-200 hover:border-beige data-[has-selected=true]:border-beige data-[has-selected=true]:bg-extraDarkGray data-[has-selected=true]:text-beige sm:px-3 sm:py-2 sm:text-xs`}
           data-has-selected={hasSelectedItems}
         >
-          <div className="max-w-[4.8rem] font-[300] tracking-wider">
+          <div className="font-[300] tracking-wider">
             {displayName}
           </div>
           <motion.div
@@ -118,11 +116,13 @@ export default function Facet({
             }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute z-20"
+            className="absolute z-[500]"
           >
             <RadixDropdownMenu.Content
               forceMount
               sideOffset={4}
+              side="bottom"
+              avoidCollisions={false}
               className={`w-[140%] rounded-md border-[1px] border-white bg-extraDarkGray text-xxs tracking-wider text-white transition-all duration-200 sm:text-xs`}
             >
               <RadixDropdownMenu.Arrow className="fill-white" />
