@@ -40,7 +40,13 @@ export function RecipeTab({
           </h3>
           <ol className="ml-2 mt-4 text-sm tracking-wide sm:text-lg">
             {recipe.instructions.map((instruction, idx) => (
-              <li key={instruction} className="my-4">
+              <li
+                key={instruction}
+                className={`py-2 my-1 ${
+                  idx % 2 === 0 &&
+                  "bg-gradient-to-r from-transparent via-darkGray to-transparent"
+                }`}
+              >
                 <span>{idx + 1}. </span>
                 {instruction.replace(/^"|"$/g, "")}
               </li>
