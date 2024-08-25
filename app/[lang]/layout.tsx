@@ -7,6 +7,7 @@ import { supported_locales } from "@/middleware";
 import { getDictionary } from "./dictionaries";
 import { Locale } from "../types";
 import getAlternateLanguages from "../lib/getAlternateLanguages";
+import GoogleAdsense from "../googleAdsense";
 
 export async function generateMetadata({
   params,
@@ -42,6 +43,7 @@ export default async function Root({
         className={`${inknut_antiqua.className} min-h-screen overflow-x-hidden bg-black`}
       >
         <Analytics />
+        <GoogleAdsense pId={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_PUB_ID!} />
         <Header slogan={dict.header.slogan} language={dict.header.language} />
         <div className="flex min-h-[calc(100vh-6.25rem)] flex-col justify-between">
           <main>{children}</main>
