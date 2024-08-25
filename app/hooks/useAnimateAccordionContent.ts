@@ -22,7 +22,7 @@ function useAnimateAccordionContent(
         { duration: duration }
       );
     }
-  }, [open]);
+  }, [open, animate, delay, duration, scope]);
 
   return scope;
 }

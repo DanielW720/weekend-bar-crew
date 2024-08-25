@@ -29,7 +29,7 @@ function useOpenSearchModal(): [boolean, () => void] {
       unsetBodyOverflow();
       setIsOpen(false);
     }
-  }, [searchParams]);
+  }, [searchParams, isOpen]);
 
   const close = () =>
     router.push(

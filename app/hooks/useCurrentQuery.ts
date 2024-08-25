@@ -17,7 +17,7 @@ function useCurrentQuery(setValue: UseFormSetValue<any>) {
       setValue("query", currentQuery ? currentQuery : "");
       refine(currentQuery ? currentQuery : "");
     }
-  }, [searchParams]);
+  }, [searchParams, currentQuery, query, refine, setValue]);
 
   return currentQuery ? currentQuery : "";
 }
