@@ -16,21 +16,21 @@ function FooterLinks({ about, contact }: { about: string; contact: string }) {
           subpath === "about" && "text-white"
         }`}
       >
-        <Link href={`${langPathname}/about`}>{about}</Link>
+        <Link href={`${langPathname}/info/about`}>{about}</Link>
       </li>
       <li
         className={`mx-4 inline-block transition-colors duration-200 hover:text-white ${
           subpath === "contact" && "text-white"
         }`}
       >
-        <Link href={`${langPathname}/contact`}>{contact}</Link>
+        <Link href={`${langPathname}/info/contact`}>{contact}</Link>
       </li>
       <li
         className={`inline-block transition-colors duration-200 hover:text-white ${
           subpath === "instagram" && "text-white"
         }`}
       >
-        <Link href={`${langPathname}/instagram`}>Instagram</Link>
+        <Link href={`${langPathname}/info/instagram`}>Instagram</Link>
       </li>
     </ul>
   );
