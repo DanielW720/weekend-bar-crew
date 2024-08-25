@@ -6,7 +6,7 @@ import {
   DocumentReference,
 } from "firebase/firestore";
 import dict from "./[lang]/dictionaries/en.json";
-import Facet from "./[lang]/search/facets/facet";
+import { supported_locales } from "@/middleware";
 
 /**
  * Data model used in Cloud Firestore "drinks" collection.
@@ -38,7 +38,7 @@ export type Drink = {
 };
 
 // According to supported languages in middleware.js
-export type Locale = "en" | "sv";
+export type Locale = "en" | "sv" | "da" | "no" | "fi";
 
 // Search types
 export type Search = typeof dict.search;

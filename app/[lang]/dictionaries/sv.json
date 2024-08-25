@@ -51,5 +51,28 @@
       "ingredients": "Ingredienser",
       "instructions": "Instruktioner"
     }
+  },
+  "about": {
+    "title": "Om Weekend Bar Crew",
+    "content_paragraphs": [
+      "Weekend Bar Crew är en webbplats dedikerad till att dela kunskap och passion för cocktails. Allt började med ett Instagram-konto där vi dokumenterade vår resa med att utforska och lära oss om olika cocktails.",
+      "Vårt mål är att ge cocktailentusiaster värdefulla resurser, recept och tips för att hjälpa dem att skapa fantastiska drinkar hemma. Oavsett om du är nybörjare eller en erfaren mixolog har vi något för alla.",
+      "Följ med oss på denna spännande resa och låt oss höja vårt cocktailgame tillsammans!"
+    ],
+    "suggestions": "Om du har några frågor eller förslag, eller om du vill bidra med recept, tveka inte att kontakta oss. Du hittar vår kontaktinformation på kontaktsidan.",
+    "contact_page": "Kontaktsida",
+    "team": {
+      "title": "Vårt Team",
+      "members": [
+        {
+          "name": "Daniel",
+          "role": "Utvecklare, innehållsskapare, etc."
+        },
+        {
+          "name": "Amanda",
+          "role": "Innehållsskapare, etc."
+        }
+      ]
+    }
   }
 }

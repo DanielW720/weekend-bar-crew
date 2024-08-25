@@ -47,5 +47,28 @@
       "ingredients": "Ainekset",
       "instructions": "Ohjeet"
     }
+  },
+  "about": {
+    "title": "Tietoja Weekend Bar Crew -sivustosta",
+    "content_paragraphs": [
+      "Weekend Bar Crew on verkkosivusto, joka on omistettu cocktailien tuntemuksen ja intohimon jakamiselle. Kaikki alkoi Instagram-tilistä, jossa dokumentoimme matkaamme erilaisten cocktailien tutkimiseen ja oppimiseen.",
+      "Tavoitteenamme on tarjota cocktail-harrastajille arvokkaita resursseja, reseptejä ja vinkkejä auttaakseen heitä luomaan upeita juomia kotona. Olitpa aloittelija tai kokenut sekoittaja, meillä on jotain kaikille.",
+      "Liity mukaan tähän jännittävään matkaan ja nostetaan cocktail-game uudelle tasolle yhdessä!"
+    ],
+    "suggestions": "Jos sinulla on kysyttävää tai ehdotuksia, tai jos haluat osallistua reseptien kanssa, ota rohkeasti yhteyttä meihin. Löydät yhteystietomme yhteystietosivulta.",
+    "contact_page": "Yhteystietosivu",
+    "team": {
+      "title": "Tiimimme",
+      "members": [
+        {
+          "name": "Daniel",
+          "role": "Kehittäjä, sisällöntuottaja, jne."
+        },
+        {
+          "name": "Amanda",
+          "role": "Sisällöntuottaja, jne."
+        }
+      ]
+    }
   }
 }

@@ -47,5 +47,28 @@
       "ingredients": "Ingredients",
       "instructions": "Instructions"
     }
+  },
+  "about": {
+    "title": "About Weekend Bar Crew",
+    "content_paragraphs": [
+      "Weekend Bar Crew is a website dedicated to sharing knowledge and passion for cocktails. It all started with an Instagram account where we documented our journey of exploring and learning about different cocktails.",
+      "Our goal is to provide cocktail enthusiasts with valuable resources, recipes, and tips to help them create amazing drinks at home. Whether you're a beginner or an experienced mixologist, we have something for everyone.",
+      "Join us on this exciting journey and let's elevate our cocktail game together!"
+    ],
+    "suggestions": "If you have any questions or suggestions, or if you wish to contribute with recipes, feel free to reach out to us. You'll find our contact information on the contact page.",
+    "contact_page": "Contact page",
+    "team": {
+      "title": "Our Team",
+      "members": [
+        {
+          "name": "Daniel",
+          "role": "Developer, content creator, etc."
+        },
+        {
+          "name": "Amanda",
+          "role": "Content creator, etc"
+        }
+      ]
+    }
   }
 }
