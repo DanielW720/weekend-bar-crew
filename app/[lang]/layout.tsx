@@ -47,7 +47,11 @@ export default async function Root({
         <Header slogan={dict.header.slogan} language={dict.header.language} />
         <div className="flex min-h-[calc(100vh-6.25rem)] flex-col justify-between">
           <main>{children}</main>
-          <Footer about={dict.footer.about} contact={dict.footer.contact} />
+          <Footer
+            about={dict.footer.about}
+            contact={dict.footer.contact}
+            lang={params.lang}
+          />
         </div>
       </body>
     </html>

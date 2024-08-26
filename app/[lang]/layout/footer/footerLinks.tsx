@@ -10,7 +10,7 @@ function FooterLinks({ about, contact }: { about: string; contact: string }) {
   const subpath = getSubpath(pathname);
 
   return (
-    <ul className="text-xs text-beige sm:ml-20">
+    <ul>
       <li
         className={`inline-block transition-colors duration-200 hover:text-white ${
           subpath === "about" && "text-white"
