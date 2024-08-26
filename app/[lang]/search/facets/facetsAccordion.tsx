@@ -5,6 +5,12 @@ import { IoChevronDown } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import useAnimateAccordionContent from "@/app/hooks/useAnimateAccordionContent";
 import { Facets } from "@/app/types";
+import {
+  useClearRefinements,
+  useCurrentRefinements,
+} from "react-instantsearch";
+import { CiCircleRemove } from "react-icons/ci";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function FacetsAccordion({
   facets,
@@ -14,6 +20,12 @@ export default function FacetsAccordion({
   options: string;
 }) {
   const [open, setOpen] = useState(false);
+  const { items } = useCurrentRefinements();
+  const hasRefinements = items.length > 0;
+  const { refine } = useClearRefinements();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   const animationDuration = 0.3;
   const animationDelay = 0.2;
   const handleValueChange = () => setOpen((prev) => !prev);
@@ -41,19 +53,34 @@ export default function FacetsAccordion({
       collapsible
     >
       <RadixAccordion.Item value="filters">
-        <div className="my-4 flex w-full justify-center">
-          <RadixAccordion.Header>
-            <RadixAccordion.Trigger className="group text-lightGray data-[state=open]:text-beige">
-              <motion.div
-                whileTap={{ scale: 0.93 }}
-                className="flex items-center justify-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider hover:text-beige sm:text-[1rem]"
-              >
-                <p className="transition-colors duration-300">{options}</p>
-                <IoChevronDown className="transform duration-300 group-data-[state=open]:rotate-180" />
-              </motion.div>
-            </RadixAccordion.Trigger>
-          </RadixAccordion.Header>
-        </div>
+        <RadixAccordion.Header className="my-4 flex flex-col items-center gap-4 text-center">
+          {hasRefinements && (
+            <button
+              type="button"
+              onClick={() => {
+                refine();
+                // Update search params to only include the query
+                const query = searchParams.get("query");
+                router.push(`${pathname}${query ? `?query=${query}` : ""}`);
+              }}
+              className="text-xs text-beige"
+            >
+              Remove {items.length} {items.length > 1 ? "filters" : "filter"}
+              <CiCircleRemove className="ml-1 inline-block text-sm" />
+            </button>
+          )}
+          <RadixAccordion.Trigger className="group text-lightGray data-[state=open]:text-beige">
+            <motion.div
+              whileTap={{ scale: 0.93 }}
+              className={`${
+                hasRefinements && "text-beige"
+              } flex items-center justify-center gap-2 rounded-xl px-2 py-1 text-sm font-thin tracking-wider hover:text-beige sm:text-[1rem]`}
+            >
+              <p className="transition-colors duration-300">{options}</p>
+              <IoChevronDown className="transform duration-300 group-data-[state=open]:rotate-180" />
+            </motion.div>
+          </RadixAccordion.Trigger>
+        </RadixAccordion.Header>
         <AccordionContent
           facets={facets}
           open={open}
@@ -64,7 +91,7 @@ export default function FacetsAccordion({
           <AnimatePresence>
             {open && (
               <motion.div
-                className="z-0 h-[220px] sm:h-[170px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg"
+                className="z-0 h-[220px] w-full rounded-2xl border-2 border-beige bg-extraDarkGray/50 backdrop-blur-lg sm:h-[170px]"
                 initial="closed"
                 animate="open"
                 exit="closed"
@@ -95,9 +122,9 @@ const AccordionContent = ({
   return (
     <motion.div
       ref={scope}
-      className={`absolute z-50 hidden h-[220px] sm:h-[170px] w-full items-center justify-center`}
+      className={`absolute z-50 hidden h-[220px] w-full items-center justify-center sm:h-[170px]`}
     >
-      <div className="h-full w-full px-7 py-6 flex flex-wrap gap-3 justify-center items-center">
+      <div className="flex h-full w-full flex-wrap items-center justify-center gap-3 px-7 py-6">
         {facets.map((facet) => (
           <Facet
             attribute={facet.attribute}
