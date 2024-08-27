@@ -6,6 +6,8 @@
   "search": {
     "options": "Filter",
     "placeholder": "Søg",
+    "clearFacets": "Ryd filtre",
+    "clearFacet": "Ryd filter",
     "facets": [
       {
         "attribute": "base_spirits",

@@ -6,6 +6,8 @@
   "search": {
     "options": "Filter",
     "placeholder": "Sök",
+    "clearFacets": "Rensa filter",
+    "clearFacet": "Rensa filter",
     "facets": [
       {
         "attribute": "base_spirits",

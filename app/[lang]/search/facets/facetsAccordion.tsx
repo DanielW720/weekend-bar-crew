@@ -15,9 +15,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 export default function FacetsAccordion({
   facets,
   options,
+  clearFilterDict,
 }: {
   facets: Facets;
   options: string;
+  clearFilterDict: { single: string; multiple: string };
 }) {
   const [open, setOpen] = useState(false);
   const { items } = useCurrentRefinements();
@@ -65,7 +67,13 @@ export default function FacetsAccordion({
               }}
               className="text-xs text-beige"
             >
-              Remove {items.length} {items.length > 1 ? "filters" : "filter"}
+              {items.length > 1
+                ? `${clearFilterDict.multiple.split(" ")[0]} ${items.length} ${
+                    clearFilterDict.multiple.split(" ")[1]
+                  }`
+                : `${clearFilterDict.single.split(" ")[0]} 1 ${
+                    clearFilterDict.single.split(" ")[1]
+                  }`}
               <CiCircleRemove className="ml-1 inline-block text-sm" />
             </button>
           )}

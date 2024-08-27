@@ -6,6 +6,8 @@
   "search": {
     "options": "Filters",
     "placeholder": "Search",
+    "clearFacets": "Clear filters",
+    "clearFacet": "Clear filter",
     "facets": [
       {
         "attribute": "base_spirits",

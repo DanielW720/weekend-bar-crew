@@ -6,6 +6,8 @@
   "search": {
     "options": "Filter",
     "placeholder": "Søk",
+    "clearFacets": "Tøm filtre",
+    "clearFacet": "Tøm filter",
     "facets": [
       {
         "attribute": "base_spirits",

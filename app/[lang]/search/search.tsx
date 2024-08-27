@@ -47,7 +47,14 @@ export const Search = ({ search }: { search: SearchType }) => {
       <Configure hitsPerPage={6} filters={`language:${lang}`} />
       <div className={`mt-6 flex w-full flex-col items-center md:mt-12`}>
         <Searchbar placeholder={search.placeholder} />
-        <FacetsAccordion facets={search.facets} options={search.options} />
+        <FacetsAccordion
+          facets={search.facets}
+          options={search.options}
+          clearFilterDict={{
+            single: search.clearFacet,
+            multiple: search.clearFacets,
+          }}
+        />
         <ResultGrid />
       </div>
     </InstantSearch>

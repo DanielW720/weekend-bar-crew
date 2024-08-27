@@ -6,6 +6,8 @@
   "search": {
     "options": "Suodatin",
     "placeholder": "Hae",
+    "clearFacets": "Tyhjennä suodattimet",
+    "clearFacet": "Tyhjennä suodatin",
     "facets": [
       {
         "attribute": "base_spirits",

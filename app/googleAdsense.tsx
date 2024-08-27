@@ -5,7 +5,7 @@ type Props = {
 };
 
 const GoogleAdsense: React.FC<Props> = ({ pId }) => {
-  if (process.env.NODE_ENV !== "production") {
+  if (process.env.VERCEL_ENV !== "production") {
     return null;
   }
   return (
