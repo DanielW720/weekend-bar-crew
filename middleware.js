@@ -14,6 +14,9 @@ export function middleware(request) {
 
   if (pathnameHasLocale) return;
 
+  // Special case of requesting /sitemap.xml
+  if (pathname === "/sitemap.xml") return;
+
   // Redirect if there is no locale
   let headers = { "accept-language": request.headers.get("Accept-Language") };
   // Get list of accepted languages, ordered by client preference
