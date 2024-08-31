@@ -11,10 +11,7 @@ function ResultGrid() {
     if (sentinelRef.current !== null) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !isLastPage) {
-            console.log("Show more");
-            showMore();
-          }
+          if (entry.isIntersecting && !isLastPage) showMore();
         });
       });
 

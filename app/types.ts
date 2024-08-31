@@ -6,7 +6,6 @@ import {
   DocumentReference,
 } from "firebase/firestore";
 import dict from "./[lang]/dictionaries/en.json";
-import { supported_locales } from "@/middleware";
 
 /**
  * Data model used in Cloud Firestore "drinks" collection.

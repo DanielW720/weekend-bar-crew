@@ -34,7 +34,9 @@ export const Search = ({ search }: { search: SearchType }) => {
           query: query ? query : "",
           refinementList: {
             base_spirits: getFacetParamValues("base_spirits"),
-            difficulty_level: getFacetParamValues("difficulty_level.level"),
+            "difficulty_level.label": getFacetParamValues(
+              "difficulty_level.label"
+            ),
             flavor_profiles: getFacetParamValues("flavor_profiles"),
             glassware: getFacetParamValues("glassware"),
             mocktail_available: getFacetParamValues("mocktail_available"),
