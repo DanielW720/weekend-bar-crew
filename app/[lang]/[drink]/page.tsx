@@ -26,7 +26,7 @@ export default async function Page({
 
   return (
     <div className="flex w-full flex-col items-center py-12">
-      <h1 className="mt-6 text-4xl tracking-widest text-beige">{drink.name}</h1>
+      <h1 className="mt-6 text-center text-4xl tracking-widest text-beige">{drink.name}</h1>
       <DrinkImage image={drink.image} />
       <Tabs
         drink={JSON.parse(JSON.stringify(drink))}
