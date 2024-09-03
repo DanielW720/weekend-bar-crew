@@ -6,6 +6,7 @@ import { firestore } from "@/app/firebase";
 import { getDictionary } from "../dictionaries";
 import getAlternativeLanguages from "@/app/lib/getAlternateLanguages";
 import { notFound } from "next/navigation";
+import RelatedDrinks from "./relatedDrinks";
 
 // Dynamic segments not included in generateStaticParams are generated on demand. E.g., when a new
 // recipe is added to the database, the new drink page should be available directly waiting for revalidation.
@@ -26,13 +27,16 @@ export default async function Page({
 
   return (
     <div className="flex w-full flex-col items-center py-12">
-      <h1 className="mt-6 text-center text-4xl tracking-widest text-beige">{drink.name}</h1>
+      <h1 className="mt-6 text-center text-4xl tracking-widest text-beige">
+        {drink.name}
+      </h1>
       <DrinkImage image={drink.image} />
       <Tabs
         drink={JSON.parse(JSON.stringify(drink))}
         tabs={dict.drinkpage.tabs}
         recipeDisplayNames={dict.drinkpage.recipe}
       />
+      <RelatedDrinks drink={drink} />
     </div>
   );
 }
