@@ -4,7 +4,7 @@ import * as HoverCard from "@radix-ui/react-hover-card";
 import { Drink } from "@/app/types";
 
 export default function RelatedDrink({ drink }: { drink: Drink }) {
-  const href = `/${drink.language}/${drink.id}`;
+  const href = `/${drink.language}/${drink.name}`;
 
   return (
     <HoverCard.Root key={drink.id}>
