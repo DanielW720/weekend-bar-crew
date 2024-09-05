@@ -6,7 +6,7 @@ import { firestore } from "@/app/firebase";
 import { getDictionary } from "../dictionaries";
 import getAlternativeLanguages from "@/app/lib/getAlternateLanguages";
 import { notFound } from "next/navigation";
-import RelatedDrinks from "./relatedDrinks";
+import RelatedDrinks from "./related/relatedDrinks";
 
 // Dynamic segments not included in generateStaticParams are generated on demand. E.g., when a new
 // recipe is added to the database, the new drink page should be available directly waiting for revalidation.
