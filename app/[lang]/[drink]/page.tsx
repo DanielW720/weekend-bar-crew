@@ -81,7 +81,7 @@ export async function generateMetadata({
     title: `Weekend Bar Crew - ${params.drink}`,
     description: drink.description_short,
     alternates: {
-      canonical: `/${params.lang}/${drink.name}`,
+      // canonical: `/${params.lang}/${drink.name}`,
       languages: languages,
     },
   };

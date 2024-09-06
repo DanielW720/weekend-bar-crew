@@ -22,7 +22,7 @@ export async function generateMetadata({
     description: `Weekend Bar Crew - ${dict.header.slogan}`,
     metadataBase: new URL(process.env.NEXT_PUBLIC_URL as string),
     alternates: {
-      canonical: `/${params.lang}`,
+      // canonical: `/${params.lang}`,
       languages: languages,
     },
   };
