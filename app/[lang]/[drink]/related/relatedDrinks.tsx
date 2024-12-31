@@ -1,7 +1,14 @@
-import { firestore } from "@/app/firebase";
+import { firestore, functions } from "@/app/firebase";
 import { Drink, drinkConverter } from "@/app/types";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  documentId,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import RelatedDrink from "./relatedDrink";
+import { httpsCallable } from "firebase/functions";
 
 export default async function RelatedDrinks({ drink }: { drink: Drink }) {
   // Fetch related drinks based on the drink's tags
@@ -22,17 +29,39 @@ export default async function RelatedDrinks({ drink }: { drink: Drink }) {
 }
 
 async function fetchRelatedDrinks(drink: Drink): Promise<Drink[]> {
-  // Fetch drinks with at least one tag in common with the current drink
-  const drinksCollection = collection(firestore, "drinks").withConverter(
-    drinkConverter
-  );
-  const drinksQuery = query(
-    drinksCollection,
-    where("__name__", "!=", drink.id),
-    where("base_spirits", "array-contains-any", drink.base_spirits),
-    where("language", "==", drink.language)
-  );
-  const snapshot = await getDocs(drinksQuery.withConverter(drinkConverter));
+  try {
+    // Fetch the 5 most similar drinks to the current, excluding the current drink
+    const knnQuery = httpsCallable<
+      {
+        query: number[];
+        k?: number;
+        exclude?: string[];
+        alcohol?: boolean;
+        language?: string;
+      },
+      { drinks: string[] }
+    >(functions, "knn_query");
+    const similarDrinks = await knnQuery({
+      query: drink.name_embedding,
+      k: 5,
+      exclude: [drink.id],
+      alcohol: drink.contains_alcohol,
+      language: drink.language,
+    });
 
-  return snapshot.docs.map((doc) => doc.data());
+    // Fetch drinks by IDs from Firestore
+    const drinksCollection = collection(firestore, "drinks").withConverter(
+      drinkConverter
+    );
+    const drinksQuery = query(
+      drinksCollection,
+      where(documentId(), "in", similarDrinks.data.drinks)
+    );
+    const snapshot = await getDocs(drinksQuery);
+
+    return snapshot.docs.map((doc) => doc.data());
+  } catch (error) {
+    console.error("Error calling knn_query. Error:", error);
+    return [];
+  }
 }

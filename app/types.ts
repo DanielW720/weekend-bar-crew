@@ -4,7 +4,8 @@ import {
   QueryDocumentSnapshot,
   SnapshotOptions,
   DocumentReference,
-} from "firebase/firestore";
+  vector,
+} from "@firebase/firestore";
 import dict from "./[lang]/dictionaries/en.json";
 
 /**
@@ -12,7 +13,8 @@ import dict from "./[lang]/dictionaries/en.json";
  */
 export type Drink = {
   name: string;
-  contains_alcohol: string;
+  name_embedding: number[];
+  contains_alcohol: boolean;
   language: string;
   description_short: string;
   description: string[];
@@ -53,6 +55,7 @@ export const drinkConverter: FirestoreDataConverter<Drink> = {
   toFirestore(drink: Drink): DocumentData {
     return {
       name: drink.name,
+      name_embedding: vector(drink.name_embedding),
       description_short: drink.description_short,
       description: drink.description,
       contains_alcohol: drink.contains_alcohol,
@@ -85,6 +88,7 @@ export const drinkConverter: FirestoreDataConverter<Drink> = {
     const data = snapshot.data(options);
     return {
       name: data.name,
+      name_embedding: data.name_embedding?._values ?? Array(512).fill(0),
       description_short: data.description_short,
       description: data.description,
       contains_alcohol: data.contains_alcohol,

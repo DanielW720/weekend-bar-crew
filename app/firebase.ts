@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
+import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,10 +15,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const firestore = getFirestore(app);
+const functions = getFunctions(app);
 
 // Connect to the emulators
 if (process.env.FIREBASE_EMULATORS === "true") {
   connectFirestoreEmulator(firestore, "127.0.0.1", 8080);
+  connectFunctionsEmulator(functions, "127.0.0.1", 5001);
 }
 
-export { firestore };
+export { firestore, functions };

@@ -10,7 +10,7 @@ export default function RelatedDrink({ drink }: { drink: Drink }) {
     <HoverCard.Root key={drink.id}>
       <HoverCard.Trigger asChild>
         <Link href={href}>
-          <div className="relative h-24 w-24 overflow-hidden rounded-md">
+          <div className="relative h-24 w-24 overflow-hidden rounded-md border-[1px] border-transparent transition-colors duration-300 hover:border-beige md:border-2">
             <Image
               src={drink.image.url}
               alt={drink.image.alt}
