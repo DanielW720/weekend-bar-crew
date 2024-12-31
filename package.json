@@ -26,7 +26,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.56.0",
     "eslint-config-next": "^14.1.4",
-    "firebase": "^10.6.0",
+    "firebase": "^10.14.1",
     "framer-motion": "^10.12.23",
     "material-icons": "^1.13.8",
     "negotiator": "^0.6.3",
