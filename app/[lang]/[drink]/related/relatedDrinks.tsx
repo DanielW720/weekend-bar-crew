@@ -30,6 +30,12 @@ export default async function RelatedDrinks({ drink }: { drink: Drink }) {
 
 async function fetchRelatedDrinks(drink: Drink): Promise<Drink[]> {
   try {
+    if (!drink.name_embedding) {
+      throw new Error(
+        `Drink ${drink.name} (${drink.id}, ${drink.language}) does not have a name embedding`
+      );
+    }
+
     // Fetch the 5 most similar drinks to the current, excluding the current drink
     const knnQuery = httpsCallable<
       {
