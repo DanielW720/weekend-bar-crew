@@ -30,7 +30,7 @@ export default async function RelatedDrinks({ drink }: { drink: Drink }) {
 
 async function fetchRelatedDrinks(drink: Drink): Promise<Drink[]> {
   try {
-    if (!drink.name_embedding) {
+    if (drink.name_embedding.every((value) => value === 0)) {
       throw new Error(
         `Drink ${drink.name} (${drink.id}, ${drink.language}) does not have a name embedding`
       );
