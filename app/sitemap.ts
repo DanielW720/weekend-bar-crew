@@ -23,14 +23,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const aboutPages: MetadataRoute.Sitemap = supported_locales.map((lang) => ({
-    url: `${baseUrl}/${lang}/about`,
+    url: `${baseUrl}/${lang}/info/about`,
     lastModified: "2024-08-28T18:05:50.946Z",
     changeFrequency: "monthly",
     priority: 1,
   }));
 
   const contactPages: MetadataRoute.Sitemap = supported_locales.map((lang) => ({
-    url: `${baseUrl}/${lang}/contact`,
+    url: `${baseUrl}/${lang}/info/contact`,
     lastModified: "2024-08-28T18:05:50.946Z",
     changeFrequency: "monthly",
     priority: 0.5,
@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const instagramPages: MetadataRoute.Sitemap = supported_locales.map(
     (lang) => ({
-      url: `${baseUrl}/${lang}/instagram`,
+      url: `${baseUrl}/${lang}/info/instagram`,
       lastModified: "2024-08-28T18:05:50.946Z",
       changeFrequency: "monthly",
       priority: 0.5,
