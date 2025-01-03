@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const drinkPages: MetadataRoute.Sitemap = querySnapshot.docs.map((doc) => ({
-    url: `${baseUrl}/${doc.data().language}/${encodeURI(doc.data().name)}`,
+    url: `${baseUrl}/${doc.data().language}/${doc.data().name}`,
     lastModified: "2024-08-28T18:05:50.946Z",
     changeFrequency: "monthly",
     priority: 1,
