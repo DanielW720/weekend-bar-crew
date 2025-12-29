@@ -3,8 +3,9 @@ import Link from "next/link";
 import React from "react";
 import { getDictionary } from "../../dictionaries";
 
-export default async function Page({ params }: { params: { lang: Locale } }) {
-  const dict = await getDictionary(params.lang);
+export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
 
   return (
     <div className="flex flex-col gap-4 sm:gap-8">
@@ -22,7 +23,7 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
         <br />
         <div className="mx-auto w-fit">
           <Link
-            href={`/${params.lang}/info/contact`}
+            href={`/${lang}/info/contact`}
             className="text-blue-400 hover:underline"
           >
             👉 {dict.about.contact_page}

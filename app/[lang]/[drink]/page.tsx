@@ -17,11 +17,12 @@ export const revalidate = 900;
 export default async function Page({
   params,
 }: {
-  params: { lang: Locale; drink: string };
+  params: Promise<{ lang: string; drink: string }>;
 }) {
   // Use the params.drink to fetch drink data at build time to statically render this page
-  const drink = await fetchDrink(params.drink, params.lang);
-  const dict = await getDictionary(params.lang);
+  const { lang, drink: drinkName } = await params;
+  const drink = await fetchDrink(drinkName, lang);
+  const dict = await getDictionary(lang as Locale);
 
   if (!drink) notFound();
 
@@ -66,20 +67,21 @@ export async function generateStaticParams({
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: Locale; drink: string };
+  params: Promise<{ lang: string; drink: string }>;
 }) {
-  const drink = await fetchDrink(params.drink, params.lang);
+  const { lang, drink } = await params;
+  const drinkData = await fetchDrink(drink, lang as Locale);
 
-  if (!drink)
+  if (!drinkData)
     return {
       title: "Weekend Bar Crew - 404",
     };
 
-  const languages = getAlternativeLanguages(params.lang, params.drink);
+  const languages = getAlternativeLanguages(lang, drink);
 
   return {
-    title: `Weekend Bar Crew - ${params.drink}`,
-    description: drink.description_short,
+    title: `Weekend Bar Crew - ${drink}`,
+    description: drinkData.description_short,
     alternates: {
       // canonical: `/${params.lang}/${drink.name}`,
       languages: languages,

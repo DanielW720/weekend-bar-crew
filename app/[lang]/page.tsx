@@ -4,8 +4,9 @@ import { Suspense } from "react";
 import { getDictionary } from "./dictionaries";
 import { Locale } from "../types";
 
-export default async function Page({ params }: { params: { lang: Locale } }) {
-  const dict = await getDictionary(params.lang);
+export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
 
   return (
     <div className="flex flex-col items-center justify-start">

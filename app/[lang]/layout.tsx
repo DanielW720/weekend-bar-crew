@@ -12,10 +12,11 @@ import GoogleAdsense from "../googleAdsense";
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: Locale };
+  params: Promise<{ lang: string }>;
 }) {
-  const languages = getAlternateLanguages(params.lang);
-  const dict = await getDictionary(params.lang);
+  const { lang } = await params;
+  const languages = getAlternateLanguages(lang as Locale);
+  const dict = await getDictionary(lang as Locale);
 
   return {
     title: "Weekend Bar Crew",
@@ -33,12 +34,13 @@ export default async function Root({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: Locale };
+  params: Promise<{ lang: string }>;
 }) {
-  const dict = await getDictionary(params.lang);
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
 
   return (
-    <html lang={params.lang}>
+    <html lang={lang}>
       <body
         className={`${inknut_antiqua.className} min-h-screen overflow-x-hidden bg-black`}
       >
@@ -50,7 +52,7 @@ export default async function Root({
           <Footer
             about={dict.footer.about}
             contact={dict.footer.contact}
-            lang={params.lang}
+            lang={lang as Locale}
           />
         </div>
       </body>

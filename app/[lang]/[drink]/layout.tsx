@@ -9,9 +9,10 @@ export default async function Layout({
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: Locale };
+  params: Promise<{ lang: string; drink: string }>;
 }) {
-  const dict = await getDictionary(params.lang);
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
 
   return (
     <div className={`px-6`}>
