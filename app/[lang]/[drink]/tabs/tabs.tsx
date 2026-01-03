@@ -48,8 +48,8 @@ export default function Tabs({
           {tab === tabs.overview ? (
             <AnimateTab
               key={tabs.overview}
-              swipeLeft={() => setTab(tabs.recipe)}
-              swipeRight={() => {}}
+              swipeLeft={() => { }}
+              swipeRight={() => setTab(tabs.recipe)}
             >
               <OverviewTab
                 description={drink.description}
@@ -59,8 +59,8 @@ export default function Tabs({
           ) : (
             <AnimateTab
               key={tabs.recipe}
-              swipeLeft={() => {}}
-              swipeRight={() => setTab(tabs.overview)}
+              swipeLeft={() => setTab(tabs.overview)}
+              swipeRight={() => { }}
             >
               <RecipeTab
                 recipe={drink.recipe}
