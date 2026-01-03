@@ -9,7 +9,6 @@ import {
   useTransform,
 } from "framer-motion";
 import { Drink, RecipeDisplayNames, Tabs as TabsType } from "../../../types";
-import { EquipmentTab } from "./equipmentTab";
 import { OverviewTab } from "./overviewTab";
 import { RecipeTab } from "./recipeTab";
 
@@ -42,9 +41,6 @@ export default function Tabs({
               {tabs.recipe}
             </Trigger>
           </div>
-          <Trigger value={tabs.equipments} tab={tab}>
-            {tabs.equipments}
-          </Trigger>
         </RadixTabs.List>
 
         {/* AnimatePresence for smooth animations when swithing tabs */}
@@ -52,39 +48,26 @@ export default function Tabs({
           {tab === tabs.overview ? (
             <AnimateTab
               key={tabs.overview}
-              swipeLeft={() => {}}
-              swipeRight={() => setTab(tabs.recipe)}
+              swipeLeft={() => setTab(tabs.recipe)}
+              swipeRight={() => {}}
             >
               <OverviewTab
                 description={drink.description}
                 value={tabs.overview}
               />
             </AnimateTab>
-          ) : tab === tabs.recipe ? (
+          ) : (
             <AnimateTab
               key={tabs.recipe}
-              swipeLeft={() => {
-                setTab(tabs.overview);
-              }}
-              swipeRight={() => setTab(tabs.equipments)}
+              swipeLeft={() => {}}
+              swipeRight={() => setTab(tabs.overview)}
             >
               <RecipeTab
                 recipe={drink.recipe}
                 value={tabs.recipe}
                 displayNames={recipeDisplayNames}
-              />
-            </AnimateTab>
-          ) : (
-            <AnimateTab
-              key={tabs.equipments}
-              swipeLeft={() => {
-                setTab(tabs.recipe);
-              }}
-              swipeRight={() => {}}
-            >
-              <EquipmentTab
                 equipments={drink.equipments}
-                value={tabs.equipments}
+                glassware={drink.glassware}
               />
             </AnimateTab>
           )}

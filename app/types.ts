@@ -24,7 +24,7 @@ export type Drink = {
   equipments: string[];
   difficulty_level: string;
   preparation_time_min: string;
-  glassware: string[];
+  glassware: string;
   recipe: {
     ingredients: {
       name: string;

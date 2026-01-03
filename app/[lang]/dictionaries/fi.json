@@ -46,6 +46,9 @@
       "equipments": "Välineet"
     },
     "recipe": {
+      "equipment": "Välineet",
+      "glassware": "Lasi",
+      "recommendedGlass": "Suositeltu lasi:",
       "ingredients": "Ainekset",
       "instructions": "Ohjeet"
     }

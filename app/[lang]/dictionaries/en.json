@@ -46,6 +46,9 @@
       "equipments": "Equipment"
     },
     "recipe": {
+      "equipment": "Equipment",
+      "glassware": "Glassware",
+      "recommendedGlass": "Recommended glass:",
       "ingredients": "Ingredients",
       "instructions": "Instructions"
     }

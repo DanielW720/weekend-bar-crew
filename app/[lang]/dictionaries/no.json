@@ -46,6 +46,9 @@
       "equipments": "Utstyr"
     },
     "recipe": {
+      "equipment": "Utstyr",
+      "glassware": "Glas",
+      "recommendedGlass": "Anbefalt glas:",
       "ingredients": "Ingredienser",
       "instructions": "Instruksjoner"
     }

@@ -50,6 +50,9 @@
       "equipments": "Utrustning"
     },
     "recipe": {
+      "equipment": "Utrustning",
+      "glassware": "Glas",
+      "recommendedGlass": "Rekomenderat glas:",
       "ingredients": "Ingredienser",
       "instructions": "Instruktioner"
     }
