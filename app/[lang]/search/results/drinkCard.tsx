@@ -5,6 +5,7 @@ import { useState, useRef } from "react";
 import { Drink } from "../../../types";
 import useLanguagePathname from "@/app/hooks/useLanguagePathname";
 import useSearchParamsString from "@/app/hooks/useSearchParamsString";
+import { unsetBodyOverflow } from "@/app/lib/unsetBodyOverflow";
 
 export const DrinkCard = ({ drink }: { drink: Drink }) => {
   const router = useRouter();
@@ -45,6 +46,8 @@ export const DrinkCard = ({ drink }: { drink: Drink }) => {
       .replace(searchModalExpression, "")
       .replace(leadingAmpersandExpression, "");
     router.push(`${pathname}/${drink.name}${updatedParams}`);
+    // Unset body overflow when navigating to a new route
+    unsetBodyOverflow();
   };
 
   return (
