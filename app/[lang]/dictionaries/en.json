@@ -6,6 +6,13 @@
   "drinkCard": {
     "nonAlcoholic": "Non-alcoholic"
   },
+  "drinkInfo": {
+    "difficulty": "Difficulty",
+    "prepTime": "Prep Time",
+    "glassware": "Glassware",
+    "baseSpirits": "Base Spirits",
+    "flavorProfiles": "Flavor Profiles"
+  },
   "search": {
     "options": "Filters",
     "placeholder": "Search for cocktails...",
@@ -45,8 +52,7 @@
   "drinkpage": {
     "tabs": {
       "overview": "Overview",
-      "recipe": "Recipe",
-      "equipments": "Equipment"
+      "recipe": "Recipe"
     },
     "recipe": {
       "equipment": "Equipment",

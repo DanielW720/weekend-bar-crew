@@ -6,6 +6,13 @@
   "drinkCard": {
     "nonAlcoholic": "Alkoholfrit"
   },
+  "drinkInfo": {
+    "difficulty": "Sværhedsgrad",
+    "prepTime": "Tilberedningstid",
+    "glassware": "Glas",
+    "baseSpirits": "Grundspirituoser",
+    "flavorProfiles": "Smagsprofiler"
+  },
   "search": {
     "options": "Filter",
     "placeholder": "Søg efter cocktails...",
@@ -45,8 +52,7 @@
   "drinkpage": {
     "tabs": {
       "overview": "Oversigt",
-      "recipe": "Opskrift",
-      "equipments": "Udstyr"
+      "recipe": "Opskrift"
     },
     "recipe": {
       "equipment": "Udstyr",

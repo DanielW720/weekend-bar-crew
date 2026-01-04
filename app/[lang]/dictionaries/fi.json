@@ -6,6 +6,13 @@
   "drinkCard": {
     "nonAlcoholic": "Ilman alkoholia"
   },
+  "drinkInfo": {
+    "difficulty": "Vaikeusaste",
+    "prepTime": "Valmistusaika",
+    "glassware": "Lasi",
+    "baseSpirits": "Perusspirituosat",
+    "flavorProfiles": "Makuprofiilit"
+  },
   "search": {
     "options": "Suodatin",
     "placeholder": "Hae cocktaileja...",
@@ -45,8 +52,7 @@
   "drinkpage": {
     "tabs": {
       "overview": "Yleiskatsaus",
-      "recipe": "Resepti",
-      "equipments": "Välineet"
+      "recipe": "Resepti"
     },
     "recipe": {
       "equipment": "Välineet",

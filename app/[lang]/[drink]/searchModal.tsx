@@ -6,7 +6,7 @@ import { RxCross1 } from "react-icons/rx";
 import useOpenSearchModal from "@/app/hooks/useOpenModal";
 import { Search as SearchType } from "@/app/types";
 
-function SearchModal({ search }: { search: SearchType }) {
+function SearchModal({ search, drinkCard }: { search: SearchType; drinkCard: { nonAlcoholic: string } }) {
   const [isOpen, close] = useOpenSearchModal();
 
   return (
@@ -23,7 +23,7 @@ function SearchModal({ search }: { search: SearchType }) {
             className="fixed inset-0 z-30 flex flex-col items-center overflow-y-auto bg-black/40 pt-[8rem] backdrop-blur-md"
           >
             <ExitModalButton close={close} />
-            <Search search={search} />
+            <Search search={search} drinkCard={drinkCard} />
           </motion.div>
         </Portal.Root>
       )}

@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import SearchModal from "../searchModal";
 import { Search } from "@/app/types";
 
-function SearchButton({ search }: { search: Search }) {
+function SearchButton({ search, drinkCard }: { search: Search; drinkCard: { nonAlcoholic: string } }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -22,7 +22,7 @@ function SearchButton({ search }: { search: Search }) {
       >
         <MagnifyingGlassIcon className="text-beige" height={35} width={35} />
       </button>
-      <SearchModal search={search} />
+      <SearchModal search={search} drinkCard={drinkCard} />
     </div>
   );
 }

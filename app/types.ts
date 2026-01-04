@@ -22,7 +22,7 @@ export type Drink = {
   flavor_profiles: string[];
   type: string[];
   equipments: string[];
-  difficulty_level: string;
+  difficulty_level: { label: string; description: string };
   preparation_time_min: string;
   glassware: string;
   recipe: {

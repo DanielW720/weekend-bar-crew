@@ -5,8 +5,10 @@ import { Search } from "@/app/types";
 
 export default function BackAndSearchStickyButtons({
   search,
+  drinkCard,
 }: {
   search: Search;
+  drinkCard: { nonAlcoholic: string };
 }) {
   return (
     <div
@@ -15,7 +17,7 @@ export default function BackAndSearchStickyButtons({
     >
       <Suspense fallback={<BackButtonFallback />}>
         <BackButton />
-        <SearchButton search={search} />
+        <SearchButton search={search} drinkCard={drinkCard} />
       </Suspense>
     </div>
   );

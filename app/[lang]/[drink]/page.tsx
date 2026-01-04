@@ -1,5 +1,6 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import DrinkImage from "./drinkImage";
+import DrinkInfo from "./drinkInfo";
 import Tabs from "./tabs/tabs";
 import { Locale, drinkConverter } from "@/app/types";
 import { firestore } from "@/app/firebase";
@@ -31,7 +32,33 @@ export default async function Page({
       <h1 className="mt-6 text-center text-4xl tracking-widest text-beige">
         {drink.name}
       </h1>
-      <DrinkImage image={drink.image} />
+      
+      {/* Image with Badges Overlay */}
+      <div className="relative">
+        <DrinkImage image={drink.image} />
+        
+        {/* Type and Status Badges - Overlaid at Bottom */}
+        {(drink.type.length > 0 || !drink.contains_alcohol) && (
+          <div className="absolute bottom-0 left-0 right-0 flex flex-wrap gap-2 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+            {drink.type.length > 0 &&
+              drink.type.map((t) => (
+                <span
+                  key={t}
+                  className="px-3 py-1.5 rounded-full bg-black/25 text-beige border border-beige/40 text-sm font-medium backdrop-blur-md"
+                >
+                  {t}
+                </span>
+              ))}
+            {!drink.contains_alcohol && (
+              <span className="px-3 py-1.5 rounded-full bg-green-700/30 text-white border border-green-400/40 text-sm font-medium backdrop-blur-sm">
+                {dict.drinkCard.nonAlcoholic}
+              </span>
+            )}
+          </div>
+        )}
+      </div>
+
+      <DrinkInfo drink={drink} nonAlcoholicLabel={dict.drinkCard.nonAlcoholic} drinkInfo={dict.drinkInfo} />
       <Tabs
         drink={JSON.parse(JSON.stringify(drink))}
         tabs={dict.drinkpage.tabs}

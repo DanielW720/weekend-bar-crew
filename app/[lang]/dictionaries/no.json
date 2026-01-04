@@ -6,6 +6,13 @@
   "drinkCard": {
     "nonAlcoholic": "Alkoholfritt"
   },
+  "drinkInfo": {
+    "difficulty": "Vanskelighetsgrad",
+    "prepTime": "Oppgjøringstid",
+    "glassware": "Glass",
+    "baseSpirits": "Basispirituosa",
+    "flavorProfiles": "Smaksprofiler"
+  },
   "search": {
     "options": "Filter",
     "placeholder": "Søk etter cocktails...",
@@ -45,8 +52,7 @@
   "drinkpage": {
     "tabs": {
       "overview": "Oversikt",
-      "recipe": "Oppskrift",
-      "equipments": "Utstyr"
+      "recipe": "Oppskrift"
     },
     "recipe": {
       "equipment": "Utstyr",

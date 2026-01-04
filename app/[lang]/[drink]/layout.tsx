@@ -17,7 +17,7 @@ export default async function Layout({
   return (
     <div className={`px-6`}>
       <Background />
-      <BackAndSearchStickyButtons search={dict.search} />
+      <BackAndSearchStickyButtons search={dict.search} drinkCard={dict.drinkCard} />
       {children}
     </div>
   );

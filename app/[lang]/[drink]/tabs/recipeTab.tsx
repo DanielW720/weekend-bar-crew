@@ -18,34 +18,25 @@ export function RecipeTab({
     <RadixTabs.Content value={value} forceMount asChild>
       <div className="w-full">
         {/* Equipment & Glassware Card - Full Width, Top Position */}
-        <div className="mb-8 w-full border border-beige rounded-lg p-3 sm:p-4">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* Equipment Section */}
-            <div>
-              <h3 className="text-lg tracking-wider sm:text-xl">
-                {displayNames.equipment}
-              </h3>
-              <ul className="ml-2 mt-3 text-sm tracking-wide sm:text-base">
-                {equipments.map((item, idx) => (
-                  <li key={item} className="my-0.5">
-                    <div
-                      className={`my-0.5 flex items-center py-1 ${idx % 2 === 0 &&
-                        "bg-gradient-to-r from-transparent via-darkGray to-transparent"
-                        }`}
-                    >
-                      <span className="mr-2">•</span>
-                      <span>{item}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Glassware Section */}
-            <p className="text-sm tracking-wide sm:text-base">
-              {displayNames.recommendedGlass} <span className="font-semibold">{glassware}</span>
-            </p>
-          </div>
+        <div className="mb-8 w-fit border border-beige rounded-lg p-3 sm:p-4 mx-auto">
+          {/* Equipment Section */}
+          <h3 className="text-lg tracking-wider sm:text-xl text-center">
+            {displayNames.equipment}
+          </h3>
+          <ul className="ml-2 mt-3 text-sm tracking-wide sm:text-base pr-40">
+            {equipments.map((item, idx) => (
+              <li key={item} className="my-0.5">
+                <div
+                  className={`my-0.5 flex items-center py-1 ${idx % 2 === 0 &&
+                    "bg-gradient-to-r from-transparent via-darkGray to-transparent"
+                    }`}
+                >
+                  <span className="mr-2">•</span>
+                  <span>{item}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Ingredients & Instructions - Original Layout */}
