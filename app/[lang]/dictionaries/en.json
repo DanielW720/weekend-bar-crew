@@ -3,6 +3,9 @@
     "slogan": "Discover hundreds of tasty and beautiful cocktails",
     "language": "Language"
   },
+  "drinkCard": {
+    "nonAlcoholic": "Non-alcoholic"
+  },
   "search": {
     "options": "Filters",
     "placeholder": "Search for cocktails...",

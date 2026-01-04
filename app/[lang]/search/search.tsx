@@ -9,7 +9,7 @@ import FacetsAccordion from "./facets/facetsAccordion";
 import ResultGrid from "./results/resultGrid";
 import { Searchbar } from "./searchbar";
 
-export const Search = ({ search }: { search: SearchType }) => {
+export const Search = ({ search, drinkCard }: { search: SearchType; drinkCard: { nonAlcoholic: string } }) => {
   const searchParams = useSearchParams();
   const lang = useLanguagePathname(true);
 
@@ -56,7 +56,7 @@ export const Search = ({ search }: { search: SearchType }) => {
             multiple: search.clearFacets,
           }}
         />
-        <ResultGrid />
+        <ResultGrid drinkCard={drinkCard} />
       </div>
     </InstantSearch>
   );

@@ -3,6 +3,9 @@
     "slogan": "Löydä satoja tyylikkäitä ja herkullisia cocktaileja",
     "language": "Kieli"
   },
+  "drinkCard": {
+    "nonAlcoholic": "Ilman alkoholia"
+  },
   "search": {
     "options": "Suodatin",
     "placeholder": "Hae cocktaileja...",

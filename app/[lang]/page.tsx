@@ -12,7 +12,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
     <div className="flex flex-col items-center justify-start">
       <BackdropImage />
       <Suspense fallback={<SearchFallback />}>
-        <Search search={dict.search} />
+        <Search search={dict.search} drinkCard={dict.drinkCard} />
       </Suspense>
     </div>
   );

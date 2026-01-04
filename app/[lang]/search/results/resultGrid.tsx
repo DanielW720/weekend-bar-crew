@@ -3,7 +3,7 @@ import { useInfiniteHits } from "react-instantsearch";
 import { Drink } from "../../../types";
 import { DrinkCard } from "./drinkCard";
 
-function ResultGrid() {
+function ResultGrid({ drinkCard }: { drinkCard: { nonAlcoholic: string } }) {
   const { items, showMore, isLastPage } = useInfiniteHits<Drink>();
   const sentinelRef = useRef(null);
 
@@ -26,7 +26,7 @@ function ResultGrid() {
   return (
     <ul className="mt-8 grid w-fit grid-cols-1 justify-items-center gap-16 px-8 pb-16 sm:grid-cols-2 md:mt-16 md:grid-cols-3 xl:gap-32">
       {items.map((drink) => (
-        <DrinkCard key={drink.objectID} drink={drink} />
+        <DrinkCard key={drink.objectID} drink={drink} drinkCard={drinkCard} />
       ))}
       <div ref={sentinelRef} aria-hidden="true" />
     </ul>

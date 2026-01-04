@@ -3,6 +3,9 @@
     "slogan": "Opdag hundredvis af flotte og lækre cocktails",
     "language": "Sprog"
   },
+  "drinkCard": {
+    "nonAlcoholic": "Alkoholfrit"
+  },
   "search": {
     "options": "Filter",
     "placeholder": "Søg efter cocktails...",
