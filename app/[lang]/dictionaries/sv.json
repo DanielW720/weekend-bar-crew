@@ -5,7 +5,7 @@
   },
   "search": {
     "options": "Filter",
-    "placeholder": "Sök",
+    "placeholder": "Sök efter cocktails...",
     "clearFacets": "Rensa filter",
     "clearFacet": "Rensa filter",
     "facets": [

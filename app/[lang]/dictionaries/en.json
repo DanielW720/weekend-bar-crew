@@ -5,7 +5,7 @@
   },
   "search": {
     "options": "Filters",
-    "placeholder": "Search",
+    "placeholder": "Search for cocktails...",
     "clearFacets": "Clear filters",
     "clearFacet": "Clear filter",
     "facets": [

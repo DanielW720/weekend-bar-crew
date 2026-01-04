@@ -5,17 +5,22 @@ import { RxCross1 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import useCurrentQuery from "@/app/hooks/useCurrentQuery";
 import { unsetBodyOverflow } from "@/app/lib/unsetBodyOverflow";
+import { useEffect, useRef } from "react";
 
 type Inputs = {
   query: string;
 };
 
+const DEBOUNCE_DELAY = 500; // milliseconds
+
 export const Searchbar = ({ placeholder }: { placeholder: string }) => {
-  const { setValue, register, handleSubmit } = useForm<Inputs>();
+  const { setValue, register, handleSubmit, watch } = useForm<Inputs>();
   const currentQuery = useCurrentQuery(setValue);
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const queryValue = watch("query");
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // Update search params
@@ -41,6 +46,21 @@ export const Searchbar = ({ placeholder }: { placeholder: string }) => {
 
     router.push(`${pathname}?${paramsString}`);
   };
+
+  // Debounced auto-search effect
+  useEffect(() => {
+    debounceTimerRef.current = setTimeout(() => {
+      handleSubmit(onSubmit)();
+    }, DEBOUNCE_DELAY);
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [queryValue, handleSubmit]);
+
+
 
   return (
     <div className="w-full max-w-xs px-4 md:max-w-sm">

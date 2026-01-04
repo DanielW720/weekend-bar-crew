@@ -5,7 +5,7 @@
   },
   "search": {
     "options": "Filter",
-    "placeholder": "Søg",
+    "placeholder": "Søg efter cocktails...",
     "clearFacets": "Ryd filtre",
     "clearFacet": "Ryd filter",
     "facets": [

@@ -5,7 +5,7 @@
   },
   "search": {
     "options": "Suodatin",
-    "placeholder": "Hae",
+    "placeholder": "Hae cocktaileja...",
     "clearFacets": "Tyhjennä suodattimet",
     "clearFacet": "Tyhjennä suodatin",
     "facets": [
