@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { Drink } from "../../../types";
+import { useEffect, useRef } from "react";
 import { useInfiniteHits } from "react-instantsearch";
+import { Drink } from "../../../types";
 import { DrinkCard } from "./drinkCard";
 
 function ResultGrid() {

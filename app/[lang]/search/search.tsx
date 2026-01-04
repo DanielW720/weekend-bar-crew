@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
-import { Configure, InstantSearch } from "react-instantsearch";
-import { Search as SearchType } from "@/app/types";
 import { client, indexName } from "@/app/constants";
+import useLanguagePathname from "@/app/hooks/useLanguagePathname";
+import { Search as SearchType } from "@/app/types";
+import { useSearchParams } from "next/navigation";
+import { Configure, InstantSearch } from "react-instantsearch";
+import FacetsAccordion from "./facets/facetsAccordion";
 import ResultGrid from "./results/resultGrid";
 import { Searchbar } from "./searchbar";
-import FacetsAccordion from "./facets/facetsAccordion";
-import { useSearchParams } from "next/navigation";
-import useLanguagePathname from "@/app/hooks/useLanguagePathname";
 
 export const Search = ({ search }: { search: SearchType }) => {
   const searchParams = useSearchParams();
@@ -46,7 +45,7 @@ export const Search = ({ search }: { search: SearchType }) => {
         },
       }}
     >
-      <Configure hitsPerPage={6} filters={`language:${lang}`} />
+      <Configure hitsPerPage={12} filters={`language:${lang}`} />
       <div className={`mt-6 flex w-full flex-col items-center md:mt-12`}>
         <Searchbar placeholder={search.placeholder} />
         <FacetsAccordion
