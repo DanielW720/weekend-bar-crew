@@ -1,13 +1,13 @@
+import { firestore } from "@/app/firebase";
+import getAlternativeLanguages from "@/app/lib/getAlternateLanguages";
+import { Locale, drinkConverter } from "@/app/types";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { notFound } from "next/navigation";
+import { getDictionary } from "../dictionaries";
 import DrinkImage from "./drinkImage";
 import DrinkInfo from "./drinkInfo";
-import Tabs from "./tabs/tabs";
-import { Locale, drinkConverter } from "@/app/types";
-import { firestore } from "@/app/firebase";
-import { getDictionary } from "../dictionaries";
-import getAlternativeLanguages from "@/app/lib/getAlternateLanguages";
-import { notFound } from "next/navigation";
 import RelatedDrinks from "./related/relatedDrinks";
+import Tabs from "./tabs/tabs";
 
 // Dynamic segments not included in generateStaticParams are generated on demand. E.g., when a new
 // recipe is added to the database, the new drink page should be available directly waiting for revalidation.
@@ -34,23 +34,23 @@ export default async function Page({
       </h1>
       
       {/* Image with Badges Overlay */}
-      <div className="relative">
+      <div className="relative rounded-[1rem] border-b-2 border-beige shadow-lg mt-6 overflow-hidden">
         <DrinkImage image={drink.image} />
         
         {/* Type and Status Badges - Overlaid at Bottom */}
         {(drink.type.length > 0 || !drink.contains_alcohol) && (
-          <div className="absolute bottom-0 left-0 right-0 flex flex-wrap gap-2 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+          <div className="absolute bottom-0 left-0 right-0 flex flex-wrap gap-1.5 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
             {drink.type.length > 0 &&
               drink.type.map((t) => (
                 <span
                   key={t}
-                  className="px-3 py-1.5 rounded-full bg-black/25 text-beige border border-beige/40 text-sm font-medium backdrop-blur-md"
+                  className="px-2 py-1 rounded-full bg-black/25 text-beige border border-beige/40 text-xs font-medium backdrop-blur-md"
                 >
                   {t}
                 </span>
               ))}
             {!drink.contains_alcohol && (
-              <span className="px-3 py-1.5 rounded-full bg-green-700/30 text-white border border-green-400/40 text-sm font-medium backdrop-blur-sm">
+              <span className="px-2 py-1 rounded-full bg-green-700/30 text-white border border-green-400/40 text-xs font-medium backdrop-blur-sm">
                 {dict.drinkCard.nonAlcoholic}
               </span>
             )}

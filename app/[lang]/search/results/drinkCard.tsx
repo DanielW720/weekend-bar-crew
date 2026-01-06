@@ -84,7 +84,7 @@ export const DrinkCard = ({ drink, drinkCard }: { drink: Drink; drinkCard: { non
 
       {/* Non-alcoholic Badge */}
       {!drink.contains_alcohol && (
-        <div className="absolute top-2 right-2 z-20 flex items-center gap-1 bg-gradient-to-r from-green-700/60 to-green-600/60 rounded-full px-1.5 py-1 backdrop-blur-md border border-green-400/40 shadow-lg">
+        <div className="absolute top-2 right-2 z-20 flex items-center gap-1 bg-green-700/30 rounded-full px-1.5 py-1 backdrop-blur-md border border-green-400/40 shadow-lg">
           <span className="text-xxs font-semibold text-white">
             {drinkCard.nonAlcoholic}
           </span>

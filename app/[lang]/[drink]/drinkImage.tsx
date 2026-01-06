@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React from "react";
 import { Drink } from "../../types";
 
 function DrinkImage({ image }: { image: Drink["image"] }) {
@@ -19,7 +18,7 @@ function DrinkImage({ image }: { image: Drink["image"] }) {
         sizes="500px"
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mMMPwIAAXgBHdkaTf8AAAAASUVORK5CYII="
-        className="rounded-[2rem] border-b-4 border-b-beige object-cover"
+        className="object-cover rounded-[1rem]"
       />
     </motion.div>
   );
