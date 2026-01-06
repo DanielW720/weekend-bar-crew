@@ -10,9 +10,9 @@ function HeaderLink() {
     <Link
       href={pathname}
       target="_parent"
-      className="w-fit text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem]"
+      className="group/logo w-fit text-center text-[0.85rem] font-extrabold leading-6 tracking-[0.3rem] transition-all duration-300"
     >
-      <h1 className="transition-colors duration-200 hover:text-white">
+      <h1 className="transition-all duration-300 group-hover/logo:text-white group-hover/logo:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] group-focus-visible/logo:text-white group-focus-visible/logo:outline-2 group-focus-visible/logo:outline-offset-2 group-focus-visible/logo:outline-beige">
         Weekend
         <br />
         Bar

@@ -35,7 +35,7 @@ module.exports = {
       },
       backgroundImage: {
         headerTransparent:
-          "linear-gradient(to right, #00000040, #735e5e40, #EDBABA40)",
+          "linear-gradient(135deg, #00000040 0%, #735e5e40 50%, #EDBABA40 100%)",
       },
       keyframes: {
         slideDown: {
