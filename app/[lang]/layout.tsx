@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import Header from "./layout/header/header";
 import Footer from "./layout/footer/footer";
+import MenuModal from "./layout/header/menuModal";
 import { Analytics } from "@vercel/analytics/react";
 import { inknut_antiqua } from "../lib/fonts";
 import { supported_locales } from "@/middleware";
@@ -8,6 +9,7 @@ import { getDictionary } from "./dictionaries";
 import { Locale } from "../types";
 import getAlternateLanguages from "../lib/getAlternateLanguages";
 import GoogleAdsense from "../googleAdsense";
+import { Suspense } from "react";
 
 export async function generateMetadata({
   params,
@@ -46,7 +48,13 @@ export default async function Root({
       >
         <Analytics />
         <GoogleAdsense pId={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_PUB_ID!} />
-        <Header slogan={dict.header.slogan} language={dict.header.language} />
+        <Header
+          slogan={dict.header.slogan}
+          language={dict.header.language}
+        />
+        <Suspense fallback={null}>
+          <MenuModal about={dict.footer.about} contact={dict.footer.contact} />
+        </Suspense>
         <div className="flex min-h-[calc(100vh-6.25rem)] flex-col justify-between">
           <main>{children}</main>
           <Footer

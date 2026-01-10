@@ -1,6 +1,7 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import HeaderLogo from "./headerLogo";
 import LanguageSelection from "./languageSelection";
+import MenuButton from "./menuButton";
 
 export default async function Header({
   slogan,
@@ -26,6 +27,9 @@ export default async function Header({
           {slogan}
         </p>
       </div>
+      <Suspense fallback={null}>
+        <MenuButton />
+      </Suspense>
     </header>
   );
 }

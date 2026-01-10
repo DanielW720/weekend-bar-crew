@@ -33,16 +33,16 @@ function LanguageSelection({ language }: { language: string }) {
       open={open}
       onOpenChange={onOpenChangeHandler}
     >
-      <Select.Trigger className="absolute left-2 top-2 p-1 text-xs text-beige/80 outline-none transition-colors duration-200 hover:text-white sm:left-4 sm:top-4 sm:text-sm">
+      <Select.Trigger className="absolute left-4 top-4 p-1 text-sm text-beige/80 outline-none transition-colors duration-200 hover:text-white sm:left-4 sm:top-4 sm:text-sm">
         <motion.div
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.1 }}
           className="flex items-center"
         >
-          <Select.Value />
           <Select.Icon>
-            <LiaGlobeEuropeSolid className="ml-[2px]" />
+            <LiaGlobeEuropeSolid className="mr-1.5" size={16} />
           </Select.Icon>
+          <Select.Value />
         </motion.div>
       </Select.Trigger>
 
