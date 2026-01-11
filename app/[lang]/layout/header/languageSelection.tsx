@@ -1,7 +1,7 @@
 "use client";
 
 import useLanguagePathname from "@/app/hooks/useLanguagePathname";
-import { supported_locales } from "@/middleware";
+import { supported_locales } from "@/proxy";
 import { CheckIcon } from "@radix-ui/react-icons";
 import * as Select from "@radix-ui/react-select";
 import { motion } from "framer-motion";

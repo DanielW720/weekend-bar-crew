@@ -1,4 +1,4 @@
-import { supported_locales } from "@/middleware";
+import { supported_locales } from "@/proxy";
 
 export default function getAlternateLanguages(lang: string, drink?: string) {
   let languages = new Map<string, string>();

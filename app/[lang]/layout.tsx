@@ -4,7 +4,7 @@ import Footer from "./layout/footer/footer";
 import MenuModal from "./layout/header/menuModal";
 import { Analytics } from "@vercel/analytics/react";
 import { inknut_antiqua } from "../lib/fonts";
-import { supported_locales } from "@/middleware";
+import { supported_locales } from "@/proxy";
 import { getDictionary } from "./dictionaries";
 import { Locale } from "../types";
 import getAlternateLanguages from "../lib/getAlternateLanguages";
