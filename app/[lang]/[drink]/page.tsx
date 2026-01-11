@@ -64,7 +64,7 @@ export default async function Page({
         tabs={dict.drinkpage.tabs}
         recipeDisplayNames={dict.drinkpage.recipe}
       />
-      <RelatedDrinks drink={drink} />
+      <RelatedDrinks drink={drink} header={dict.drinkpage.relatedDrinks.header} />
     </div>
   );
 }

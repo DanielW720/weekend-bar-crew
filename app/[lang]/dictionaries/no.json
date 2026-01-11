@@ -60,6 +60,9 @@
       "recommendedGlass": "Anbefalt glas:",
       "ingredients": "Ingredienser",
       "instructions": "Instruksjoner"
+    },
+    "relatedDrinks": {
+      "header": "Relaterte drinker"
     }
   },
   "about": {

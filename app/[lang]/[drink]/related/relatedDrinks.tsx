@@ -10,14 +10,14 @@ import {
 import RelatedDrink from "./relatedDrink";
 import { httpsCallable } from "firebase/functions";
 
-export default async function RelatedDrinks({ drink }: { drink: Drink }) {
+export default async function RelatedDrinks({ drink, header }: { drink: Drink, header: string }) {
   // Fetch related drinks based on the drink's tags
   const relatedDrinks = await fetchRelatedDrinks(drink);
 
   return (
     <div className="flex w-full flex-col items-center">
       <h2 className="mt-10 text-center text-2xl tracking-widest text-beige">
-        Related drinks
+        {header}
       </h2>
       <div className="mt-6 flex w-full flex-wrap justify-center gap-4 text-white">
         {relatedDrinks.map((relatedDrink) => (
@@ -36,7 +36,6 @@ async function fetchRelatedDrinks(drink: Drink): Promise<Drink[]> {
       );
       return [];
     }
-
 
     // Fetch the 5 most similar drinks to the current, excluding the current drink
     const knnQuery = httpsCallable<

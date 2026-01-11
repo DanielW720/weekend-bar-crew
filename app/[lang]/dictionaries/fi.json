@@ -60,6 +60,9 @@
       "recommendedGlass": "Suositeltu lasi:",
       "ingredients": "Ainekset",
       "instructions": "Ohjeet"
+    },
+    "relatedDrinks": {
+      "header": "Aiheeseen liittyviä juomia"
     }
   },
   "about": {

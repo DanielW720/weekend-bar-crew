@@ -2,7 +2,7 @@ import { collection, getDocs, query } from "firebase/firestore";
 import type { MetadataRoute } from "next";
 import { firestore } from "./firebase";
 import { drinkConverter } from "./types";
-import { supported_locales } from "@/middleware";
+import { supported_locales } from "@/proxy";
 
 const baseUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
 
